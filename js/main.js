@@ -24,23 +24,53 @@ server.listen(port, hostname, () => {
 
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
-const exampleEmbed = new Discord.MessageEmbed();
+
 
 function player_match_display(info, channelID, id){
-
+    participantId = -1;
+    var summonerName = "";
+    for(var i = 0; i < info.participantIdentities.length; i++){
+        if(id == info.participantIdentities[i].player.accountId){
+            participantId = info.participantIdentities[i].participantId;
+            summonerName = info.participantIdentities[i].player.summonerName
+            break;
+        }
+    }
+    //info.participants[participantId - 1].stats
+    var exampleEmbed = new Discord.MessageEmbed();
+	exampleEmbed.setColor('#0099ff')
+	exampleEmbed.setTitle('Some title')
+	exampleEmbed.setURL('https://discord.js.org/')
+	exampleEmbed.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+	exampleEmbed.setDescription('Some description here')
+	exampleEmbed.setThumbnail('https://i.imgur.com/wSTFkRM.png')
+	exampleEmbed.addFields(
+		{ name: 'Regular field title', value: 'Some value here' },
+		{ name: '\u200B', value: '\u200B' },
+		{ name: 'Inline field title', value: 'Some value here', inline: true },
+		{ name: 'Inline field title', value: 'Some value here', inline: true },
+	)
+	exampleEmbed.addField('Inline field title', 'Some value here', true)
+	exampleEmbed.setImage('https://i.imgur.com/wSTFkRM.png')
+	exampleEmbed.setTimestamp()
+    exampleEmbed.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
+    bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
 function player_match_history_display(body, channelID, id){
+    console.log(body[0]);
     // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-3c101dbf-5174-4cbc-bf4c-33f1210b55ff
     for(i = 0; i < Math.min(10, body.length); i++){
+        console.log("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID);
         request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID, {
             json: true
           }, (err, res, body) => {
             if (err) {
               return console.log(err);
             }
-            player_match_display(body, channelID, id);
             console.log(body);
+            player_match_display(body, channelID, id);
+            
           });
     }
 }
@@ -53,8 +83,10 @@ function player_match_history(id, channelID) {
     if (err) {
       return console.log(err);
     }
-    player_match_history_display(body, channelID, id);
-    console.log(body);
+    console.log("ADSD");
+    console.log(body.matches);
+    player_match_history_display(body.matches, channelID, id);
+    
   });
 
 }
