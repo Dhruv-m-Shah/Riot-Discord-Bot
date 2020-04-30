@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const league_ID = "RGAPI-3c101dbf-5174-4cbc-bf4c-33f1210b55ff";
+const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
 const bot = new Discord.Client();
 var region = "na1";
 const request = require('request');
@@ -7,6 +7,8 @@ const request = require('request');
 const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
+
+const champions = require('./config.json')
 
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
@@ -38,10 +40,9 @@ function player_match_display(info, channelID, id){
     }
     //info.participants[participantId - 1].stats
     var exampleEmbed = new Discord.MessageEmbed();
-	exampleEmbed.setColor('#0099ff')
-	exampleEmbed.setTitle('Some title')
-	exampleEmbed.setURL('https://discord.js.org/')
-	exampleEmbed.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+	exampleEmbed.setColor('#0099ff');
+	exampleEmbed.setTitle(summonerName +"'s Match History");
+	exampleEmbed.setURL('https://na.op.gg/summoner/userName=' + summonerName);
 	exampleEmbed.setDescription('Some description here')
 	exampleEmbed.setThumbnail('https://i.imgur.com/wSTFkRM.png')
 	exampleEmbed.addFields(
