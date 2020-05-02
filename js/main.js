@@ -3,13 +3,14 @@ const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
 const bot = new Discord.Client();
 var region = "na1";
 const request = require('request');
+var myModule = require('./champion_images');
+var champion_images = myModule.images;
 //Load HTTP module
 const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
 
-const champions = require('./config.json')
-
+var champions = require('./champions.json')
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
 
@@ -27,67 +28,120 @@ server.listen(port, hostname, () => {
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
 
-
-function player_match_display(info, channelID, id){
-    participantId = -1;
-    var summonerName = "";
-    for(var i = 0; i < info.participantIdentities.length; i++){
-        if(id == info.participantIdentities[i].player.accountId){
-            participantId = info.participantIdentities[i].participantId;
-            summonerName = info.participantIdentities[i].player.summonerName
-            break;
-        }
+function findChampionName(id) {
+  for (i = 0; i < champions.data.length; i++) {
+    if (id == Number(champions.data[i].key)) {
+      return champions.data[i].name;
     }
-    //info.participants[participantId - 1].stats
-    var exampleEmbed = new Discord.MessageEmbed();
-	exampleEmbed.setColor('#0099ff');
-	exampleEmbed.setTitle(summonerName +"'s Match History");
-	exampleEmbed.setURL('https://na.op.gg/summoner/userName=' + summonerName);
-	exampleEmbed.setDescription('Some description here')
-	exampleEmbed.setThumbnail('https://i.imgur.com/wSTFkRM.png')
-	exampleEmbed.addFields(
-		{ name: 'Regular field title', value: 'Some value here' },
-		{ name: '\u200B', value: '\u200B' },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-		{ name: 'Inline field title', value: 'Some value here', inline: true },
-	)
-	exampleEmbed.addField('Inline field title', 'Some value here', true)
-	exampleEmbed.setImage('https://i.imgur.com/wSTFkRM.png')
-	exampleEmbed.setTimestamp()
-    exampleEmbed.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
-    bot.channels.cache.get(channelID).send(exampleEmbed);
+  }
 }
 
-function player_match_history_display(body, channelID, id){
-    console.log(body[0]);
-    // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-3c101dbf-5174-4cbc-bf4c-33f1210b55ff
-    for(i = 0; i < Math.min(10, body.length); i++){
-        console.log("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID);
-        request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID, {
-            json: true
-          }, (err, res, body) => {
-            if (err) {
-              return console.log(err);
-            }
-            console.log(body);
-            player_match_display(body, channelID, id);
-            
-          });
+function player_match_display(info, channelID, id) {
+  participantId = -1;
+  var summonerName = "";
+  for (var i = 0; i < info.participantIdentities.length; i++) {
+    if (id == info.participantIdentities[i].player.accountId) {
+      participantId = info.participantIdentities[i].participantId;
+      summonerName = info.participantIdentities[i].player.summonerName
+      break;
     }
+  }
+  a = [];
+  //info.participants[participantId - 1].stats
+  championId = info.participants[participantId - 1].championId;
+  championName = findChampionName(championId);
+  var exampleEmbed = new Discord.MessageEmbed();
+  exampleEmbed.setColor('#0099ff');
+  exampleEmbed.setAuthor(summonerName + "'s Match History", 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+  exampleEmbed.setTitle(championName);
+  exampleEmbed.setURL('https://na.op.gg/summoner/userName=' + encodeURIComponent(summonerName.trim()));
+  exampleEmbed.setDescription(info.participants[participantId - 1].stats.kills + "/" + info.participants[participantId - 1].stats.deaths + "/" + info.participants[participantId - 1].stats.assists);
+  exampleEmbed.setThumbnail(champion_images[championName]);
+  exampleEmbed.addFields({
+    name: 'Gold Earned',
+    value: info.participants[participantId - 1].stats.goldEarned,
+    inline: true
+  }, {
+    name: 'Total Damage Dealt',
+    value: info.participants[participantId - 1].stats.totalDamageDealt,
+    inline: true
+  }, );
+
+  exampleEmbed.setImage('')
+  exampleEmbed.setTimestamp()
+  exampleEmbed.setFooter(info.gameCreation, 'https://i.imgur.com/wSTFkRM.png');
+  bot.channels.cache.get(channelID).send(exampleEmbed);
+  return 1;
+}
+
+function sort_by_time(a) {
+  for (i = 0; i < a.length; i++) {
+    for (j = i + 1; j < a.length; j++) {
+      if (a[j].gameCreation < a[i].gameCreation) {
+        var temp = a[j];
+        a[j] = a[i];
+        a[i] = temp;
+      }
+    }
+  }
+
+  return a;
+}
+
+function player_match_history_display(body, channelID, id, num) {
+  if(num == 10) return;
+  // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
+  a = []
+
+  request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[num].gameId + "?api_key=" + league_ID, {
+    json: true
+  }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    a.push(body);
+    player_match_display(body, channelID, id);
+
+  });
+  setTimeout(function () {
+    player_match_history_display(body, channelID, id, num+1)
+  }, 400);
+
+}
+
+function player_match_history_display1(body, channelID, id) {
+  // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
+  a = []
+  for (i = 0; i < Math.min(10, body.length); i++) {
+    request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID, {
+      json: true
+    }, (err, res, body) => {
+      if (err) {
+        return console.log(err);
+      }
+      a.push(body);
+      console.log(i);
+      if (i == 9) {
+        a = sort_by_time(a);
+        console.log(a);
+      }
+      player_match_display(body, channelID, id);
+
+    });
+
+  }
 }
 
 function player_match_history(id, channelID) {
-  // https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/Dd_mu6PdtEC1lWWu9zDAD1G2TS2slPqIkJivZN6UCOIrKmY?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
+  // https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/DI3RMPSbYGrxwmgCIrJ2ibENps34SdvxRIt0DHWJKmpPeO4?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   request("https://" + region + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + id + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
     if (err) {
       return console.log(err);
     }
-    console.log("ADSD");
-    console.log(body.matches);
-    player_match_history_display(body.matches, channelID, id);
-    
+    player_match_history_display(body.matches, channelID, id, 0);
+
   });
 
 }
@@ -103,12 +157,11 @@ function get_player_id(name, channelID, purpose) {
     if (err) {
       return console.log(err);
     }
-    console.log(body);
-    if(purpose == "rank"){
-        player_rank_id(body.id, channelID);
+    if (purpose == "rank") {
+      player_rank_id(body.id, channelID);
     }
-    if(purpose == "match_history"){
-        player_match_history(body.accountId, channelID);
+    if (purpose == "match_history") {
+      player_match_history(body.accountId, channelID);
     }
   });
 }
@@ -119,7 +172,7 @@ function player_rank(name, channelID) {
 }
 
 function player_rank_id(id, channelID) {
-  console.log("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id);
+
   // https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/q3X2__q-84mDXMRjIzfsDkpvAe7lHufCBsyIhlZfR4675bQ?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
   request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
     json: true
@@ -127,7 +180,6 @@ function player_rank_id(id, channelID) {
     if (err) {
       return console.log(err);
     }
-    console.log(body);
     if (body.length == 0) {
       bot.channels.cache.get(channelID).send("Not Ranked!");
     }
@@ -155,9 +207,8 @@ bot.on('message', (msg) => {
   if (msg.content == "!setup") {
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
-  if (msg.content.startsWith("!player_rank")) {
-    console.log(msg);
-    player_rank(msg.content.slice(13, msg.content.length), msg.channel.id);
+  if (msg.content.startsWith("!rank")) {
+    player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
   }
   if (msg.content.startsWith("!change_region")) {
     region = msg.content.slice(15, msg.content.length);

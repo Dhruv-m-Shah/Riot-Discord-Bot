@@ -2,8 +2,8 @@
    "type":"champion",
    "format":"standAloneComplex",
    "version":"6.24.1",
-   "data":{
-      "Aatrox":{
+   "data":[
+      {
          "version":"6.24.1",
          "id":"Aatrox",
          "key":"266",
@@ -53,7 +53,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Ahri":{
+      {
          "version":"6.24.1",
          "id":"Ahri",
          "key":"103",
@@ -103,7 +103,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Akali":{
+      {
          "version":"6.24.1",
          "id":"Akali",
          "key":"84",
@@ -152,7 +152,7 @@
             "attackspeedperlevel":3.1
          }
       },
-      "Alistar":{
+      {
          "version":"6.24.1",
          "id":"Alistar",
          "key":"12",
@@ -202,7 +202,7 @@
             "attackspeedperlevel":2.125
          }
       },
-      "Amumu":{
+      {
          "version":"6.24.1",
          "id":"Amumu",
          "key":"32",
@@ -252,7 +252,7 @@
             "attackspeedperlevel":2.18
          }
       },
-      "Anivia":{
+      {
          "version":"6.24.1",
          "id":"Anivia",
          "key":"34",
@@ -302,7 +302,7 @@
             "attackspeedperlevel":1.68
          }
       },
-      "Annie":{
+      {
          "version":"6.24.1",
          "id":"Annie",
          "key":"1",
@@ -351,7 +351,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Ashe":{
+      {
          "version":"6.24.1",
          "id":"Ashe",
          "key":"22",
@@ -401,7 +401,7 @@
             "attackspeedperlevel":3.33
          }
       },
-      "AurelionSol":{
+      {
          "version":"6.24.1",
          "id":"AurelionSol",
          "key":"136",
@@ -451,7 +451,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Azir":{
+      {
          "version":"6.24.1",
          "id":"Azir",
          "key":"268",
@@ -501,7 +501,7 @@
             "attackspeedperlevel":1.5
          }
       },
-      "Bard":{
+      {
          "version":"6.24.1",
          "id":"Bard",
          "key":"432",
@@ -551,7 +551,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Blitzcrank":{
+      {
          "version":"6.24.1",
          "id":"Blitzcrank",
          "key":"53",
@@ -601,7 +601,7 @@
             "attackspeedperlevel":1.13
          }
       },
-      "Brand":{
+     {
          "version":"6.24.1",
          "id":"Brand",
          "key":"63",
@@ -650,7 +650,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Braum":{
+      {
          "version":"6.24.1",
          "id":"Braum",
          "key":"201",
@@ -700,7 +700,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "Caitlyn":{
+     {
          "version":"6.24.1",
          "id":"Caitlyn",
          "key":"51",
@@ -749,7 +749,7 @@
             "attackspeedperlevel":4.0
          }
       },
-      "Camille":{
+      {
          "version":"6.24.1",
          "id":"Camille",
          "key":"164",
@@ -799,7 +799,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Cassiopeia":{
+      {
          "version":"6.24.1",
          "id":"Cassiopeia",
          "key":"69",
@@ -848,7 +848,7 @@
             "attackspeedperlevel":1.5
          }
       },
-      "Chogath":{
+      {
          "version":"6.24.1",
          "id":"Chogath",
          "key":"31",
@@ -898,7 +898,7 @@
             "attackspeedperlevel":1.44
          }
       },
-      "Corki":{
+     {
          "version":"6.24.1",
          "id":"Corki",
          "key":"42",
@@ -947,7 +947,7 @@
             "attackspeedperlevel":2.3
          }
       },
-      "Darius":{
+      {
          "version":"6.24.1",
          "id":"Darius",
          "key":"122",
@@ -997,7 +997,7 @@
             "attackspeedperlevel":1.0
          }
       },
-      "Diana":{
+      {
          "version":"6.24.1",
          "id":"Diana",
          "key":"131",
@@ -1047,7 +1047,7 @@
             "attackspeedperlevel":2.25
          }
       },
-      "Draven":{
+      {
          "version":"6.24.1",
          "id":"Draven",
          "key":"119",
@@ -1096,9 +1096,9 @@
             "attackspeedperlevel":2.7
          }
       },
-      "DrMundo":{
+      {
          "version":"6.24.1",
-         "id":"DrMundo",
+         "id":"Dr Mundo",
          "key":"36",
          "name":"Dr. Mundo",
          "title":"the Madman of Zaun",
@@ -1146,7 +1146,7 @@
             "attackspeedperlevel":2.8
          }
       },
-      "Ekko":{
+      {
          "version":"6.24.1",
          "id":"Ekko",
          "key":"245",
@@ -1196,7 +1196,7 @@
             "attackspeedperlevel":3.3
          }
       },
-      "Elise":{
+      {
          "version":"6.24.1",
          "id":"Elise",
          "key":"60",
@@ -1246,7 +1246,7 @@
             "attackspeedperlevel":1.75
          }
       },
-      "Evelynn":{
+      {
          "version":"6.24.1",
          "id":"Evelynn",
          "key":"28",
@@ -1296,7 +1296,7 @@
             "attackspeedperlevel":3.6
          }
       },
-      "Ezreal":{
+      {
          "version":"6.24.1",
          "id":"Ezreal",
          "key":"81",
@@ -1346,7 +1346,7 @@
             "attackspeedperlevel":2.8
          }
       },
-      "FiddleSticks":{
+      {
          "version":"6.24.1",
          "id":"FiddleSticks",
          "key":"9",
@@ -1396,7 +1396,7 @@
             "attackspeedperlevel":2.11
          }
       },
-      "Fiora":{
+      {
          "version":"6.24.1",
          "id":"Fiora",
          "key":"114",
@@ -1446,7 +1446,7 @@
             "attackspeedperlevel":3.2
          }
       },
-      "Fizz":{
+      {
          "version":"6.24.1",
          "id":"Fizz",
          "key":"105",
@@ -1496,7 +1496,7 @@
             "attackspeedperlevel":3.1
          }
       },
-      "Galio":{
+      {
          "version":"6.24.1",
          "id":"Galio",
          "key":"3",
@@ -1546,7 +1546,7 @@
             "attackspeedperlevel":1.2
          }
       },
-      "Gangplank":{
+      {
          "version":"6.24.1",
          "id":"Gangplank",
          "key":"41",
@@ -1595,7 +1595,7 @@
             "attackspeedperlevel":3.2
          }
       },
-      "Garen":{
+      {
          "version":"6.24.1",
          "id":"Garen",
          "key":"86",
@@ -1645,7 +1645,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "Gnar":{
+     {
          "version":"6.24.1",
          "id":"Gnar",
          "key":"150",
@@ -1695,7 +1695,7 @@
             "attackspeedperlevel":6.0
          }
       },
-      "Gragas":{
+      {
          "version":"6.24.1",
          "id":"Gragas",
          "key":"79",
@@ -1745,7 +1745,7 @@
             "attackspeedperlevel":2.05
          }
       },
-      "Graves":{
+      {
          "version":"6.24.1",
          "id":"Graves",
          "key":"104",
@@ -1794,7 +1794,7 @@
             "attackspeedperlevel":2.6
          }
       },
-      "Hecarim":{
+      {
          "version":"6.24.1",
          "id":"Hecarim",
          "key":"120",
@@ -1844,7 +1844,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Heimerdinger":{
+      {
          "version":"6.24.1",
          "id":"Heimerdinger",
          "key":"74",
@@ -1894,7 +1894,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Illaoi":{
+      {
          "version":"6.24.1",
          "id":"Illaoi",
          "key":"420",
@@ -1944,7 +1944,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Irelia":{
+      {
          "version":"6.24.1",
          "id":"Irelia",
          "key":"39",
@@ -1994,7 +1994,7 @@
             "attackspeedperlevel":3.2
          }
       },
-      "Ivern":{
+      {
          "version":"6.24.1",
          "id":"Ivern",
          "key":"427",
@@ -2044,7 +2044,7 @@
             "attackspeedperlevel":3.4
          }
       },
-      "Janna":{
+      {
          "version":"6.24.1",
          "id":"Janna",
          "key":"40",
@@ -2094,7 +2094,7 @@
             "attackspeedperlevel":2.61
          }
       },
-      "JarvanIV":{
+      {
          "version":"6.24.1",
          "id":"JarvanIV",
          "key":"59",
@@ -2144,7 +2144,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Jax":{
+      {
          "version":"6.24.1",
          "id":"Jax",
          "key":"24",
@@ -2194,7 +2194,7 @@
             "attackspeedperlevel":3.4
          }
       },
-      "Jayce":{
+      {
          "version":"6.24.1",
          "id":"Jayce",
          "key":"126",
@@ -2244,7 +2244,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Jhin":{
+      {
          "version":"6.24.1",
          "id":"Jhin",
          "key":"202",
@@ -2294,7 +2294,7 @@
             "attackspeedperlevel":0.0
          }
       },
-      "Jinx":{
+      {
          "version":"6.24.1",
          "id":"Jinx",
          "key":"222",
@@ -2343,7 +2343,7 @@
             "attackspeedperlevel":1.0
          }
       },
-      "Kalista":{
+      {
          "version":"6.24.1",
          "id":"Kalista",
          "key":"429",
@@ -2392,7 +2392,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Karma":{
+      {
          "version":"6.24.1",
          "id":"Karma",
          "key":"43",
@@ -2442,7 +2442,7 @@
             "attackspeedperlevel":2.3
          }
       },
-      "Karthus":{
+     {
          "version":"6.24.1",
          "id":"Karthus",
          "key":"30",
@@ -2491,7 +2491,7 @@
             "attackspeedperlevel":2.11
          }
       },
-      "Kassadin":{
+      {
          "version":"6.24.1",
          "id":"Kassadin",
          "key":"38",
@@ -2541,7 +2541,7 @@
             "attackspeedperlevel":3.7
          }
       },
-      "Katarina":{
+      {
          "version":"6.24.1",
          "id":"Katarina",
          "key":"55",
@@ -2591,7 +2591,7 @@
             "attackspeedperlevel":2.74
          }
       },
-      "Kayle":{
+      {
          "version":"6.24.1",
          "id":"Kayle",
          "key":"10",
@@ -2641,7 +2641,7 @@
             "attackspeedperlevel":2.2
          }
       },
-      "Kennen":{
+     {
          "version":"6.24.1",
          "id":"Kennen",
          "key":"85",
@@ -2691,7 +2691,7 @@
             "attackspeedperlevel":3.4
          }
       },
-      "Khazix":{
+      {
          "version":"6.24.1",
          "id":"Khazix",
          "key":"121",
@@ -2741,7 +2741,7 @@
             "attackspeedperlevel":2.7
          }
       },
-      "Kindred":{
+     {
          "version":"6.24.1",
          "id":"Kindred",
          "key":"203",
@@ -2790,7 +2790,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Kled":{
+      {
          "version":"6.24.1",
          "id":"Kled",
          "key":"240",
@@ -2840,7 +2840,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "KogMaw":{
+      {
          "version":"6.24.1",
          "id":"KogMaw",
          "key":"96",
@@ -2890,7 +2890,7 @@
             "attackspeedperlevel":2.65
          }
       },
-      "Leblanc":{
+      {
          "version":"6.24.1",
          "id":"Leblanc",
          "key":"7",
@@ -2940,9 +2940,9 @@
             "attackspeedperlevel":1.4
          }
       },
-      "LeeSin":{
+      {
          "version":"6.24.1",
-         "id":"LeeSin",
+         "id":"Lee Sin",
          "key":"64",
          "name":"Lee Sin",
          "title":"the Blind Monk",
@@ -2990,7 +2990,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Leona":{
+      {
          "version":"6.24.1",
          "id":"Leona",
          "key":"89",
@@ -3040,7 +3040,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "Lissandra":{
+      {
          "version":"6.24.1",
          "id":"Lissandra",
          "key":"127",
@@ -3089,7 +3089,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Lucian":{
+      {
          "version":"6.24.1",
          "id":"Lucian",
          "key":"236",
@@ -3138,7 +3138,7 @@
             "attackspeedperlevel":3.3
          }
       },
-      "Lulu":{
+      {
          "version":"6.24.1",
          "id":"Lulu",
          "key":"117",
@@ -3188,7 +3188,7 @@
             "attackspeedperlevel":2.25
          }
       },
-      "Lux":{
+      {
          "version":"6.24.1",
          "id":"Lux",
          "key":"99",
@@ -3238,7 +3238,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Malphite":{
+      {
          "version":"6.24.1",
          "id":"Malphite",
          "key":"54",
@@ -3288,7 +3288,7 @@
             "attackspeedperlevel":3.4
          }
       },
-      "Malzahar":{
+      {
          "version":"6.24.1",
          "id":"Malzahar",
          "key":"90",
@@ -3338,7 +3338,7 @@
             "attackspeedperlevel":1.5
          }
       },
-      "Maokai":{
+      {
          "version":"6.24.1",
          "id":"Maokai",
          "key":"57",
@@ -3388,7 +3388,7 @@
             "attackspeedperlevel":2.125
          }
       },
-      "MasterYi":{
+      {
          "version":"6.24.1",
          "id":"MasterYi",
          "key":"11",
@@ -3438,7 +3438,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "MissFortune":{
+      {
          "version":"6.24.1",
          "id":"MissFortune",
          "key":"21",
@@ -3487,7 +3487,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "MonkeyKing":{
+      {
          "version":"6.24.1",
          "id":"MonkeyKing",
          "key":"62",
@@ -3537,7 +3537,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Mordekaiser":{
+      {
          "version":"6.24.1",
          "id":"Mordekaiser",
          "key":"82",
@@ -3586,7 +3586,7 @@
             "attackspeedperlevel":2.2
          }
       },
-      "Morgana":{
+      {
          "version":"6.24.1",
          "id":"Morgana",
          "key":"25",
@@ -3636,7 +3636,7 @@
             "attackspeedperlevel":1.53
          }
       },
-      "Nami":{
+      {
          "version":"6.24.1",
          "id":"Nami",
          "key":"267",
@@ -3686,7 +3686,7 @@
             "attackspeedperlevel":2.61
          }
       },
-      "Nasus":{
+      {
          "version":"6.24.1",
          "id":"Nasus",
          "key":"75",
@@ -3736,7 +3736,7 @@
             "attackspeedperlevel":3.48
          }
       },
-      "Nautilus":{
+      {
          "version":"6.24.1",
          "id":"Nautilus",
          "key":"111",
@@ -3786,7 +3786,7 @@
             "attackspeedperlevel":1.0
          }
       },
-      "Nidalee":{
+      {
          "version":"6.24.1",
          "id":"Nidalee",
          "key":"76",
@@ -3836,7 +3836,7 @@
             "attackspeedperlevel":3.22
          }
       },
-      "Nocturne":{
+      {
          "version":"6.24.1",
          "id":"Nocturne",
          "key":"56",
@@ -3886,7 +3886,7 @@
             "attackspeedperlevel":2.7
          }
       },
-      "Nunu":{
+      {
          "version":"6.24.1",
          "id":"Nunu",
          "key":"20",
@@ -3936,7 +3936,7 @@
             "attackspeedperlevel":2.25
          }
       },
-      "Olaf":{
+      {
          "version":"6.24.1",
          "id":"Olaf",
          "key":"2",
@@ -3986,7 +3986,7 @@
             "attackspeedperlevel":2.7
          }
       },
-      "Orianna":{
+      {
          "version":"6.24.1",
          "id":"Orianna",
          "key":"61",
@@ -4036,7 +4036,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "Pantheon":{
+      {
          "version":"6.24.1",
          "id":"Pantheon",
          "key":"80",
@@ -4086,7 +4086,7 @@
             "attackspeedperlevel":2.95
          }
       },
-      "Poppy":{
+      {
          "version":"6.24.1",
          "id":"Poppy",
          "key":"78",
@@ -4136,7 +4136,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Quinn":{
+     {
          "version":"6.24.1",
          "id":"Quinn",
          "key":"133",
@@ -4186,7 +4186,7 @@
             "attackspeedperlevel":3.1
          }
       },
-      "Rammus":{
+      {
          "version":"6.24.1",
          "id":"Rammus",
          "key":"33",
@@ -4236,7 +4236,7 @@
             "attackspeedperlevel":2.215
          }
       },
-      "RekSai":{
+      {
          "version":"6.24.1",
          "id":"RekSai",
          "key":"421",
@@ -4285,7 +4285,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Renekton":{
+      {
          "version":"6.24.1",
          "id":"Renekton",
          "key":"58",
@@ -4335,7 +4335,7 @@
             "attackspeedperlevel":2.65
          }
       },
-      "Rengar":{
+      {
          "version":"6.24.1",
          "id":"Rengar",
          "key":"107",
@@ -4385,7 +4385,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "Riven":{
+      {
          "version":"6.24.1",
          "id":"Riven",
          "key":"92",
@@ -4435,7 +4435,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "Rumble":{
+      {
          "version":"6.24.1",
          "id":"Rumble",
          "key":"68",
@@ -4485,7 +4485,7 @@
             "attackspeedperlevel":1.85
          }
       },
-      "Ryze":{
+     {
          "version":"6.24.1",
          "id":"Ryze",
          "key":"13",
@@ -4535,7 +4535,7 @@
             "attackspeedperlevel":2.112
          }
       },
-      "Sejuani":{
+      {
          "version":"6.24.1",
          "id":"Sejuani",
          "key":"113",
@@ -4585,7 +4585,7 @@
             "attackspeedperlevel":1.44
          }
       },
-      "Shaco":{
+      {
          "version":"6.24.1",
          "id":"Shaco",
          "key":"35",
@@ -4634,7 +4634,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Shen":{
+      {
          "version":"6.24.1",
          "id":"Shen",
          "key":"98",
@@ -4684,7 +4684,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Shyvana":{
+      {
          "version":"6.24.1",
          "id":"Shyvana",
          "key":"102",
@@ -4734,7 +4734,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Singed":{
+      {
          "version":"6.24.1",
          "id":"Singed",
          "key":"27",
@@ -4784,7 +4784,7 @@
             "attackspeedperlevel":1.81
          }
       },
-      "Sion":{
+      {
          "version":"6.24.1",
          "id":"Sion",
          "key":"14",
@@ -4834,7 +4834,7 @@
             "attackspeedperlevel":1.3
          }
       },
-      "Sivir":{
+      {
          "version":"6.24.1",
          "id":"Sivir",
          "key":"15",
@@ -4883,7 +4883,7 @@
             "attackspeedperlevel":1.6
          }
       },
-      "Skarner":{
+      {
          "version":"6.24.1",
          "id":"Skarner",
          "key":"72",
@@ -4933,7 +4933,7 @@
             "attackspeedperlevel":2.1
          }
       },
-      "Sona":{
+      {
          "version":"6.24.1",
          "id":"Sona",
          "key":"37",
@@ -4983,7 +4983,7 @@
             "attackspeedperlevel":2.3
          }
       },
-      "Soraka":{
+      {
          "version":"6.24.1",
          "id":"Soraka",
          "key":"16",
@@ -5033,7 +5033,7 @@
             "attackspeedperlevel":2.14
          }
       },
-      "Swain":{
+      {
          "version":"6.24.1",
          "id":"Swain",
          "key":"50",
@@ -5083,7 +5083,7 @@
             "attackspeedperlevel":2.11
          }
       },
-      "Syndra":{
+      {
          "version":"6.24.1",
          "id":"Syndra",
          "key":"134",
@@ -5133,7 +5133,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "TahmKench":{
+      {
          "version":"6.24.1",
          "id":"TahmKench",
          "key":"223",
@@ -5183,7 +5183,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Taliyah":{
+     {
          "version":"6.24.1",
          "id":"Taliyah",
          "key":"163",
@@ -5233,7 +5233,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Talon":{
+      {
          "version":"6.24.1",
          "id":"Talon",
          "key":"91",
@@ -5283,7 +5283,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "Taric":{
+      {
          "version":"6.24.1",
          "id":"Taric",
          "key":"44",
@@ -5333,7 +5333,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Teemo":{
+      {
          "version":"6.24.1",
          "id":"Teemo",
          "key":"17",
@@ -5383,7 +5383,7 @@
             "attackspeedperlevel":3.38
          }
       },
-      "Thresh":{
+      {
          "version":"6.24.1",
          "id":"Thresh",
          "key":"412",
@@ -5433,7 +5433,7 @@
             "attackspeedperlevel":3.5
          }
       },
-      "Tristana":{
+      {
          "version":"6.24.1",
          "id":"Tristana",
          "key":"18",
@@ -5483,7 +5483,7 @@
             "attackspeedperlevel":1.5
          }
       },
-      "Trundle":{
+      {
          "version":"6.24.1",
          "id":"Trundle",
          "key":"48",
@@ -5533,7 +5533,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "Tryndamere":{
+      {
          "version":"6.24.1",
          "id":"Tryndamere",
          "key":"23",
@@ -5583,7 +5583,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "TwistedFate":{
+      {
          "version":"6.24.1",
          "id":"TwistedFate",
          "key":"4",
@@ -5632,7 +5632,7 @@
             "attackspeedperlevel":3.22
          }
       },
-      "Twitch":{
+      {
          "version":"6.24.1",
          "id":"Twitch",
          "key":"29",
@@ -5682,7 +5682,7 @@
             "attackspeedperlevel":3.38
          }
       },
-      "Udyr":{
+      {
          "version":"6.24.1",
          "id":"Udyr",
          "key":"77",
@@ -5732,7 +5732,7 @@
             "attackspeedperlevel":2.67
          }
       },
-      "Urgot":{
+      {
          "version":"6.24.1",
          "id":"Urgot",
          "key":"6",
@@ -5782,7 +5782,7 @@
             "attackspeedperlevel":2.9
          }
       },
-      "Varus":{
+      {
          "version":"6.24.1",
          "id":"Varus",
          "key":"110",
@@ -5832,7 +5832,7 @@
             "attackspeedperlevel":3.0
          }
       },
-      "Vayne":{
+      {
          "version":"6.24.1",
          "id":"Vayne",
          "key":"67",
@@ -5882,7 +5882,7 @@
             "attackspeedperlevel":4.0
          }
       },
-      "Veigar":{
+      {
          "version":"6.24.1",
          "id":"Veigar",
          "key":"45",
@@ -5931,7 +5931,7 @@
             "attackspeedperlevel":2.24
          }
       },
-      "Velkoz":{
+      {
          "version":"6.24.1",
          "id":"Velkoz",
          "key":"161",
@@ -5980,7 +5980,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "Vi":{
+      {
          "version":"6.24.1",
          "id":"Vi",
          "key":"254",
@@ -6030,7 +6030,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Viktor":{
+      {
          "version":"6.24.1",
          "id":"Viktor",
          "key":"112",
@@ -6079,7 +6079,7 @@
             "attackspeedperlevel":2.11
          }
       },
-      "Vladimir":{
+      {
          "version":"6.24.1",
          "id":"Vladimir",
          "key":"8",
@@ -6129,7 +6129,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Volibear":{
+      {
          "version":"6.24.1",
          "id":"Volibear",
          "key":"106",
@@ -6179,7 +6179,7 @@
             "attackspeedperlevel":2.67
          }
       },
-      "Warwick":{
+      {
          "version":"6.24.1",
          "id":"Warwick",
          "key":"19",
@@ -6229,7 +6229,7 @@
             "attackspeedperlevel":2.88
          }
       },
-      "Xerath":{
+      {
          "version":"6.24.1",
          "id":"Xerath",
          "key":"101",
@@ -6279,7 +6279,7 @@
             "attackspeedperlevel":1.36
          }
       },
-      "XinZhao":{
+      {
          "version":"6.24.1",
          "id":"XinZhao",
          "key":"5",
@@ -6329,7 +6329,7 @@
             "attackspeedperlevel":2.6
          }
       },
-      "Yasuo":{
+      {
          "version":"6.24.1",
          "id":"Yasuo",
          "key":"157",
@@ -6379,7 +6379,7 @@
             "attackspeedperlevel":2.5
          }
       },
-      "Yorick":{
+      {
          "version":"6.24.1",
          "id":"Yorick",
          "key":"83",
@@ -6429,7 +6429,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Zac":{
+      {
          "version":"6.24.1",
          "id":"Zac",
          "key":"154",
@@ -6479,7 +6479,7 @@
             "attackspeedperlevel":1.6
          }
       },
-      "Zed":{
+      {
          "version":"6.24.1",
          "id":"Zed",
          "key":"238",
@@ -6529,7 +6529,7 @@
             "attackspeedperlevel":2.1
          }
       },
-      "Ziggs":{
+      {
          "version":"6.24.1",
          "id":"Ziggs",
          "key":"115",
@@ -6578,7 +6578,7 @@
             "attackspeedperlevel":2.0
          }
       },
-      "Zilean":{
+      {
          "version":"6.24.1",
          "id":"Zilean",
          "key":"26",
@@ -6628,7 +6628,7 @@
             "attackspeedperlevel":2.13
          }
       },
-      "Zyra":{
+      {
          "version":"6.24.1",
          "id":"Zyra",
          "key":"143",
@@ -6678,5 +6678,5 @@
             "attackspeedperlevel":2.11
          }
       }
-   }
+   ]
 }
