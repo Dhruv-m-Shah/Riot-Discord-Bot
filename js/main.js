@@ -10,7 +10,9 @@ const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
 
-var champions = require('./champions.json')
+var champions = require('./champions.json');
+rankImg = require('./rank_images');
+var rankImages = rankImg.rankImages;
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
 
@@ -50,6 +52,7 @@ function player_match_display(info, channelID, id) {
   //info.participants[participantId - 1].stats
   championId = info.participants[participantId - 1].championId;
   championName = findChampionName(championId);
+  console.log(championId, championName);
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setColor('#0099ff');
   exampleEmbed.setAuthor(summonerName + "'s Match History", 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
@@ -89,7 +92,7 @@ function sort_by_time(a) {
 }
 
 function player_match_history_display(body, channelID, id, num) {
-  if(num == 10) return;
+  if (num == 10) return;
   // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   a = []
 
@@ -104,7 +107,7 @@ function player_match_history_display(body, channelID, id, num) {
 
   });
   setTimeout(function () {
-    player_match_history_display(body, channelID, id, num+1)
+    player_match_history_display(body, channelID, id, num + 1)
   }, 400);
 
 }
@@ -158,7 +161,7 @@ function get_player_id(name, channelID, purpose) {
       return console.log(err);
     }
     if (purpose == "rank") {
-      player_rank_id(body.id, channelID);
+      player_rank_id(body.id, channelID, body.name);
     }
     if (purpose == "match_history") {
       player_match_history(body.accountId, channelID);
@@ -171,7 +174,7 @@ function player_rank(name, channelID) {
   get_player_id(name, channelID, "rank");
 }
 
-function player_rank_id(id, channelID) {
+function player_rank_id(id, channelID, summonerName) {
 
   // https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/q3X2__q-84mDXMRjIzfsDkpvAe7lHufCBsyIhlZfR4675bQ?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
   request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
@@ -183,14 +186,253 @@ function player_rank_id(id, channelID) {
     if (body.length == 0) {
       bot.channels.cache.get(channelID).send("Not Ranked!");
     }
+    console.log(body);
+    var exampleEmbed = new Discord.MessageEmbed();
     if (body.length == 1) {
-      bot.channels.cache.get(channelID).send("Ranked Solo: " + body[0].tier + " " + body[0].rank);
+      var queueType = "";
+      if(body[0].queueType == "RANKED_SOLO_5x5"){
+        queueType = "Ranked Solo";
+      } else{
+        queueType = "Ranked Flex";
+      }
+      
+      if(body[0].tier == "IRON"){
+        exampleEmbed.setColor('#452700');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "IRON " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "BRONZE") {
+        exampleEmbed.setColor('#7a5312');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "SILVER") {
+        exampleEmbed.setColor('#a0a9b8');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "SILVER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "GOLD") {
+        exampleEmbed.setColor('#edb14c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "GOLD " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "PLATINUM") {
+        exampleEmbed.setColor('#003b2b');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "PLATINUM " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "DIAMOND") {
+        exampleEmbed.setColor('#390ee6');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "DIAMOND " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "MASTER") {
+        exampleEmbed.setColor('#8e19bd');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      
+      if (body[0].tier == "GRANDMASTER") {
+        exampleEmbed.setColor('#bd191c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "GRANDMASTER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "CHALLENGER") {
+        exampleEmbed.setColor('#055e9ec');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "CHALLENGER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
     }
     if (body.length == 2) {
-      bot.channels.cache.get(channelID).send("Ranked Solo: " + body[0].tier + " " + body[0].rank);
-      bot.channels.cache.get(channelID).send("Ranked Flexed SR: " + body[1].tier + " " + body[1].rank);
-    }
+      var queueType = "";
+      var queueType1 = "";
+      if(body[0].queueType == "RANKED_SOLO_5x5"){
+        queueType = "Ranked Solo";
+      }
+      else{
+        queueType = "Ranked Flex";
+      }
+      if(body[1].queueType == "RANKED_SOLO_5x5"){
+        queueType1 = "Ranked Solo";
+      }
+      else{
+        queueType1 = "Ranked Flex";
+      }
+      if(body[0].tier == "IRON"){
+        exampleEmbed.setColor('#452700');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "IRON " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "BRONZE") {
+        exampleEmbed.setColor('#7a5312');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "SILVER") {
+        exampleEmbed.setColor('#a0a9b8');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "SILVER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "GOLD") {
+        exampleEmbed.setColor('#edb14c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "GOLD " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "PLATINUM") {
+        exampleEmbed.setColor('#003b2b');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "PLATINUM " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "DIAMOND") {
+        exampleEmbed.setColor('#390ee6');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "DIAMOND " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "MASTER") {
+        exampleEmbed.setColor('#8e19bd');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      
+      if (body[0].tier == "GRANDMASTER") {
+        exampleEmbed.setColor('#bd191c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "GRANDMASTER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[0].tier == "CHALLENGER") {
+        exampleEmbed.setColor('#055e9ec');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType + ": " + "CHALLENGER " + body[0].rank);
+        console.log(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
 
+      if(body[1].tier == "IRON"){
+        exampleEmbed.setColor('#452700');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "IRON " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "BRONZE") {
+        exampleEmbed.setColor('#7a5312');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "BRONZE " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "SILVER") {
+        exampleEmbed.setColor('#a0a9b8');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "SILVER " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "GOLD") {
+        exampleEmbed.setColor('#edb14c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "GOLD " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "PLATINUM") {
+        exampleEmbed.setColor('#003b2b');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "PLATINUM " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "DIAMOND") {
+        exampleEmbed.setColor('#390ee6');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "DIAMOND " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "MASTER") {
+        exampleEmbed.setColor('#8e19bd');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "MASTER " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      
+      if (body[1].tier == "GRANDMASTER") {
+        exampleEmbed.setColor('#bd191c');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "GRANDMASTER " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+      if (body[1].tier == "CHALLENGER") {
+        exampleEmbed.setColor('#055e9ec');
+        exampleEmbed.setAuthor(summonerName);
+        exampleEmbed.setTitle(queueType1 + ": " + "CHALLENGER " + body[1].rank);
+        console.log(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
+      }
+    }
 
   });
 }
@@ -215,5 +457,8 @@ bot.on('message', (msg) => {
   }
   if (msg.content.startsWith("!match_history")) {
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
+  }
+  if (msg.content.startsWith("!profile")) {
+    get_player_id(msg.content.slice())
   }
 });

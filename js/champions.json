@@ -6230,6 +6230,10 @@
          }
       },
       {
+         "key": "498",
+         "name": "Xayah" 
+      },
+      {
          "version":"6.24.1",
          "id":"Xerath",
          "key":"101",
@@ -6428,6 +6432,11 @@
             "attackspeedoffset":0.0,
             "attackspeedperlevel":2.0
          }
+      },
+      {
+
+         "name": "Yuumi",
+         "key": "350"
       },
       {
          "version":"6.24.1",
