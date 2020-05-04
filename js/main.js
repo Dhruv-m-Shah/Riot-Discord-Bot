@@ -9,7 +9,39 @@ var champion_images = myModule.images;
 const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
-const { createCanvas } = require('canvas')
+// START
+const fs = require('fs')
+const { createCanvas, loadImage } = require('canvas')
+
+const width = 1200
+const height = 630
+
+const canvas = createCanvas(width, height)
+const context = canvas.getContext('2d')
+
+context.fillStyle = '#000'
+context.fillRect(0, 0, width, height)
+
+context.textAlign = 'center'
+context.textBaseline = 'top'
+context.fillStyle = '#3574d4'
+
+const text = 'Hello, World!'
+
+const textWidth = context.measureText(text).width
+context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120)
+context.fillStyle = '#fff'
+context.fillText(text, 600, 170)
+
+context.fillStyle = '#fff'
+context.fillText('flaviocopes.com', 600, 530)
+
+loadImage('./card_background.jpg').then(image => {
+  context.drawImage(image, 0, 0, 1200, 630)
+  const buffer = canvas.toBuffer('image/png')
+  fs.writeFileSync('./test.png', buffer)
+})
+// END
 
 var champions = require('./champions.json');
 rankImg = require('./rank_images');
@@ -154,11 +186,11 @@ function callback_id(id) {
   return id;
 }
 
-function get_champion_info(pointInfo, channelID){
-  
+function get_champion_info(pointInfo, channelID) {
+
 }
 
-function get_champion_points(body, channelID){
+function get_champion_points(body, channelID) {
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
   request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerI + "?api_key=" + league_ID, {
     json: true
@@ -183,7 +215,7 @@ function get_player_id(name, channelID, purpose) {
     if (purpose == "match_history") {
       player_match_history(body.accountId, channelID);
     }
-    if(purpose == "profile"){
+    if (purpose == "profile") {
       get_champion_points(body, channelID);
     }
   });
@@ -210,13 +242,13 @@ function player_rank_id(id, channelID, summonerName) {
     var exampleEmbed = new Discord.MessageEmbed();
     if (body.length == 1) {
       var queueType = "";
-      if(body[0].queueType == "RANKED_SOLO_5x5"){
+      if (body[0].queueType == "RANKED_SOLO_5x5") {
         queueType = "Ranked Solo";
-      } else{
+      } else {
         queueType = "Ranked Flex";
       }
-      
-      if(body[0].tier == "IRON"){
+
+      if (body[0].tier == "IRON") {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "IRON " + body[1].rank);
@@ -258,7 +290,7 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
 
       }
-      
+
       if (body[0].tier == "GRANDMASTER") {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
@@ -287,19 +319,17 @@ function player_rank_id(id, channelID, summonerName) {
     if (body.length == 2) {
       var queueType = "";
       var queueType1 = "";
-      if(body[0].queueType == "RANKED_SOLO_5x5"){
+      if (body[0].queueType == "RANKED_SOLO_5x5") {
         queueType = "Ranked Solo";
-      }
-      else{
+      } else {
         queueType = "Ranked Flex";
       }
-      if(body[1].queueType == "RANKED_SOLO_5x5"){
+      if (body[1].queueType == "RANKED_SOLO_5x5") {
         queueType1 = "Ranked Solo";
-      }
-      else{
+      } else {
         queueType1 = "Ranked Flex";
       }
-      if(body[0].tier == "IRON"){
+      if (body[0].tier == "IRON") {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "IRON " + body[0].rank);
@@ -418,7 +448,7 @@ function player_rank_id(id, channelID, summonerName) {
         }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
-      
+
       if (body[0].tier == "GRANDMASTER") {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
@@ -454,7 +484,7 @@ function player_rank_id(id, channelID, summonerName) {
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       var exampleEmbed = new Discord.MessageEmbed();
-      if(body[1].tier == "IRON"){
+      if (body[1].tier == "IRON") {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "IRON " + body[1].rank);
@@ -573,7 +603,7 @@ function player_rank_id(id, channelID, summonerName) {
         }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
-      
+
       if (body[1].tier == "GRANDMASTER") {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
