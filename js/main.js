@@ -9,6 +9,7 @@ var champion_images = myModule.images;
 const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
+const { createCanvas } = require('canvas')
 
 var champions = require('./champions.json');
 rankImg = require('./rank_images');
@@ -153,6 +154,22 @@ function callback_id(id) {
   return id;
 }
 
+function get_champion_info(pointInfo, channelID){
+  
+}
+
+function get_champion_points(body, channelID){
+  // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
+  request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerI + "?api_key=" + league_ID, {
+    json: true
+  }, (err, res, body) => {
+    if (err) {
+      return console.log(err);
+    }
+    get_champion_info(body, channelID);
+  });
+}
+
 function get_player_id(name, channelID, purpose) {
   request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + league_ID, {
     json: true
@@ -165,6 +182,9 @@ function get_player_id(name, channelID, purpose) {
     }
     if (purpose == "match_history") {
       player_match_history(body.accountId, channelID);
+    }
+    if(purpose == "profile"){
+      get_champion_points(body, channelID);
     }
   });
 }
@@ -200,75 +220,69 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "IRON " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "BRONZE") {
         exampleEmbed.setColor('#7a5312');
         exampleEmbed.setAuthor(summonerName);
-        exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+        exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[0].rank);
+
       }
       if (body[0].tier == "SILVER") {
         exampleEmbed.setColor('#a0a9b8');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "SILVER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "GOLD") {
         exampleEmbed.setColor('#edb14c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "GOLD " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "PLATINUM") {
         exampleEmbed.setColor('#003b2b');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "PLATINUM " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "DIAMOND") {
         exampleEmbed.setColor('#390ee6');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "DIAMOND " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "MASTER") {
         exampleEmbed.setColor('#8e19bd');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       
       if (body[0].tier == "GRANDMASTER") {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "GRANDMASTER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
       if (body[0].tier == "CHALLENGER") {
         exampleEmbed.setColor('#055e9ec');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "CHALLENGER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
-        exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
-        bot.channels.cache.get(channelID).send(exampleEmbed);
+
       }
+
+      exampleEmbed.addFields({
+        name: 'Wins',
+        value: body[0].wins,
+        inline: true
+      }, {
+        name: 'Losses',
+        value: body[0].losses,
+        inline: true
+      }, );
+      exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+      bot.channels.cache.get(channelID).send(exampleEmbed);
     }
     if (body.length == 2) {
       var queueType = "";
@@ -291,6 +305,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "IRON " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "BRONZE") {
@@ -299,6 +322,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "SILVER") {
@@ -307,6 +339,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "SILVER " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "GOLD") {
@@ -315,6 +356,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "GOLD " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "PLATINUM") {
@@ -323,6 +373,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "PLATINUM " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "DIAMOND") {
@@ -331,6 +390,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "DIAMOND " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "MASTER") {
@@ -339,6 +407,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       
@@ -348,6 +425,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "GRANDMASTER " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[0].tier == "CHALLENGER") {
@@ -356,15 +442,33 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType + ": " + "CHALLENGER " + body[0].rank);
         console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[0].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[0].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
-
+      var exampleEmbed = new Discord.MessageEmbed();
       if(body[1].tier == "IRON"){
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "IRON " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "BRONZE") {
@@ -373,6 +477,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "BRONZE " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "SILVER") {
@@ -381,6 +494,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "SILVER " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "GOLD") {
@@ -389,6 +511,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "GOLD " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "PLATINUM") {
@@ -397,6 +528,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "PLATINUM " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "DIAMOND") {
@@ -405,6 +545,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "DIAMOND " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "MASTER") {
@@ -413,6 +562,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "MASTER " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       
@@ -422,6 +580,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "GRANDMASTER " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
       if (body[1].tier == "CHALLENGER") {
@@ -430,6 +597,15 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setTitle(queueType1 + ": " + "CHALLENGER " + body[1].rank);
         console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
+        exampleEmbed.addFields({
+          name: 'Wins',
+          value: body[1].wins,
+          inline: true
+        }, {
+          name: 'Losses',
+          value: body[1].losses,
+          inline: true
+        }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
     }
@@ -459,6 +635,6 @@ bot.on('message', (msg) => {
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
   if (msg.content.startsWith("!profile")) {
-    get_player_id(msg.content.slice())
+    get_player_id(msg.content.slice(9, msg.content.length), "profile");
   }
 });
