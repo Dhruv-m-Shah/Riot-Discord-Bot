@@ -11,10 +11,13 @@ const hostname = '127.0.0.1';
 const port = 3000;
 // START
 const fs = require('fs')
-const { createCanvas, loadImage } = require('canvas')
+const {
+  createCanvas,
+  loadImage
+} = require('canvas')
 
-const width = 1200
-const height = 630
+const width = 750
+const height = 330
 
 const canvas = createCanvas(width, height)
 const context = canvas.getContext('2d')
@@ -22,25 +25,22 @@ const context = canvas.getContext('2d')
 context.fillStyle = '#000'
 context.fillRect(0, 0, width, height)
 
-context.textAlign = 'center'
-context.textBaseline = 'top'
-context.fillStyle = '#3574d4'
 
-const text = 'Hello, World!'
-
-const textWidth = context.measureText(text).width
-context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120)
-context.fillStyle = '#fff'
-context.fillText(text, 600, 170)
 
 context.fillStyle = '#fff'
 context.fillText('flaviocopes.com', 600, 530)
 
 loadImage('./card_background.jpg').then(image => {
-  context.drawImage(image, 0, 0, 1200, 630)
+  context.drawImage(image, 0, 0, 750, 330)
+  context.fillStyle = 'rgba(225,225,225,0.5)';
+  context.fillRect(0, 0, 750, 330);
+  context.font = "30px Arial";
+  context.fillStyle = "black";
+  context.fillText("SEPTENCE's Profile", 10, 50);
   const buffer = canvas.toBuffer('image/png')
   fs.writeFileSync('./test.png', buffer)
 })
+
 // END
 
 var champions = require('./champions.json');
