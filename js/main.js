@@ -16,8 +16,8 @@ const {
   loadImage
 } = require('canvas')
 
-const width = 750
-const height = 330
+const width = 600
+const height = 300
 
 const canvas = createCanvas(width, height)
 const context = canvas.getContext('2d')
@@ -30,15 +30,24 @@ context.fillRect(0, 0, width, height)
 context.fillStyle = '#fff'
 context.fillText('flaviocopes.com', 600, 530)
 
-loadImage('./card_background.jpg').then(image => {
-  context.drawImage(image, 0, 0, 750, 330)
-  context.fillStyle = 'rgba(225,225,225,0.5)';
-  context.fillRect(0, 0, 750, 330);
-  context.font = "30px Arial";
-  context.fillStyle = "black";
-  context.fillText("SEPTENCE's Profile", 10, 50);
+loadImage('../img/champion_loading_images_cropped/Ahri.png').then(image => {
+  context.drawImage(image, 0, 0, 200, 300)
+  context.fillStyle = 'rgba(225,225,225,0.5)'; 
+  
+})
+
+loadImage('../img/champion_loading_images_cropped/Aatrox.png').then(image => {
+  context.drawImage(image, 200, 0, 200, 300)
+  context.fillStyle = 'rgba(225,225,225,0.5)'; 
+
+})
+
+loadImage('../img/champion_loading_images_cropped/Ezreal.png').then(image => {
+  context.drawImage(image, 400, 0, 200, 300)
+  context.fillStyle = 'rgba(225,225,225,0.5)'; 
   const buffer = canvas.toBuffer('image/png')
   fs.writeFileSync('./test.png', buffer)
+ 
 })
 
 // END
