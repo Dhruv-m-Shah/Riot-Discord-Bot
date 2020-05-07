@@ -189,13 +189,11 @@ function draw_champion_card(body, channelID) {
   loadImage('../img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
     context.drawImage(image, 0, 0, 200, 300)
     context.fillStyle = 'rgba(225,225,225,0.5)';
-
   })
 
   loadImage('../img/champion_loading_images_cropped/' + champ2 + ".png").then(image => {
     context.drawImage(image, 200, 0, 200, 300)
     context.fillStyle = 'rgba(225,225,225,0.5)';
-
   })
 
   loadImage('../img/champion_loading_images_cropped/' + champ3 + ".png").then(image => {
@@ -204,6 +202,9 @@ function draw_champion_card(body, channelID) {
     const buffer = canvas.toBuffer('image/png')
     fs.writeFileSync('./test.png', buffer)
   })
+  const attachment = new Discord.MessageAttachment('./test.png');
+  // Send the attachment in the message channel with a content
+  bot.channels.cache.get(channelID).send(attachment);
 
 }
 
