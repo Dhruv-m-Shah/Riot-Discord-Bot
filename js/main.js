@@ -10,45 +10,7 @@ const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
 // START
-const fs = require('fs')
-const {
-  createCanvas,
-  loadImage
-} = require('canvas')
 
-const width = 600
-const height = 300
-
-const canvas = createCanvas(width, height)
-const context = canvas.getContext('2d')
-
-context.fillStyle = '#000'
-context.fillRect(0, 0, width, height)
-
-
-
-context.fillStyle = '#fff'
-context.fillText('flaviocopes.com', 600, 530)
-
-loadImage('../img/champion_loading_images_cropped/Ahri.png').then(image => {
-  context.drawImage(image, 0, 0, 200, 300)
-  context.fillStyle = 'rgba(225,225,225,0.5)'; 
-  
-})
-
-loadImage('../img/champion_loading_images_cropped/Aatrox.png').then(image => {
-  context.drawImage(image, 200, 0, 200, 300)
-  context.fillStyle = 'rgba(225,225,225,0.5)'; 
-
-})
-
-loadImage('../img/champion_loading_images_cropped/Ezreal.png').then(image => {
-  context.drawImage(image, 400, 0, 200, 300)
-  context.fillStyle = 'rgba(225,225,225,0.5)'; 
-  const buffer = canvas.toBuffer('image/png')
-  fs.writeFileSync('./test.png', buffer)
- 
-})
 
 // END
 
@@ -195,19 +157,67 @@ function callback_id(id) {
   return id;
 }
 
-function get_champion_info(pointInfo, channelID) {
+function draw_champion_card(body, channelID) {
+  console.log(body);
+  const fs = require('fs')
+  const {
+    createCanvas,
+    loadImage
+  } = require('canvas')
+
+  const width = 600
+  const height = 300
+
+  const canvas = createCanvas(width, height)
+  const context = canvas.getContext('2d')
+
+  context.fillStyle = '#000'
+  context.fillRect(0, 0, width, height)
+
+
+
+  context.fillStyle = '#fff'
+  context.fillText('flaviocopes.com', 600, 530)
+  if(body.length < 3){
+    bot.channels.cache.get(channelID).send("Not enough champs have been played!");
+  }
+
+  var champ1 = findChampionName(body[0].championId);
+  var champ2 = findChampionName(body[1].championId);
+  var champ3 = findChampionName(body[2].championId);
+
+  loadImage('../img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
+    context.drawImage(image, 0, 0, 200, 300)
+    context.fillStyle = 'rgba(225,225,225,0.5)';
+
+  })
+
+  loadImage('../img/champion_loading_images_cropped/' + champ2 + ".png").then(image => {
+    context.drawImage(image, 200, 0, 200, 300)
+    context.fillStyle = 'rgba(225,225,225,0.5)';
+
+  })
+
+  loadImage('../img/champion_loading_images_cropped/' + champ3 + ".png").then(image => {
+    context.drawImage(image, 400, 0, 200, 300)
+    context.fillStyle = 'rgba(225,225,225,0.5)';
+    const buffer = canvas.toBuffer('image/png')
+    fs.writeFileSync('./test.png', buffer)
+  })
 
 }
 
 function get_champion_points(body, channelID) {
+  console.log(body);
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
-  request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerI + "?api_key=" + league_ID, {
-    json: true
+  request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.id + "?api_key=" + league_ID, {
+  json: true
   }, (err, res, body) => {
+    console.log("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerId + "?api_key=" + league_ID);
     if (err) {
       return console.log(err);
     }
-    get_champion_info(body, channelID);
+    draw_champion_card(body, channelID);
   });
 }
 
@@ -674,6 +684,6 @@ bot.on('message', (msg) => {
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
   if (msg.content.startsWith("!profile")) {
-    get_player_id(msg.content.slice(9, msg.content.length), "profile");
+    get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
 });
