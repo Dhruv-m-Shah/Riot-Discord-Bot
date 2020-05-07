@@ -9,27 +9,11 @@ var champion_images = myModule.images;
 const http = require("http");
 const hostname = '127.0.0.1';
 const port = 3000;
-// START
-
-
-// END
 
 var champions = require('./champions.json');
 rankImg = require('./rank_images');
 var rankImages = rankImg.rankImages;
-//Create HTTP server and listen on port 3000 for requests
-const server = http.createServer((req, res) => {
 
-  //Set the response HTTP header with HTTP status and Content type
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World\n');
-});
-
-//listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
 
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
@@ -164,32 +148,24 @@ function draw_champion_card(body, channelID) {
     createCanvas,
     loadImage
   } = require('canvas')
-
   const width = 600
   const height = 300
-
   const canvas = createCanvas(width, height)
   const context = canvas.getContext('2d')
-
   context.fillStyle = '#000'
   context.fillRect(0, 0, width, height)
-
-
-
   context.fillStyle = '#fff'
   context.fillText('flaviocopes.com', 600, 530)
-  if(body.length < 3){
+  if (body.length < 3) {
     bot.channels.cache.get(channelID).send("Not enough champs have been played!");
     return;
   }
-
   var champ1 = findChampionName(body[0].championId);
   var champ1lvl = body[0].championLevel;
   var champ2 = findChampionName(body[1].championId);
   var champ2lvl = body[1].championLevel;
   var champ3 = findChampionName(body[2].championId);
   var champ3lvl = body[2].championLevel;
-
 
   loadImage('../img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
     context.drawImage(image, 0, 0, 200, 300)
@@ -202,52 +178,49 @@ function draw_champion_card(body, channelID) {
     context.drawImage(image, 400, 0, 200, 300)
     context.fillStyle = 'rgba(0, 0, 0, 0.3)';
     context.fillRect(0, 0, 600, 300);
+    loadImage('../img/champion_mastery/' + champ1lvl + ".png").then(image => {
+      context.drawImage(image, 100 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
+
+      context.fillStyle = 'rgba(255,255,255, 1)';
+      context.font = '25px Calibri';
+      context.textBaseline = 'middle';
+      context.textAlign = "center";
+      context.fillText('Points:' + body[0].championPoints, canvas.width / 2 - 200, canvas.height / 2 + 100);
+    })
+
+    loadImage('../img/champion_mastery/' + champ2lvl + ".png").then(image => {
+      context.drawImage(image, 300 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
+      context.fillStyle = 'rgba(225,225,225, 1)';
+      context.font = '25px Calibri';
+      context.textBaseline = 'middle';
+      context.textAlign = "center";
+      context.fillText('Points:' + body[1].championPoints, canvas.width / 2, canvas.height / 2 + 100);
+    })
+
+    loadImage('../img/champion_mastery/' + champ3lvl + ".png").then(image => {
+      context.drawImage(image, 500 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
+      context.fillStyle = 'rgba(225,225,225,1)';
+      context.font = '25px Calibri';
+      context.textBaseline = 'middle';
+      context.textAlign = "center";
+      context.fillText('Points:' + body[2].championPoints, canvas.width / 2 + 200, canvas.height / 2 + 100);
+      const buffer = canvas.toBuffer('image/png')
+      fs.writeFileSync('./test.png', buffer)
+    })
   })
 
 
-  loadImage('../img/champion_mastery/' + champ1lvl + ".png").then(image => {
-    context.drawImage(image, 100 - image.naturalWidth/2, 150 - image.naturalHeight/2)
-    
-    context.fillStyle = 'rgba(255,255,255, 1)';
-    context.font = '30px Calibri Light';
-    context.textBaseline = 'middle';
-    context.textAlign = "center";
-    context.fillText('Points:' + body[0].championPoints, canvas.width/2 - 200, canvas.height/2 + 100);
-  })
 
-
-
-  loadImage('../img/champion_mastery/' + champ2lvl + ".png").then(image => {
-    context.drawImage(image, 300 - image.naturalWidth/2, 150 - image.naturalHeight/2)
-    context.fillStyle = 'rgba(225,225,225, 1)';
-    context.font = '30px Calibri Light';
-    context.textBaseline = 'middle';
-    context.textAlign = "center";
-    context.fillText('Points:' + body[0].championPoints, canvas.width/2, canvas.height/2 + 100);
-  })
-
-
-  loadImage('../img/champion_mastery/' + champ3lvl + ".png").then(image => {
-    context.drawImage(image, 500 - image.naturalWidth/2, 150 - image.naturalHeight/2)
-    context.fillStyle = 'rgba(225,225,225,1)';
-    context.font = '30px Calibri Light';
-    context.textBaseline = 'middle';
-    context.textAlign = "center";
-    context.fillText('Points:' + body[0].championPoints, canvas.width/2 + 200, canvas.height/2 + 100);
-    const buffer = canvas.toBuffer('image/png')
-    fs.writeFileSync('./test.png', buffer)
-  })
   const attachment = new Discord.MessageAttachment('./test.png');
   // Send the attachment in the message channel with a content
   bot.channels.cache.get(channelID).send(attachment);
-
 }
 
 function get_champion_points(body, channelID) {
   console.log(body);
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
   request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.id + "?api_key=" + league_ID, {
-  json: true
+    json: true
   }, (err, res, body) => {
     console.log("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerId + "?api_key=" + league_ID);
     if (err) {
