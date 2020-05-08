@@ -1,20 +1,42 @@
 const Discord = require('discord.js');
+var Chart = require('chart.js');
 const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
 const bot = new Discord.Client();
 var region = "na1";
 const request = require('request');
 var myModule = require('./champion_images');
 var champion_images = myModule.images;
-//Load HTTP module
-const http = require("http");
-const hostname = '127.0.0.1';
-const port = 3000;
-
 var champions = require('./champions.json');
 rankImg = require('./rank_images');
 var rankImages = rankImg.rankImages;
+var d3 = require("d3");
 
+//Start
+var fs = require('fs');
 
+var plotly = require('plotly')({"username" :"heytest970", "apiKey" : "MWZc5wFpNSDJlkL2RCqQ", "host" : "chart-studio.plotly.com"})
+var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 15, 13, 17],
+  type: "bar"
+};
+
+var figure = { 'data': [trace1] };
+
+var imgOpts = {
+    format: 'png',
+    width: 1000,
+    height: 500
+};
+
+plotly.getImage(figure, imgOpts, function (error, imageStream) {
+    if (error) return console.log (error);
+
+    var fileStream = fs.createWriteStream('1.png');
+    imageStream.pipe(fileStream);
+});
+
+//End
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
 
@@ -694,5 +716,8 @@ bot.on('message', (msg) => {
   }
   if (msg.content.startsWith("!profile")) {
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
+  }
+  if(msg.content.startsWith("!stats")){
+    get_player_id(msg.contest.slice(7, msg.content.length), msg.channel.id, "stats");
   }
 });
