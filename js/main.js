@@ -10,31 +10,9 @@ var champions = require('./champions.json');
 rankImg = require('./rank_images');
 var rankImages = rankImg.rankImages;
 var d3 = require("d3");
-
-//Start
 var fs = require('fs');
+//Start
 
-var plotly = require('plotly')({"username" :"heytest970", "apiKey" : "MWZc5wFpNSDJlkL2RCqQ", "host" : "chart-studio.plotly.com"})
-var trace1 = {
-  x: [1, 2, 3, 4],
-  y: [10, 15, 13, 17],
-  type: "bar"
-};
-
-var figure = { 'data': [trace1] };
-
-var imgOpts = {
-    format: 'png',
-    width: 1000,
-    height: 500
-};
-
-plotly.getImage(figure, imgOpts, function (error, imageStream) {
-    if (error) return console.log (error);
-
-    var fileStream = fs.createWriteStream('1.png');
-    imageStream.pipe(fileStream);
-});
 
 //End
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
@@ -163,9 +141,60 @@ function callback_id(id) {
   return id;
 }
 
+function draw_champion_graph(body, channelID){
+
+
+  var plotly = require('plotly')({"username" :"heytest970", "apiKey" : "MWZc5wFpNSDJlkL2RCqQ", "host" : "chart-studio.plotly.com"})
+  var trace1 = {
+    x: ["A", "B", "C", "D", "E", "F", "G"],
+    y: [132, 15, 13, 17, 12, 13, 13],
+    type: "bar"
+  };
+  var layout = {
+    title: "US Export of Plastic Scrap",
+    xaxis: {tickfont: {
+        size: 14,
+        color: "rgb(107, 107, 107)"
+      }},
+    yaxis: {
+      title: "USD (millions)",
+      titlefont: {
+        size: 16,
+        color: "rgb(107, 107, 107)"
+      },
+      tickfont: {
+        size: 14,
+        color: "rgb(107, 107, 107)"
+      }
+    },
+    legend: {
+      x: 0,
+      y: 1.0,
+      bgcolor: "rgba(255, 255, 255, 0)",
+      bordercolor: "rgba(255, 255, 255, 0)"
+    },
+    barmode: "group",
+    bargap: 0.15,
+    bargroupgap: 0.1
+  };
+  var figure = { 'data': [trace1], 'layout': layout };
+  
+  var imgOpts = {
+      format: 'png',
+      width: 1000,
+      height: 500
+  };
+  
+  plotly.getImage(figure, imgOpts, function (error, imageStream) {
+      if (error) return console.log (error);
+  
+      var fileStream = fs.createWriteStream('1.png');
+      imageStream.pipe(fileStream);
+  });
+}
+
 function draw_champion_card(body, channelID) {
   console.log(body);
-  const fs = require('fs')
   const {
     createCanvas,
     loadImage
