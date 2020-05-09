@@ -141,26 +141,39 @@ function callback_id(id) {
   return id;
 }
 
-function draw_champion_graph(body, channelID){
-
-
-  var plotly = require('plotly')({"username" :"heytest970", "apiKey" : "MWZc5wFpNSDJlkL2RCqQ", "host" : "chart-studio.plotly.com"})
+function draw_champion_graph(body, name, channelID) {
+  a = []
+  b = []
+  var plotly = require('plotly')({
+    "username": "heytest970",
+    "apiKey": "MWZc5wFpNSDJlkL2RCqQ",
+    "host": "chart-studio.plotly.com"
+  })
+  for (let i = 0; i < Math.min(body.length, 10); i++) {
+    a.push(findChampionName(body[i].championId));
+    b.push(body[i].championPoints);
+  }
+  console.log(a, b);
   var trace1 = {
-    x: ["A", "B", "C", "D", "E", "F", "G"],
-    y: [132, 15, 13, 17, 12, 13, 13],
+    x: [],
+    y: [],
     type: "bar"
   };
+  trace1.x = a;
+  trace1.y = b;
   var layout = {
-    title: "US Export of Plastic Scrap",
-    xaxis: {tickfont: {
+    title: name + "'s Champion Masteries",
+    xaxis: {
+      tickfont: {
         size: 14,
         color: "rgb(107, 107, 107)"
-      }},
+      }
+    },
     yaxis: {
-      title: "USD (millions)",
+      title: "Points",
       titlefont: {
         size: 16,
-        color: "rgb(107, 107, 107)"
+        color: "rgba(107, 107, 107)"
       },
       tickfont: {
         size: 14,
@@ -174,23 +187,35 @@ function draw_champion_graph(body, channelID){
       bordercolor: "rgba(255, 255, 255, 0)"
     },
     barmode: "group",
-    bargap: 0.15,
+    bargap: 0.1,
     bargroupgap: 0.1
   };
-  var figure = { 'data': [trace1], 'layout': layout };
-  
-  var imgOpts = {
-      format: 'png',
-      width: 1000,
-      height: 500
+  var figure = {
+    'data': [trace1],
+    'layout': layout
   };
-  
+
+  var imgOpts = {
+    format: 'png',
+    width: 1000,
+    height: 500
+  };
+
   plotly.getImage(figure, imgOpts, function (error, imageStream) {
-      if (error) return console.log (error);
-  
-      var fileStream = fs.createWriteStream('1.png');
-      imageStream.pipe(fileStream);
-  });
+    if (error) return console.log(error);
+
+    var fileStream = fs.createWriteStream('1.png');
+    imageStream.pipe(fileStream);
+  })
+  setTimeout(function () {
+    const attachment = new Discord.MessageAttachment('./1.png');
+    bot.channels.cache.get(channelID).send(attachment);
+    
+  }, 2000);
+
+
+
+
 }
 
 function draw_champion_card(body, channelID) {
@@ -267,8 +292,7 @@ function draw_champion_card(body, channelID) {
   bot.channels.cache.get(channelID).send(attachment);
 }
 
-function get_champion_points(body, channelID) {
-  console.log(body);
+function get_champion_points(body, channelID, name) {
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
   request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.id + "?api_key=" + league_ID, {
     json: true
@@ -277,7 +301,9 @@ function get_champion_points(body, channelID) {
     if (err) {
       return console.log(err);
     }
+    console.log(body);
     draw_champion_card(body, channelID);
+    draw_champion_graph(body, name, channelID)
   });
 }
 
@@ -295,7 +321,7 @@ function get_player_id(name, channelID, purpose) {
       player_match_history(body.accountId, channelID);
     }
     if (purpose == "profile") {
-      get_champion_points(body, channelID);
+      get_champion_points(body, channelID, body.name);
     }
   });
 }
@@ -746,7 +772,7 @@ bot.on('message', (msg) => {
   if (msg.content.startsWith("!profile")) {
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
-  if(msg.content.startsWith("!stats")){
+  if (msg.content.startsWith("!stats")) {
     get_player_id(msg.contest.slice(7, msg.content.length), msg.channel.id, "stats");
   }
 });
