@@ -277,9 +277,13 @@ function get_player_id(name, channelID, purpose) {
     console.log(err);
    
     var flag = 0;
-    if(body.status != undefined && body.status.message == 'Data not found - summoner not found'){
+    if(body == undefined){
+      bot.channels.cache.get(channelID).send("An error has occurred!");
+      return;
+    }
+    if(body != undefined && body.status != undefined && body.status.message == 'Data not found - summoner not found'){
       bot.channels.cache.get(channelID).send("That summoner does not exist in North America!");
-      flag = 1;
+      return;
     }
     if (err) {
       return console.log(err);
