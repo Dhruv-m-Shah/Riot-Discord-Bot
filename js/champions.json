@@ -2641,6 +2641,10 @@
             "attackspeedperlevel":2.2
          }
       },
+      {
+         "key": "141",
+         "name": "Kayn"
+      },
      {
          "version":"6.24.1",
          "id":"Kennen",

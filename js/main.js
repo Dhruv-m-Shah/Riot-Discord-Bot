@@ -40,7 +40,6 @@ function player_match_display(info, channelID, id) {
   //info.participants[participantId - 1].stats
   championId = info.participants[participantId - 1].championId;
   championName = findChampionName(championId);
-  console.log(championId, championName);
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setColor('#0099ff');
   exampleEmbed.setAuthor(summonerName + "'s Match History", 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
@@ -65,19 +64,7 @@ function player_match_display(info, channelID, id) {
   return 1;
 }
 
-function sort_by_time(a) {
-  for (i = 0; i < a.length; i++) {
-    for (j = i + 1; j < a.length; j++) {
-      if (a[j].gameCreation < a[i].gameCreation) {
-        var temp = a[j];
-        a[j] = a[i];
-        a[i] = temp;
-      }
-    }
-  }
 
-  return a;
-}
 
 function player_match_history_display(body, channelID, id, num) {
   if (num == 10) return;
@@ -100,30 +87,9 @@ function player_match_history_display(body, channelID, id, num) {
 
 }
 
-function player_match_history_display1(body, channelID, id) {
-  // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
-  a = []
-  for (i = 0; i < Math.min(10, body.length); i++) {
-    request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[i].gameId + "?api_key=" + league_ID, {
-      json: true
-    }, (err, res, body) => {
-      if (err) {
-        return console.log(err);
-      }
-      a.push(body);
-      console.log(i);
-      if (i == 9) {
-        a = sort_by_time(a);
-        console.log(a);
-      }
-      player_match_display(body, channelID, id);
 
-    });
-
-  }
-}
-
-function player_match_history(id, channelID) {
+function player_match_history(id, channelID, flag) {
+  if(flag == 1) return;
   // https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/DI3RMPSbYGrxwmgCIrJ2ibENps34SdvxRIt0DHWJKmpPeO4?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   request("https://" + region + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + id + "?api_key=" + league_ID, {
     json: true
@@ -137,9 +103,6 @@ function player_match_history(id, channelID) {
 
 }
 
-function callback_id(id) {
-  return id;
-}
 
 function draw_champion_graph(body, name, channelID) {
   a = []
@@ -153,7 +116,6 @@ function draw_champion_graph(body, name, channelID) {
     a.push(findChampionName(body[i].championId));
     b.push(body[i].championPoints);
   }
-  console.log(a, b);
   var trace1 = {
     x: [],
     y: [],
@@ -242,6 +204,7 @@ function draw_champion_card(body, channelID) {
   var champ2lvl = body[1].championLevel;
   var champ3 = findChampionName(body[2].championId);
   var champ3lvl = body[2].championLevel;
+  console.log(champ1, champ2, champ3);
 
   loadImage('../img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
     context.drawImage(image, 0, 0, 200, 300)
@@ -292,36 +255,43 @@ function draw_champion_card(body, channelID) {
   bot.channels.cache.get(channelID).send(attachment);
 }
 
-function get_champion_points(body, channelID, name) {
+function get_champion_points(body, channelID, name, flag) {
+  if(flag == 1) return;
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
   request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.id + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
-    console.log("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.summonerId + "?api_key=" + league_ID);
     if (err) {
       return console.log(err);
     }
-    console.log(body);
     draw_champion_card(body, channelID);
     draw_champion_graph(body, name, channelID)
   });
 }
 
 function get_player_id(name, channelID, purpose) {
+
   request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
+    console.log(err);
+   
+    var flag = 0;
+    if(body.status != undefined && body.status.message == 'Data not found - summoner not found'){
+      bot.channels.cache.get(channelID).send("That summoner does not exist in North America!");
+      flag = 1;
+    }
     if (err) {
       return console.log(err);
     }
     if (purpose == "rank") {
-      player_rank_id(body.id, channelID, body.name);
+      player_rank_id(body.id, channelID, body.name, flag);
     }
     if (purpose == "match_history") {
-      player_match_history(body.accountId, channelID);
+      player_match_history(body.accountId, channelID, flag);
     }
     if (purpose == "profile") {
-      get_champion_points(body, channelID, body.name);
+      get_champion_points(body, channelID, body.name, flag);
     }
   });
 }
@@ -331,8 +301,8 @@ function player_rank(name, channelID) {
   get_player_id(name, channelID, "rank");
 }
 
-function player_rank_id(id, channelID, summonerName) {
-
+function player_rank_id(id, channelID, summonerName, flag) {
+  if(flag == 1) return;
   // https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/q3X2__q-84mDXMRjIzfsDkpvAe7lHufCBsyIhlZfR4675bQ?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
   request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
     json: true
@@ -343,7 +313,6 @@ function player_rank_id(id, channelID, summonerName) {
     if (body.length == 0) {
       bot.channels.cache.get(channelID).send("Not Ranked!");
     }
-    console.log(body);
     var exampleEmbed = new Discord.MessageEmbed();
     if (body.length == 1) {
       var queueType = "";
@@ -438,7 +407,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "IRON " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -455,7 +423,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#7a5312');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "BRONZE " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -472,7 +439,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#a0a9b8');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "SILVER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -489,7 +455,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#edb14c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "GOLD " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -506,7 +471,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#003b2b');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "PLATINUM " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -523,7 +487,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#390ee6');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "DIAMOND " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -540,7 +503,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#8e19bd');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "MASTER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -558,7 +520,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "GRANDMASTER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -575,7 +536,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#055e9ec');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType + ": " + "CHALLENGER " + body[0].rank);
-        console.log(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.setThumbnail(rankImages[body[0].tier + body[0].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -593,7 +553,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#452700');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "IRON " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -610,7 +569,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#7a5312');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "BRONZE " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -627,7 +585,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#a0a9b8');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "SILVER " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -644,7 +601,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#edb14c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "GOLD " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -661,7 +617,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#003b2b');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "PLATINUM " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -678,7 +633,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#390ee6');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "DIAMOND " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -695,7 +649,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#8e19bd');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "MASTER " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -713,7 +666,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#bd191c');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "GRANDMASTER " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
@@ -730,7 +682,6 @@ function player_rank_id(id, channelID, summonerName) {
         exampleEmbed.setColor('#055e9ec');
         exampleEmbed.setAuthor(summonerName);
         exampleEmbed.setTitle(queueType1 + ": " + "CHALLENGER " + body[1].rank);
-        console.log(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.setThumbnail(rankImages[body[1].tier + body[1].rank]);
         exampleEmbed.addFields({
           name: 'Wins',
