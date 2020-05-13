@@ -89,7 +89,7 @@ function player_match_history_display(body, channelID, id, num) {
 
 
 function player_match_history(id, channelID, flag) {
-  if(flag == 1) return;
+  if (flag == 1) return;
   // https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/DI3RMPSbYGrxwmgCIrJ2ibENps34SdvxRIt0DHWJKmpPeO4?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   request("https://" + region + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + id + "?api_key=" + league_ID, {
     json: true
@@ -172,7 +172,7 @@ function draw_champion_graph(body, name, channelID) {
   setTimeout(function () {
     const attachment = new Discord.MessageAttachment('./1.png');
     bot.channels.cache.get(channelID).send(attachment);
-    
+
   }, 2000);
 
 
@@ -256,7 +256,7 @@ function draw_champion_card(body, channelID) {
 }
 
 function get_champion_points(body, channelID, name, flag) {
-  if(flag == 1) return;
+  if (flag == 1) return;
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
   request("https://" + region + ".api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/" + body.id + "?api_key=" + league_ID, {
     json: true
@@ -275,13 +275,13 @@ function get_player_id(name, channelID, purpose) {
     json: true
   }, (err, res, body) => {
     console.log(err);
-   
+
     var flag = 0;
-    if(body == undefined){
+    if (body == undefined) {
       bot.channels.cache.get(channelID).send("An error has occurred!");
       return;
     }
-    if(body != undefined && body.status != undefined && body.status.message == 'Data not found - summoner not found'){
+    if (body != undefined && body.status != undefined && body.status.message == 'Data not found - summoner not found') {
       bot.channels.cache.get(channelID).send("That summoner does not exist in North America!");
       return;
     }
@@ -306,7 +306,7 @@ function player_rank(name, channelID) {
 }
 
 function player_rank_id(id, channelID, summonerName, flag) {
-  if(flag == 1) return;
+  if (flag == 1) return;
   // https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/q3X2__q-84mDXMRjIzfsDkpvAe7lHufCBsyIhlZfR4675bQ?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
   request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
     json: true
@@ -707,6 +707,59 @@ function is_player_in_match() {}
 
 function random_champion() {}
 
+function display_champions(champ_list, channelID) {
+  const {
+    createCanvas,
+    loadImage
+  } = require('canvas')
+  const width = 600
+  const height = 360
+  const canvas = createCanvas(width, height);
+  const context = canvas.getContext('2d');
+  context.fillStyle = '#000'
+  context.fillRect(0, 0, width, height)
+  context.fillStyle = '#fff'
+  context.fillText('flaviocopes.com', 600, 530)
+  for (let i = 0; i < 5; i++) {
+    let name = findChampionName(champ_list[i]);
+    loadImage(champion_images[name]).then(image => {
+      console.log(image);
+      context.drawImage(image, 0 + 120 * i, 0, 120, 120);
+    })
+  }
+  for (let i = 5; i < 10; i++) {
+    let name = findChampionName(champ_list[i]);
+    loadImage(champion_images[name]).then(image => {
+      console.log(image);
+      context.drawImage(image, 0 + 120 * (i - 5), 120, 120, 120);
+    })
+  }
+  for (let i = 10; i < 15; i++) {
+    let name = findChampionName(champ_list[i]);
+    loadImage(champion_images[name]).then(image => {
+      console.log(image);
+      context.drawImage(image, 0 + 120 * (i - 10), 240, 120, 120);
+    })
+  }
+  setTimeout(function () {
+    const buffer = canvas.toBuffer('image/png')
+    fs.writeFileSync('./test1.png', buffer)
+  }, 1500);
+  const attachment = new Discord.MessageAttachment('./test1.png');
+  // Send the attachment in the message channel with a content
+  bot.channels.cache.get(channelID).send(attachment);
+
+
+}
+
+function get_champion_rotations(channelID) {
+  request("https://" + region + ".api.riotgames.com/lol/platform/v3/champion-rotations" + "?api_key=" + league_ID, {
+    json: true
+  }, (err, res, body) => {
+    display_champions(body.freeChampionIds, channelID);
+  });
+}
+
 function send_message(message, channelID) {
   bot.channels.cache.get(channelID).send(message);
 }
@@ -729,5 +782,8 @@ bot.on('message', (msg) => {
   }
   if (msg.content.startsWith("!stats")) {
     get_player_id(msg.contest.slice(7, msg.content.length), msg.channel.id, "stats");
+  }
+  if (msg.content.startsWith("!rotation")) {
+    get_champion_rotations(msg.channel.id)
   }
 });
