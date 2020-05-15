@@ -11,6 +11,8 @@ rankImg = require('./rank_images');
 var rankImages = rankImg.rankImages;
 var d3 = require("d3");
 var fs = require('fs');
+var arrChampImages = require('./champion_array')
+var arrImages = arrChampImages.images;
 //Start
 
 
@@ -744,12 +746,10 @@ function display_champions(champ_list, channelID) {
   setTimeout(function () {
     const buffer = canvas.toBuffer('image/png')
     fs.writeFileSync('./test1.png', buffer)
-  }, 1500);
+  }, 2000);
   const attachment = new Discord.MessageAttachment('./test1.png');
   // Send the attachment in the message channel with a content
   bot.channels.cache.get(channelID).send(attachment);
-
-
 }
 
 function get_champion_rotations(channelID) {
@@ -758,6 +758,11 @@ function get_champion_rotations(channelID) {
   }, (err, res, body) => {
     display_champions(body.freeChampionIds, channelID);
   });
+}
+
+function get_random_champion(channelID){
+ let len =  Math.floor(Math.random() * arrImages.length);  
+ bot.channels.cache.get(channelID).send(arrImages[len]);
 }
 
 function send_message(message, channelID) {
@@ -785,5 +790,8 @@ bot.on('message', (msg) => {
   }
   if (msg.content.startsWith("!rotation")) {
     get_champion_rotations(msg.channel.id)
+  }
+  if(msg.content.startsWith("!random")){
+    get_random_champion(msg.channel.id);
   }
 });
