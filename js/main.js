@@ -705,9 +705,6 @@ function player_rank_id(id, channelID, summonerName, flag) {
   });
 }
 
-function is_player_in_match() {}
-
-function random_champion() {}
 
 function display_champions(champ_list, channelID) {
   const {
@@ -760,9 +757,13 @@ function get_champion_rotations(channelID) {
   });
 }
 
-function get_random_champion(channelID){
- let len =  Math.floor(Math.random() * arrImages.length);  
- bot.channels.cache.get(channelID).send(arrImages[len]);
+function get_random_champion(channelID) {
+  let len = Math.floor(Math.random() * arrImages.length);
+  var exampleEmbed = new Discord.MessageEmbed();
+  exampleEmbed.setColor('#7a5312');
+  exampleEmbed.setTitle(arrImages[len]);
+  exampleEmbed.setThumbnail(champion_images[arrImages[len]]);
+  bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
 function send_message(message, channelID) {
@@ -791,7 +792,7 @@ bot.on('message', (msg) => {
   if (msg.content.startsWith("!rotation")) {
     get_champion_rotations(msg.channel.id)
   }
-  if(msg.content.startsWith("!random")){
+  if (msg.content.startsWith("!random")) {
     get_random_champion(msg.channel.id);
   }
 });
