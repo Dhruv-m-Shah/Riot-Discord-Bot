@@ -13,6 +13,7 @@ var d3 = require("d3");
 var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
+var timestamp = require('unix-timestamp');
 //Start
 
 
@@ -23,7 +24,8 @@ bot.login(token);
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
-      return champions.data[i].name;
+      return {"name": champions.data[i].name,
+    "title": champions.data[i].title}
     }
   }
 }
@@ -31,19 +33,36 @@ function findChampionName(id) {
 function player_match_display(info, channelID, id) {
   participantId = -1;
   var summonerName = "";
+  let teamId = 0;
   for (var i = 0; i < info.participantIdentities.length; i++) {
     if (id == info.participantIdentities[i].player.accountId) {
       participantId = info.participantIdentities[i].participantId;
       summonerName = info.participantIdentities[i].player.summonerName
+      teamId = info.participants[i].teamId;
       break;
     }
   }
   a = [];
   //info.participants[participantId - 1].stats
   championId = info.participants[participantId - 1].championId;
-  championName = findChampionName(championId);
+  championName = findChampionName(championId).name;
   var exampleEmbed = new Discord.MessageEmbed();
-  exampleEmbed.setColor('#0099ff');
+  if(teamId == 100){
+    if(info.teams[0].win == "Fail"){
+      exampleEmbed.setColor('#cc0000');
+    }
+    else{
+      exampleEmbed.setColor('#00b30f');
+    }
+  }
+  if(teamId == 200){
+    if(info.teams[1].win == "Fail"){
+      exampleEmbed.setColor('#cc0000');
+    }
+    else{
+      exampleEmbed.setColor('#00b30f');
+    }
+  }
   exampleEmbed.setAuthor(summonerName + "'s Match History", 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
   exampleEmbed.setTitle(championName);
   exampleEmbed.setURL('https://na.op.gg/summoner/userName=' + encodeURIComponent(summonerName.trim()));
@@ -60,6 +79,7 @@ function player_match_display(info, channelID, id) {
   }, );
 
   exampleEmbed.setImage('')
+  console.log(timestamp.toDate(info.gameCreation/1000))
   exampleEmbed.setTimestamp()
   exampleEmbed.setFooter(info.gameCreation, 'https://i.imgur.com/wSTFkRM.png');
   bot.channels.cache.get(channelID).send(exampleEmbed);
@@ -69,6 +89,7 @@ function player_match_display(info, channelID, id) {
 
 
 function player_match_history_display(body, channelID, id, num) {
+  if(body == undefined) return;
   if (num == 10) return;
   // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   a = []
@@ -115,7 +136,7 @@ function draw_champion_graph(body, name, channelID) {
     "host": "chart-studio.plotly.com"
   })
   for (let i = 0; i < Math.min(body.length, 10); i++) {
-    a.push(findChampionName(body[i].championId));
+    a.push(findChampionName(body[i].championId).name);
     b.push(body[i].championPoints);
   }
   var trace1 = {
@@ -183,7 +204,6 @@ function draw_champion_graph(body, name, channelID) {
 }
 
 function draw_champion_card(body, channelID) {
-  console.log(body);
   const {
     createCanvas,
     loadImage
@@ -200,13 +220,12 @@ function draw_champion_card(body, channelID) {
     bot.channels.cache.get(channelID).send("Not enough champs have been played!");
     return;
   }
-  var champ1 = findChampionName(body[0].championId);
+  var champ1 = findChampionName(body[0].championId).name;
   var champ1lvl = body[0].championLevel;
-  var champ2 = findChampionName(body[1].championId);
+  var champ2 = findChampionName(body[1].championId).name;
   var champ2lvl = body[1].championLevel;
-  var champ3 = findChampionName(body[2].championId);
+  var champ3 = findChampionName(body[2].championId).name;
   var champ3lvl = body[2].championLevel;
-  console.log(champ1, champ2, champ3);
 
   loadImage('../img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
     context.drawImage(image, 0, 0, 200, 300)
@@ -272,7 +291,7 @@ function get_champion_points(body, channelID, name, flag) {
 }
 
 function get_player_id(name, channelID, purpose) {
-
+  if(name == null) return;
   request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
@@ -304,6 +323,7 @@ function get_player_id(name, channelID, purpose) {
 
 function player_rank(name, channelID) {
   //  https: //<region>.api.riotgames.com/lol/summoner/v4/summoners/by-name/<name>?api_key=<key>
+  if(rank == undefined) return;
   get_player_id(name, channelID, "rank");
 }
 
@@ -720,23 +740,20 @@ function display_champions(champ_list, channelID) {
   context.fillStyle = '#fff'
   context.fillText('flaviocopes.com', 600, 530)
   for (let i = 0; i < 5; i++) {
-    let name = findChampionName(champ_list[i]);
+    let name = findChampionName(champ_list[i]).name;
     loadImage(champion_images[name]).then(image => {
-      console.log(image);
       context.drawImage(image, 0 + 120 * i, 0, 120, 120);
     })
   }
   for (let i = 5; i < 10; i++) {
-    let name = findChampionName(champ_list[i]);
+    let name = findChampionName(champ_list[i]).name;
     loadImage(champion_images[name]).then(image => {
-      console.log(image);
       context.drawImage(image, 0 + 120 * (i - 5), 120, 120, 120);
     })
   }
   for (let i = 10; i < 15; i++) {
-    let name = findChampionName(champ_list[i]);
+    let name = findChampionName(champ_list[i]).name;
     loadImage(champion_images[name]).then(image => {
-      console.log(image);
       context.drawImage(image, 0 + 120 * (i - 10), 240, 120, 120);
     })
   }
