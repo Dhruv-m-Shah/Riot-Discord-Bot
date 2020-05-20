@@ -79,9 +79,10 @@ function player_match_display(info, channelID, id) {
   }, );
 
   exampleEmbed.setImage('')
-  console.log(timestamp.toDate(info.gameCreation/1000))
-  exampleEmbed.setTimestamp()
-  exampleEmbed.setFooter(info.gameCreation, 'https://i.imgur.com/wSTFkRM.png');
+
+  let date = timestamp.toDate(info.gameCreation/1000).toString();
+  console.log(date);
+  exampleEmbed.setFooter(date.slice(0, 15));
   bot.channels.cache.get(channelID).send(exampleEmbed);
   return 1;
 }
