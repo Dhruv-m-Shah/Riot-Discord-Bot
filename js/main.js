@@ -134,6 +134,7 @@ function draw_champion_graph(body, name, channelID) {
     "apiKey": "MWZc5wFpNSDJlkL2RCqQ",
     "host": "chart-studio.plotly.com"
   })
+  console.log(body);
   for (let i = 0; i < Math.min(body.length, 10); i++) {
     a.push(findChampionName(body[i].championId).name);
     b.push(body[i].championPoints);
@@ -322,7 +323,6 @@ function get_player_id(name, channelID, purpose) {
 
 function player_rank(name, channelID) {
   //  https: //<region>.api.riotgames.com/lol/summoner/v4/summoners/by-name/<name>?api_key=<key>
-  if(rank == undefined) return;
   get_player_id(name, channelID, "rank");
 }
 
@@ -786,29 +786,41 @@ function send_message(message, channelID) {
   bot.channels.cache.get(channelID).send(message);
 }
 
+function get_help(channelID){
+  bot.channels.cache.get(channelID).send("-!profile <Summoner Name> \n -!rank <Summoner Name>")
+}
+
 bot.on('message', (msg) => {
   if (msg.content == "!setup") {
+    console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
   if (msg.content.startsWith("!rank")) {
+    console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
   }
   if (msg.content.startsWith("!change_region")) {
+    console.log("S");
     region = msg.content.slice(15, msg.content.length);
   }
   if (msg.content.startsWith("!match_history")) {
+    console.log("S");
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
   if (msg.content.startsWith("!profile")) {
+    console.log("S");
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
   if (msg.content.startsWith("!stats")) {
-    get_player_id(msg.contest.slice(7, msg.content.length), msg.channel.id, "stats");
+    get_player_id(msg.content.slice(7, msg.content.length), msg.channel.id, "stats");
   }
   if (msg.content.startsWith("!rotation")) {
     get_champion_rotations(msg.channel.id)
   }
   if (msg.content.startsWith("!random")) {
     get_random_champion(msg.channel.id);
+  }
+  if (msg.content.startsWith("!help")) {
+    get_help(msg.channel.id);
   }
 });

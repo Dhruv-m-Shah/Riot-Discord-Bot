@@ -4590,6 +4590,11 @@
          }
       },
       {
+         "id":"Sylas",
+         "key":"517",
+         "name":"Sylas"
+      },
+      {
          "version":"6.24.1",
          "id":"Shaco",
          "key":"35",
@@ -5086,6 +5091,11 @@
             "attackspeedoffset":0.0,
             "attackspeedperlevel":2.11
          }
+      },
+      {
+         "id":"Sett",
+         "key": "875",
+         "name":"Sett"
       },
       {
          "version":"6.24.1",

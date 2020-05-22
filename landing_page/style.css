@@ -1,0 +1,20 @@
+body {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden;
+  /* BG GRADIENT */
+
+  background: linear-gradient(270deg, #152C41 0%, #0F1922 100%);
+  box-sizing: border-box;
+}
+
+.frontPage { 
+    left: 200px;
+    bottom: 100px;
+    width: 90%;
+    height: 90%;
+    overflow: hidden;
+    position: relative;
+    z-index: 100;
+}
