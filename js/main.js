@@ -13,13 +13,28 @@ var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
 var timestamp = require('unix-timestamp');
-//Start
 
-
-//End
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
+//
+const http = require("http");
+const hostname = '127.0.0.1';
+const port = 3000;
 
+//Create HTTP server and listen on port 3000 for requests
+const server = http.createServer((req, res) => {
+
+  //Set the response HTTP header with HTTP status and Content type
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World\n');
+});
+
+//listen for request on port 3000, and as a callback function have the port listened on logged
+server.listen(process.env.PORT || port , hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
+//
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
