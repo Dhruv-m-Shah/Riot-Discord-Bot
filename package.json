@@ -24,7 +24,6 @@
   },
   "homepage": "https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot#readme",
   "dependencies": {
-    "bcrypt": "^4.0.1",
     "canvas": "^2.6.1",
     "chart.js": "^2.9.3",
     "discord.js": "^12.2.0",
