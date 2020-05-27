@@ -31,6 +31,6 @@
     "unix-timestamp": "^0.2.0"
   },
   "engines":{
-    "node": "12.6.2"
+    "node": "12.16.x"
   }
 }
