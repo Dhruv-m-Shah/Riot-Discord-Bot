@@ -12,6 +12,10 @@ var rankImages = rankImg.rankImages;
 var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
+const {
+  createCanvas,
+  loadImage
+} = require('canvas')
 var timestamp = require('unix-timestamp');
 
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
@@ -219,10 +223,7 @@ function draw_champion_graph(body, name, channelID) {
 }
 
 function draw_champion_card(body, channelID) {
-  const {
-    createCanvas,
-    loadImage
-  } = require('canvas')
+
   const width = 600
   const height = 300
   const canvas = createCanvas(width, height)
