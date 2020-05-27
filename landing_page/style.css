@@ -10,7 +10,7 @@ body {
 
 .frontPage {
   position: absolute;
-  left: 5%;
+  left: 0%;
   bottom: -9%;
   width: 120%;
   height: 120%;
@@ -54,12 +54,13 @@ video::-webkit-media-controls {
   bottom: 10px !important;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 300 !important;
   font-size: 24px;
   line-height: 28px;
   color: #FFFFFF;
 }
 .btn.btn-primary.add{
+    bottom: 10px;
     position: relative;
     left: 10%;
     font-family: 'Roboto', sans-serif;
@@ -70,5 +71,20 @@ video::-webkit-media-controls {
     color: #FFFFFF;
     background-color: #FF4654 !important;
     border-color: #FF4654;
+}
+.btn.btn-primary-outline.use{
+    bottom: 10px;
+    position: relative;
+    left: 10%;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 28px;
+    color: #FFFFFF !important;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+
+    min-width: 143.91px;
 }
 

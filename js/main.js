@@ -787,7 +787,20 @@ function send_message(message, channelID) {
 }
 
 function get_help(channelID){
-  bot.channels.cache.get(channelID).send("-!profile <Summoner Name> \n -!rank <Summoner Name>")
+  var exampleEmbed = new Discord.MessageEmbed();
+  exampleEmbed.setTitle("GROMP Help");
+  exampleEmbed.addField('!match_history <champion name>', 'Finds match history of champion', true);
+  exampleEmbed.addField('\u200B', '\u200B')
+  exampleEmbed.addField('!profile <champion name>', 'Provide champion mastery information', true);
+  exampleEmbed.addField('\u200B', '\u200B')
+  exampleEmbed.addField('!match_history <champion name>', 'Finds match history of champion', true);
+  exampleEmbed.addField('\u200B', '\u200B')
+  exampleEmbed.addField('!rotation', 'Returns champions in the current rotation', true);
+  exampleEmbed.addField('\u200B', '\u200B')
+  exampleEmbed.addField('!random', 'Returns a random champion', true);
+  exampleEmbed.addField('\u200B', '\u200B')
+  exampleEmbed.addField('!help', 'List of commands', true);
+  bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
 bot.on('message', (msg) => {
