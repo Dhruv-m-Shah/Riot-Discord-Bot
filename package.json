@@ -34,6 +34,6 @@
     "unix-timestamp": "^0.2.0"
   },
   "engines": {
-    "node": "8.2.x"
+    "node": "12.4.x"
   }
 }
