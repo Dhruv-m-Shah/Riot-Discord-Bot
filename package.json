@@ -27,10 +27,11 @@
     "chart.js": "^2.9.3",
     "discord.js": "^12.2.0",
     "fs": "0.0.1-security",
+    "http": "0.0.1-security",
     "request": "^2.88.2",
     "unix-timestamp": "^0.2.0"
   },
-  "engines":{
+  "engines": {
     "node": "12.16.x"
   }
 }
