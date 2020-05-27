@@ -4041,6 +4041,11 @@
          }
       },
       {
+         "id": "Ornn",
+         "name": "Ornn",
+         "key": "516"
+      },
+      {
          "version":"6.24.1",
          "id":"Pantheon",
          "key":"80",
@@ -4139,6 +4144,11 @@
             "attackspeedoffset":0.0,
             "attackspeedperlevel":2.5
          }
+      },
+      {
+         "id": "Qiyana",
+         "name": "Qiyana",
+         "key": "246"
       },
      {
          "version":"6.24.1",
