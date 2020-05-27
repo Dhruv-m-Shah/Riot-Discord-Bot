@@ -9,7 +9,6 @@ var champion_images = myModule.images;
 var champions = require('./champions.json');
 rankImg = require('./rank_images');
 var rankImages = rankImg.rankImages;
-var d3 = require("d3");
 var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
