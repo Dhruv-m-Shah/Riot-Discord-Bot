@@ -1,7 +1,7 @@
 championImages = {
     "Aatrox": "../img/champion_loading_images_cropped/Aatrox.png",
     "Ahri": "../img/champion_loading_images_cropped/Ahri.png",
-    "Akali": "img/champion_loading_images_cropped/Akali.png",
+    "Akali": "img/champion_loading_images_cropped/Akali.PNG",
     "Alistar": "../img/champion_loading_images_cropped/Alistar.png",
     "Amumu": "../",
     "Anivia": "../img/champion_loading_images_cropped/Anivia.png",
