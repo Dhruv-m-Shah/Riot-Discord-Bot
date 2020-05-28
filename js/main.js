@@ -253,7 +253,7 @@ function draw_champion_card(body, channelID) {
     context.drawImage(image, 400, 0, 200, 300)
     context.fillStyle = 'rgba(0, 0, 0, 0.3)';
     context.fillRect(0, 0, 600, 300);
-    loadImage('../img/champion_mastery/' + champ1lvl + ".png").then(image => {
+    loadImage('img/champion_mastery/' + champ1lvl + ".png").then(image => {
       context.drawImage(image, 100 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
 
       context.fillStyle = 'rgba(255,255,255, 1)';
@@ -263,7 +263,7 @@ function draw_champion_card(body, channelID) {
       context.fillText('Points:' + body[0].championPoints, canvas.width / 2 - 200, canvas.height / 2 + 100);
     })
 
-    loadImage('../img/champion_mastery/' + champ2lvl + ".png").then(image => {
+    loadImage('img/champion_mastery/' + champ2lvl + ".png").then(image => {
       context.drawImage(image, 300 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
       context.fillStyle = 'rgba(225,225,225, 1)';
       context.font = '25px Calibri';
@@ -272,7 +272,7 @@ function draw_champion_card(body, channelID) {
       context.fillText('Points:' + body[1].championPoints, canvas.width / 2, canvas.height / 2 + 100);
     })
 
-    loadImage('../img/champion_mastery/' + champ3lvl + ".png").then(image => {
+    loadImage('img/champion_mastery/' + champ3lvl + ".png").then(image => {
       context.drawImage(image, 500 - image.naturalWidth / 2, 150 - image.naturalHeight / 2)
       context.fillStyle = 'rgba(225,225,225,1)';
       context.font = '25px Calibri';
