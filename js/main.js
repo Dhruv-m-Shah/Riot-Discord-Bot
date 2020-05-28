@@ -242,14 +242,14 @@ function draw_champion_card(body, channelID) {
   var champ3 = findChampionName(body[2].championId).name;
   var champ3lvl = body[2].championLevel;
 
-  loadImage('../img/champion_loading_images_cropped/' + champ1 + ".PNG").then(image => {
+  loadImage('img/champion_loading_images_cropped/' + champ1 + ".png").then(image => {
     context.drawImage(image, 0, 0, 200, 300)
     context.fillStyle = 'rgba(225,225,225,0.5)';
   })
-  loadImage('../img/champion_loading_images_cropped/' + champ2 + ".PNG").then(image => {
+  loadImage('img/champion_loading_images_cropped/' + champ2 + ".png").then(image => {
     context.drawImage(image, 200, 0, 200, 300)
   })
-  loadImage('../img/champion_loading_images_cropped/' + champ3 + ".PNG").then(image => {
+  loadImage('img/champion_loading_images_cropped/' + champ3 + ".png").then(image => {
     context.drawImage(image, 400, 0, 200, 300)
     context.fillStyle = 'rgba(0, 0, 0, 0.3)';
     context.fillRect(0, 0, 600, 300);
