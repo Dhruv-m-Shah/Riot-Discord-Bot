@@ -1,7 +1,7 @@
 championImages = {
     "Aatrox": "../img/champion_loading_images_cropped/Aatrox.png",
     "Ahri": "../img/champion_loading_images_cropped/Ahri.png",
-    "Akali": "../",
+    "Akali": "img/champion_loading_images_cropped/Akali.png",
     "Alistar": "../img/champion_loading_images_cropped/Alistar.png",
     "Amumu": "../",
     "Anivia": "../img/champion_loading_images_cropped/Anivia.png",
@@ -37,7 +37,7 @@ championImages = {
     "Gnar": "../img/champion_loading_images_cropped/Gnar.png",
     "Gragas": "../img/champion_loading_images_cropped/Gragas.png",
     "Graves": "../img/champion_loading_images_cropped/Graves.png",
-    "Hecrim": "../img/champion_loading_images_cropped/Hecarim.png",
+    "Hecrim": "img/champion_loading_images_cropped/Hecarim.png",
     "Heimerdinger": "../img/champion_loading_images_cropped/Heimerdinger.png",
     "Illaoi": "../img/champion_loading_images_cropped/Illaoi.png",
     "Irelia": "../img/champion_loading_images_cropped/Irelia.png",
