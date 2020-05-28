@@ -1,5 +1,4 @@
 body {
-
   overflow: hidden;
   /* BG GRADIENT */
   height: 100vh; 
@@ -29,17 +28,17 @@ video::-webkit-media-controls {
   z-index: 11;
 }
 
-.title {
+.title.animate__animated.animate__fadeInDown {
   position: relative;
   width: 127px;
   height: 42px;
   left: 10%;
   top: 10%;
 
-  font-family: 'Roboto', sans-serif;
+  font-family: "MyWebFont";
   font-style: normal;
   font-weight: 500;
-  font-size: 36px;
+  font-size: 80px;
   line-height: 42px;
 
   color: #FF4654;
@@ -47,6 +46,7 @@ video::-webkit-media-controls {
 }
 
 .description {
+  margin-top: 30px;
   position: relative;
   width: 374px;
   height: 131px;
@@ -88,3 +88,11 @@ video::-webkit-media-controls {
     min-width: 143.91px;
 }
 
+@font-face {
+  font-family: 'MyWebFont';
+  src: url('edosz.ttf'); /* IE9 Compat Modes */
+  src: url('edosz.ttf') format('embedded-opentype'), /* IE6-IE8 */
+       url('edosz.ttf') format('woff'), /* Modern Browsers */
+       url('edosz.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('edosz.ttf') format('svg'); /* Legacy iOS */
+}

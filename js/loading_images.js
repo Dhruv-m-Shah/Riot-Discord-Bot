@@ -68,7 +68,7 @@ championImages = {
     "Lucian": "../img/champion_loading_images_cropped/Lucian.png",
     "Lulu": "../img/champion_loading_images_cropped/Lulu.png",
     "Lux": "../img/champion_loading_images_cropped/Lux.png",
-    "Malphite": "../img/champion_loading_images_cropped/Malphite.png",
+    "Malphite": "img/champion_loading_images_cropped/Malphite.png",
     "Malzahar": "../img/champion_loading_images_cropped/Malzahar.png",
     "Maokai": "../img/champion_loading_images_cropped/Maokai.png",
     "Master Yi": "../img/champion_loading_images_cropped/Master Yi.png",
