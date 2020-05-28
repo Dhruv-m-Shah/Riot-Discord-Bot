@@ -280,11 +280,11 @@ function draw_champion_card(body, channelID) {
       context.textAlign = "center";
       context.fillText('Points:' + body[2].championPoints, canvas.width / 2 + 200, canvas.height / 2 + 100);
       const buffer = canvas.toBuffer('image/png')
-      fs.writeFileSync('./test.png', buffer)
+      fs.writeFileSync('js/test.png', buffer)
     })
   })
 
-  const attachment = new Discord.MessageAttachment('./test.png');
+  const attachment = new Discord.MessageAttachment('js/test.png');
   // Send the attachment in the message channel with a content
   bot.channels.cache.get(channelID).send(attachment);
 }
