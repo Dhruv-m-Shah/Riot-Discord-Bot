@@ -22,8 +22,8 @@ const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
 //
 const http = require("http");
-const hostname = '127.0.0.1';
-const port = 3000;
+var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
+var server_host = process.env.YOUR_HOST || '0.0.0.0';
 
 //Create HTTP server and listen on port 3000 for requests
 const server = http.createServer((req, res) => {
@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
 });
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(process.env.PORT || port , hostname, () => {
+server.listen(server_port , server_host, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
 //
