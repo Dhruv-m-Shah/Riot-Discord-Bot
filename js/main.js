@@ -653,17 +653,8 @@ function send_message(message, channelID) {
 function get_help(channelID){
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle("GROMP Help");
-  exampleEmbed.addField('!match_history <champion name>', 'Finds match history of champion', true);
-  exampleEmbed.addField('\u200B', '\u200B')
-  exampleEmbed.addField('!profile <champion name>', 'Provide champion mastery information', true);
-  exampleEmbed.addField('\u200B', '\u200B')
-  exampleEmbed.addField('!match_history <champion name>', 'Finds match history of champion', true);
-  exampleEmbed.addField('\u200B', '\u200B')
-  exampleEmbed.addField('!rotation', 'Returns champions in the current rotation', true);
-  exampleEmbed.addField('\u200B', '\u200B')
-  exampleEmbed.addField('!random', 'Returns a random champion', true);
-  exampleEmbed.addField('\u200B', '\u200B')
-  exampleEmbed.addField('!help', 'List of commands', true);
+  exampleEmbed.setURL('https://dhruv-m-shah.github.io/Discord-Bot-Front-End-Testing/')
+  exampleEmbed.addField("Visit this site for more info", "https://dhruv-m-shah.github.io/Discord-Bot-Front-End-Testing/")
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
