@@ -36,7 +36,6 @@ const server = http.createServer((req, res) => {
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
 server.listen(server_port , server_host, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
 });
 //
 function findChampionName(id) {
