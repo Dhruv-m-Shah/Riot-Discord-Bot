@@ -306,7 +306,7 @@ function get_champion_points(body, channelID, name, flag) {
 
 function get_player_id(name, channelID, purpose) {
   if(name == null) return;
-  request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + name + "?api_key=" + league_ID, {
+  request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + encodeURIComponent(name) + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
     console.log(err);
