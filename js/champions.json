@@ -2,7 +2,7 @@
   "type": "champion",
   "format": "standAloneComplex",
   "version": "10.11.1",
-  "data": {
+  "data": [{
     "Aatrox": {
       "version": "10.11.1",
       "id": "Aatrox",
@@ -6959,5 +6959,5 @@
         "attackspeed": 0.625
       }
     }
-  }
+  }]
 }
