@@ -678,6 +678,7 @@ bot.on('message', (msg) => {
   }
   if (msg.content.split(" ")[0] == "!profile") {
     console.log("S");
+    console.log(msg.content.slice(9, msg.content.length));
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
   if (msg.content.split(" ")[0] == "!stats") {
