@@ -41,6 +41,7 @@ server.listen(server_port , server_host, () => {
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
+      console.log(champions.data[i].name)
       return {"name": champions.data[i].name,
     "title": champions.data[i].title}
     }
