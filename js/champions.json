@@ -2,8 +2,8 @@
   "type": "champion",
   "format": "standAloneComplex",
   "version": "10.11.1",
-  "data": [{
-    "Aatrox": {
+  "data": [
+    {
       "version": "10.11.1",
       "id": "Aatrox",
       "key": "266",
@@ -50,7 +50,7 @@
         "attackspeed": 0.651
       }
     },
-    "Ahri": {
+    {
       "version": "10.11.1",
       "id": "Ahri",
       "key": "103",
@@ -97,7 +97,7 @@
         "attackspeed": 0.668
       }
     },
-    "Akali": {
+     {
       "version": "10.11.1",
       "id": "Akali",
       "key": "84",
@@ -144,7 +144,7 @@
         "attackspeed": 0.625
       }
     },
-    "Alistar": {
+   {
       "version": "10.11.1",
       "id": "Alistar",
       "key": "12",
@@ -191,7 +191,7 @@
         "attackspeed": 0.625
       }
     },
-    "Amumu": {
+   {
       "version": "10.11.1",
       "id": "Amumu",
       "key": "32",
@@ -238,7 +238,7 @@
         "attackspeed": 0.736
       }
     },
-    "Anivia": {
+    {
       "version": "10.11.1",
       "id": "Anivia",
       "key": "34",
@@ -285,7 +285,7 @@
         "attackspeed": 0.625
       }
     },
-    "Annie": {
+     {
       "version": "10.11.1",
       "id": "Annie",
       "key": "1",
@@ -332,7 +332,7 @@
         "attackspeed": 0.579
       }
     },
-    "Aphelios": {
+     {
       "version": "10.11.1",
       "id": "Aphelios",
       "key": "523",
@@ -379,7 +379,7 @@
         "attackspeed": 0.64
       }
     },
-    "Ashe": {
+     {
       "version": "10.11.1",
       "id": "Ashe",
       "key": "22",
@@ -426,7 +426,7 @@
         "attackspeed": 0.658
       }
     },
-    "AurelionSol": {
+     {
       "version": "10.11.1",
       "id": "AurelionSol",
       "key": "136",
@@ -473,7 +473,7 @@
         "attackspeed": 0.625
       }
     },
-    "Azir": {
+    {
       "version": "10.11.1",
       "id": "Azir",
       "key": "268",
@@ -520,7 +520,7 @@
         "attackspeed": 0.625
       }
     },
-    "Bard": {
+     {
       "version": "10.11.1",
       "id": "Bard",
       "key": "432",
@@ -567,7 +567,7 @@
         "attackspeed": 0.625
       }
     },
-    "Blitzcrank": {
+     {
       "version": "10.11.1",
       "id": "Blitzcrank",
       "key": "53",
@@ -614,7 +614,7 @@
         "attackspeed": 0.625
       }
     },
-    "Brand": {
+     {
       "version": "10.11.1",
       "id": "Brand",
       "key": "63",
@@ -661,7 +661,7 @@
         "attackspeed": 0.625
       }
     },
-    "Braum": {
+     {
       "version": "10.11.1",
       "id": "Braum",
       "key": "201",
@@ -708,7 +708,7 @@
         "attackspeed": 0.644
       }
     },
-    "Caitlyn": {
+     {
       "version": "10.11.1",
       "id": "Caitlyn",
       "key": "51",
@@ -755,7 +755,7 @@
         "attackspeed": 0.681
       }
     },
-    "Camille": {
+     {
       "version": "10.11.1",
       "id": "Camille",
       "key": "164",
@@ -802,7 +802,7 @@
         "attackspeed": 0.644
       }
     },
-    "Cassiopeia": {
+     {
       "version": "10.11.1",
       "id": "Cassiopeia",
       "key": "69",
@@ -849,7 +849,7 @@
         "attackspeed": 0.647
       }
     },
-    "Chogath": {
+     {
       "version": "10.11.1",
       "id": "Chogath",
       "key": "31",
@@ -896,7 +896,7 @@
         "attackspeed": 0.625
       }
     },
-    "Corki": {
+     {
       "version": "10.11.1",
       "id": "Corki",
       "key": "42",
@@ -943,7 +943,7 @@
         "attackspeed": 0.638
       }
     },
-    "Darius": {
+     {
       "version": "10.11.1",
       "id": "Darius",
       "key": "122",
@@ -990,7 +990,7 @@
         "attackspeed": 0.625
       }
     },
-    "Diana": {
+     {
       "version": "10.11.1",
       "id": "Diana",
       "key": "131",
@@ -1037,7 +1037,7 @@
         "attackspeed": 0.625
       }
     },
-    "Draven": {
+     {
       "version": "10.11.1",
       "id": "Draven",
       "key": "119",
@@ -1084,7 +1084,7 @@
         "attackspeed": 0.679
       }
     },
-    "DrMundo": {
+     {
       "version": "10.11.1",
       "id": "DrMundo",
       "key": "36",
@@ -1131,7 +1131,7 @@
         "attackspeed": 0.721
       }
     },
-    "Ekko": {
+     {
       "version": "10.11.1",
       "id": "Ekko",
       "key": "245",
@@ -1178,7 +1178,7 @@
         "attackspeed": 0.688
       }
     },
-    "Elise": {
+     {
       "version": "10.11.1",
       "id": "Elise",
       "key": "60",
@@ -1225,7 +1225,7 @@
         "attackspeed": 0.625
       }
     },
-    "Evelynn": {
+     {
       "version": "10.11.1",
       "id": "Evelynn",
       "key": "28",
@@ -1272,7 +1272,7 @@
         "attackspeed": 0.667
       }
     },
-    "Ezreal": {
+    {
       "version": "10.11.1",
       "id": "Ezreal",
       "key": "81",
@@ -1319,7 +1319,7 @@
         "attackspeed": 0.625
       }
     },
-    "Fiddlesticks": {
+     {
       "version": "10.11.1",
       "id": "Fiddlesticks",
       "key": "9",
@@ -1366,7 +1366,7 @@
         "attackspeed": 0.625
       }
     },
-    "Fiora": {
+    {
       "version": "10.11.1",
       "id": "Fiora",
       "key": "114",
@@ -1413,7 +1413,7 @@
         "attackspeed": 0.69
       }
     },
-    "Fizz": {
+     {
       "version": "10.11.1",
       "id": "Fizz",
       "key": "105",
@@ -1460,7 +1460,7 @@
         "attackspeed": 0.658
       }
     },
-    "Galio": {
+     {
       "version": "10.11.1",
       "id": "Galio",
       "key": "3",
@@ -1507,7 +1507,7 @@
         "attackspeed": 0.625
       }
     },
-    "Gangplank": {
+     {
       "version": "10.11.1",
       "id": "Gangplank",
       "key": "41",
@@ -1554,7 +1554,7 @@
         "attackspeed": 0.658
       }
     },
-    "Garen": {
+    {
       "version": "10.11.1",
       "id": "Garen",
       "key": "86",
@@ -1601,7 +1601,7 @@
         "attackspeed": 0.625
       }
     },
-    "Gnar": {
+     {
       "version": "10.11.1",
       "id": "Gnar",
       "key": "150",
@@ -1648,7 +1648,7 @@
         "attackspeed": 0.625
       }
     },
-    "Gragas": {
+    {
       "version": "10.11.1",
       "id": "Gragas",
       "key": "79",
@@ -1695,7 +1695,7 @@
         "attackspeed": 0.675
       }
     },
-    "Graves": {
+     {
       "version": "10.11.1",
       "id": "Graves",
       "key": "104",
@@ -1742,7 +1742,7 @@
         "attackspeed": 0.475
       }
     },
-    "Hecarim": {
+    {
       "version": "10.11.1",
       "id": "Hecarim",
       "key": "120",
@@ -1789,7 +1789,7 @@
         "attackspeed": 0.67
       }
     },
-    "Heimerdinger": {
+     {
       "version": "10.11.1",
       "id": "Heimerdinger",
       "key": "74",
@@ -1836,7 +1836,7 @@
         "attackspeed": 0.625
       }
     },
-    "Illaoi": {
+    {
       "version": "10.11.1",
       "id": "Illaoi",
       "key": "420",
@@ -1883,7 +1883,7 @@
         "attackspeed": 0.571
       }
     },
-    "Irelia": {
+     {
       "version": "10.11.1",
       "id": "Irelia",
       "key": "39",
@@ -1930,7 +1930,7 @@
         "attackspeed": 0.656
       }
     },
-    "Ivern": {
+     {
       "version": "10.11.1",
       "id": "Ivern",
       "key": "427",
@@ -1977,7 +1977,7 @@
         "attackspeed": 0.644
       }
     },
-    "Janna": {
+     {
       "version": "10.11.1",
       "id": "Janna",
       "key": "40",
@@ -2024,7 +2024,7 @@
         "attackspeed": 0.625
       }
     },
-    "JarvanIV": {
+    {
       "version": "10.11.1",
       "id": "JarvanIV",
       "key": "59",
@@ -2071,7 +2071,7 @@
         "attackspeed": 0.658
       }
     },
-    "Jax": {
+    {
       "version": "10.11.1",
       "id": "Jax",
       "key": "24",
@@ -2118,7 +2118,7 @@
         "attackspeed": 0.638
       }
     },
-    "Jayce": {
+     {
       "version": "10.11.1",
       "id": "Jayce",
       "key": "126",
@@ -2165,7 +2165,7 @@
         "attackspeed": 0.658
       }
     },
-    "Jhin": {
+     {
       "version": "10.11.1",
       "id": "Jhin",
       "key": "202",
@@ -2212,7 +2212,7 @@
         "attackspeed": 0.625
       }
     },
-    "Jinx": {
+     {
       "version": "10.11.1",
       "id": "Jinx",
       "key": "222",
@@ -2259,7 +2259,7 @@
         "attackspeed": 0.625
       }
     },
-    "Kaisa": {
+     {
       "version": "10.11.1",
       "id": "Kaisa",
       "key": "145",
@@ -2306,7 +2306,7 @@
         "attackspeed": 0.644
       }
     },
-    "Kalista": {
+     {
       "version": "10.11.1",
       "id": "Kalista",
       "key": "429",
@@ -2353,7 +2353,7 @@
         "attackspeed": 0.694
       }
     },
-    "Karma": {
+     {
       "version": "10.11.1",
       "id": "Karma",
       "key": "43",
@@ -2400,7 +2400,7 @@
         "attackspeed": 0.625
       }
     },
-    "Karthus": {
+     {
       "version": "10.11.1",
       "id": "Karthus",
       "key": "30",
@@ -2447,7 +2447,7 @@
         "attackspeed": 0.625
       }
     },
-    "Kassadin": {
+     {
       "version": "10.11.1",
       "id": "Kassadin",
       "key": "38",
@@ -2494,7 +2494,7 @@
         "attackspeed": 0.64
       }
     },
-    "Katarina": {
+     {
       "version": "10.11.1",
       "id": "Katarina",
       "key": "55",
@@ -2541,7 +2541,7 @@
         "attackspeed": 0.658
       }
     },
-    "Kayle": {
+     {
       "version": "10.11.1",
       "id": "Kayle",
       "key": "10",
@@ -2588,7 +2588,7 @@
         "attackspeed": 0.625
       }
     },
-    "Kayn": {
+     {
       "version": "10.11.1",
       "id": "Kayn",
       "key": "141",
@@ -2635,7 +2635,7 @@
         "attackspeed": 0.669
       }
     },
-    "Kennen": {
+     {
       "version": "10.11.1",
       "id": "Kennen",
       "key": "85",
@@ -2682,7 +2682,7 @@
         "attackspeed": 0.625
       }
     },
-    "Khazix": {
+     {
       "version": "10.11.1",
       "id": "Khazix",
       "key": "121",
@@ -2729,7 +2729,7 @@
         "attackspeed": 0.668
       }
     },
-    "Kindred": {
+     {
       "version": "10.11.1",
       "id": "Kindred",
       "key": "203",
@@ -2776,7 +2776,7 @@
         "attackspeed": 0.625
       }
     },
-    "Kled": {
+     {
       "version": "10.11.1",
       "id": "Kled",
       "key": "240",
@@ -2823,7 +2823,7 @@
         "attackspeed": 0.625
       }
     },
-    "KogMaw": {
+    {
       "version": "10.11.1",
       "id": "KogMaw",
       "key": "96",
@@ -2870,7 +2870,7 @@
         "attackspeed": 0.665
       }
     },
-    "Leblanc": {
+     {
       "version": "10.11.1",
       "id": "Leblanc",
       "key": "7",
@@ -2917,7 +2917,7 @@
         "attackspeed": 0.625
       }
     },
-    "LeeSin": {
+     {
       "version": "10.11.1",
       "id": "LeeSin",
       "key": "64",
@@ -2964,7 +2964,7 @@
         "attackspeed": 0.651
       }
     },
-    "Leona": {
+     {
       "version": "10.11.1",
       "id": "Leona",
       "key": "89",
@@ -3011,7 +3011,7 @@
         "attackspeed": 0.625
       }
     },
-    "Lissandra": {
+     {
       "version": "10.11.1",
       "id": "Lissandra",
       "key": "127",
@@ -3058,7 +3058,7 @@
         "attackspeed": 0.656
       }
     },
-    "Lucian": {
+     {
       "version": "10.11.1",
       "id": "Lucian",
       "key": "236",
@@ -3105,7 +3105,7 @@
         "attackspeed": 0.638
       }
     },
-    "Lulu": {
+     {
       "version": "10.11.1",
       "id": "Lulu",
       "key": "117",
@@ -3152,7 +3152,7 @@
         "attackspeed": 0.625
       }
     },
-    "Lux": {
+     {
       "version": "10.11.1",
       "id": "Lux",
       "key": "99",
@@ -3199,7 +3199,7 @@
         "attackspeed": 0.669
       }
     },
-    "Malphite": {
+    {
       "version": "10.11.1",
       "id": "Malphite",
       "key": "54",
@@ -3246,7 +3246,7 @@
         "attackspeed": 0.736
       }
     },
-    "Malzahar": {
+     {
       "version": "10.11.1",
       "id": "Malzahar",
       "key": "90",
@@ -3293,7 +3293,7 @@
         "attackspeed": 0.625
       }
     },
-    "Maokai": {
+     {
       "version": "10.11.1",
       "id": "Maokai",
       "key": "57",
@@ -3340,7 +3340,7 @@
         "attackspeed": 0.8
       }
     },
-    "MasterYi": {
+     {
       "version": "10.11.1",
       "id": "MasterYi",
       "key": "11",
@@ -3387,7 +3387,7 @@
         "attackspeed": 0.679
       }
     },
-    "MissFortune": {
+     {
       "version": "10.11.1",
       "id": "MissFortune",
       "key": "21",
@@ -3434,7 +3434,7 @@
         "attackspeed": 0.656
       }
     },
-    "MonkeyKing": {
+     {
       "version": "10.11.1",
       "id": "MonkeyKing",
       "key": "62",
@@ -3481,7 +3481,7 @@
         "attackspeed": 0.711
       }
     },
-    "Mordekaiser": {
+     {
       "version": "10.11.1",
       "id": "Mordekaiser",
       "key": "82",
@@ -3528,7 +3528,7 @@
         "attackspeed": 0.625
       }
     },
-    "Morgana": {
+    {
       "version": "10.11.1",
       "id": "Morgana",
       "key": "25",
@@ -3575,7 +3575,7 @@
         "attackspeed": 0.625
       }
     },
-    "Nami": {
+     {
       "version": "10.11.1",
       "id": "Nami",
       "key": "267",
@@ -3622,7 +3622,7 @@
         "attackspeed": 0.644
       }
     },
-    "Nasus": {
+     {
       "version": "10.11.1",
       "id": "Nasus",
       "key": "75",
@@ -3669,7 +3669,7 @@
         "attackspeed": 0.638
       }
     },
-    "Nautilus": {
+     {
       "version": "10.11.1",
       "id": "Nautilus",
       "key": "111",
@@ -3716,7 +3716,7 @@
         "attackspeed": 0.706
       }
     },
-    "Neeko": {
+     {
       "version": "10.11.1",
       "id": "Neeko",
       "key": "518",
@@ -3763,7 +3763,7 @@
         "attackspeed": 0.625
       }
     },
-    "Nidalee": {
+     {
       "version": "10.11.1",
       "id": "Nidalee",
       "key": "76",
@@ -3810,7 +3810,7 @@
         "attackspeed": 0.638
       }
     },
-    "Nocturne": {
+     {
       "version": "10.11.1",
       "id": "Nocturne",
       "key": "56",
@@ -3857,7 +3857,7 @@
         "attackspeed": 0.721
       }
     },
-    "Nunu": {
+     {
       "version": "10.11.1",
       "id": "Nunu",
       "key": "20",
@@ -3904,7 +3904,7 @@
         "attackspeed": 0.625
       }
     },
-    "Olaf": {
+     {
       "version": "10.11.1",
       "id": "Olaf",
       "key": "2",
@@ -3951,7 +3951,7 @@
         "attackspeed": 0.694
       }
     },
-    "Orianna": {
+     {
       "version": "10.11.1",
       "id": "Orianna",
       "key": "61",
@@ -3998,7 +3998,7 @@
         "attackspeed": 0.658
       }
     },
-    "Ornn": {
+     {
       "version": "10.11.1",
       "id": "Ornn",
       "key": "516",
@@ -4045,7 +4045,7 @@
         "attackspeed": 0.625
       }
     },
-    "Pantheon": {
+     {
       "version": "10.11.1",
       "id": "Pantheon",
       "key": "80",
@@ -4092,7 +4092,7 @@
         "attackspeed": 0.644
       }
     },
-    "Poppy": {
+    {
       "version": "10.11.1",
       "id": "Poppy",
       "key": "78",
@@ -4139,7 +4139,7 @@
         "attackspeed": 0.625
       }
     },
-    "Pyke": {
+     {
       "version": "10.11.1",
       "id": "Pyke",
       "key": "555",
@@ -4186,7 +4186,7 @@
         "attackspeed": 0.667
       }
     },
-    "Qiyana": {
+    {
       "version": "10.11.1",
       "id": "Qiyana",
       "key": "246",
@@ -4233,7 +4233,7 @@
         "attackspeed": 0.625
       }
     },
-    "Quinn": {
+    {
       "version": "10.11.1",
       "id": "Quinn",
       "key": "133",
@@ -4280,7 +4280,7 @@
         "attackspeed": 0.668
       }
     },
-    "Rakan": {
+     {
       "version": "10.11.1",
       "id": "Rakan",
       "key": "497",
@@ -4327,7 +4327,7 @@
         "attackspeed": 0.635
       }
     },
-    "Rammus": {
+     {
       "version": "10.11.1",
       "id": "Rammus",
       "key": "33",
@@ -4374,7 +4374,7 @@
         "attackspeed": 0.656
       }
     },
-    "RekSai": {
+     {
       "version": "10.11.1",
       "id": "RekSai",
       "key": "421",
@@ -4421,7 +4421,7 @@
         "attackspeed": 0.667
       }
     },
-    "Renekton": {
+    {
       "version": "10.11.1",
       "id": "Renekton",
       "key": "58",
@@ -4468,7 +4468,7 @@
         "attackspeed": 0.665
       }
     },
-    "Rengar": {
+     {
       "version": "10.11.1",
       "id": "Rengar",
       "key": "107",
@@ -4515,7 +4515,7 @@
         "attackspeed": 0.667
       }
     },
-    "Riven": {
+    {
       "version": "10.11.1",
       "id": "Riven",
       "key": "92",
@@ -4562,7 +4562,7 @@
         "attackspeed": 0.625
       }
     },
-    "Rumble": {
+    {
       "version": "10.11.1",
       "id": "Rumble",
       "key": "68",
@@ -4609,7 +4609,7 @@
         "attackspeed": 0.644
       }
     },
-    "Ryze": {
+     {
       "version": "10.11.1",
       "id": "Ryze",
       "key": "13",
@@ -4656,7 +4656,7 @@
         "attackspeed": 0.625
       }
     },
-    "Sejuani": {
+     {
       "version": "10.11.1",
       "id": "Sejuani",
       "key": "113",
@@ -4703,7 +4703,7 @@
         "attackspeed": 0.688
       }
     },
-    "Senna": {
+     {
       "version": "10.11.1",
       "id": "Senna",
       "key": "235",
@@ -4750,7 +4750,7 @@
         "attackspeed": 0.625
       }
     },
-    "Sett": {
+     {
       "version": "10.11.1",
       "id": "Sett",
       "key": "875",
@@ -4797,7 +4797,7 @@
         "attackspeed": 0.625
       }
     },
-    "Shaco": {
+     {
       "version": "10.11.1",
       "id": "Shaco",
       "key": "35",
@@ -4844,7 +4844,7 @@
         "attackspeed": 0.694
       }
     },
-    "Shen": {
+     {
       "version": "10.11.1",
       "id": "Shen",
       "key": "98",
@@ -4891,7 +4891,7 @@
         "attackspeed": 0.751
       }
     },
-    "Shyvana": {
+     {
       "version": "10.11.1",
       "id": "Shyvana",
       "key": "102",
@@ -4938,7 +4938,7 @@
         "attackspeed": 0.658
       }
     },
-    "Singed": {
+     {
       "version": "10.11.1",
       "id": "Singed",
       "key": "27",
@@ -4985,7 +4985,7 @@
         "attackspeed": 0.613
       }
     },
-    "Sion": {
+     {
       "version": "10.11.1",
       "id": "Sion",
       "key": "14",
@@ -5032,7 +5032,7 @@
         "attackspeed": 0.679
       }
     },
-    "Sivir": {
+     {
       "version": "10.11.1",
       "id": "Sivir",
       "key": "15",
@@ -5079,7 +5079,7 @@
         "attackspeed": 0.625
       }
     },
-    "Skarner": {
+     {
       "version": "10.11.1",
       "id": "Skarner",
       "key": "72",
@@ -5126,7 +5126,7 @@
         "attackspeed": 0.625
       }
     },
-    "Sona": {
+    {
       "version": "10.11.1",
       "id": "Sona",
       "key": "37",
@@ -5173,7 +5173,7 @@
         "attackspeed": 0.644
       }
     },
-    "Soraka": {
+     {
       "version": "10.11.1",
       "id": "Soraka",
       "key": "16",
@@ -5220,7 +5220,7 @@
         "attackspeed": 0.625
       }
     },
-    "Swain": {
+     {
       "version": "10.11.1",
       "id": "Swain",
       "key": "50",
@@ -5267,7 +5267,7 @@
         "attackspeed": 0.625
       }
     },
-    "Sylas": {
+     {
       "version": "10.11.1",
       "id": "Sylas",
       "key": "517",
@@ -5314,7 +5314,7 @@
         "attackspeed": 0.645
       }
     },
-    "Syndra": {
+     {
       "version": "10.11.1",
       "id": "Syndra",
       "key": "134",
@@ -5361,7 +5361,7 @@
         "attackspeed": 0.625
       }
     },
-    "TahmKench": {
+     {
       "version": "10.11.1",
       "id": "TahmKench",
       "key": "223",
@@ -5408,7 +5408,7 @@
         "attackspeed": 0.658
       }
     },
-    "Taliyah": {
+     {
       "version": "10.11.1",
       "id": "Taliyah",
       "key": "163",
@@ -5455,7 +5455,7 @@
         "attackspeed": 0.625
       }
     },
-    "Talon": {
+     {
       "version": "10.11.1",
       "id": "Talon",
       "key": "91",
@@ -5502,7 +5502,7 @@
         "attackspeed": 0.625
       }
     },
-    "Taric": {
+     {
       "version": "10.11.1",
       "id": "Taric",
       "key": "44",
@@ -5549,7 +5549,7 @@
         "attackspeed": 0.625
       }
     },
-    "Teemo": {
+    {
       "version": "10.11.1",
       "id": "Teemo",
       "key": "17",
@@ -5596,7 +5596,7 @@
         "attackspeed": 0.69
       }
     },
-    "Thresh": {
+    {
       "version": "10.11.1",
       "id": "Thresh",
       "key": "412",
@@ -5643,7 +5643,7 @@
         "attackspeed": 0.625
       }
     },
-    "Tristana": {
+     {
       "version": "10.11.1",
       "id": "Tristana",
       "key": "18",
@@ -5690,7 +5690,7 @@
         "attackspeed": 0.656
       }
     },
-    "Trundle": {
+     {
       "version": "10.11.1",
       "id": "Trundle",
       "key": "48",
@@ -5737,7 +5737,7 @@
         "attackspeed": 0.67
       }
     },
-    "Tryndamere": {
+    {
       "version": "10.11.1",
       "id": "Tryndamere",
       "key": "23",
@@ -5784,7 +5784,7 @@
         "attackspeed": 0.67
       }
     },
-    "TwistedFate": {
+     {
       "version": "10.11.1",
       "id": "TwistedFate",
       "key": "4",
@@ -5831,7 +5831,7 @@
         "attackspeed": 0.651
       }
     },
-    "Twitch": {
+     {
       "version": "10.11.1",
       "id": "Twitch",
       "key": "29",
@@ -5878,7 +5878,7 @@
         "attackspeed": 0.679
       }
     },
-    "Udyr": {
+     {
       "version": "10.11.1",
       "id": "Udyr",
       "key": "77",
@@ -5925,7 +5925,7 @@
         "attackspeed": 0.658
       }
     },
-    "Urgot": {
+     {
       "version": "10.11.1",
       "id": "Urgot",
       "key": "6",
@@ -5972,7 +5972,7 @@
         "attackspeed": 0.625
       }
     },
-    "Varus": {
+     {
       "version": "10.11.1",
       "id": "Varus",
       "key": "110",
@@ -6019,7 +6019,7 @@
         "attackspeed": 0.658
       }
     },
-    "Vayne": {
+     {
       "version": "10.11.1",
       "id": "Vayne",
       "key": "67",
@@ -6066,7 +6066,7 @@
         "attackspeed": 0.658
       }
     },
-    "Veigar": {
+     {
       "version": "10.11.1",
       "id": "Veigar",
       "key": "45",
@@ -6113,7 +6113,7 @@
         "attackspeed": 0.625
       }
     },
-    "Velkoz": {
+     {
       "version": "10.11.1",
       "id": "Velkoz",
       "key": "161",
@@ -6160,7 +6160,7 @@
         "attackspeed": 0.625
       }
     },
-    "Vi": {
+     {
       "version": "10.11.1",
       "id": "Vi",
       "key": "254",
@@ -6207,7 +6207,7 @@
         "attackspeed": 0.644
       }
     },
-    "Viktor": {
+     {
       "version": "10.11.1",
       "id": "Viktor",
       "key": "112",
@@ -6254,7 +6254,7 @@
         "attackspeed": 0.658
       }
     },
-    "Vladimir": {
+     {
       "version": "10.11.1",
       "id": "Vladimir",
       "key": "8",
@@ -6301,7 +6301,7 @@
         "attackspeed": 0.658
       }
     },
-    "Volibear": {
+    {
       "version": "10.11.1",
       "id": "Volibear",
       "key": "106",
@@ -6348,7 +6348,7 @@
         "attackspeed": 0.66
       }
     },
-    "Warwick": {
+    {
       "version": "10.11.1",
       "id": "Warwick",
       "key": "19",
@@ -6395,7 +6395,7 @@
         "attackspeed": 0.638
       }
     },
-    "Xayah": {
+    {
       "version": "10.11.1",
       "id": "Xayah",
       "key": "498",
@@ -6442,7 +6442,7 @@
         "attackspeed": 0.625
       }
     },
-    "Xerath": {
+     {
       "version": "10.11.1",
       "id": "Xerath",
       "key": "101",
@@ -6489,7 +6489,7 @@
         "attackspeed": 0.625
       }
     },
-    "XinZhao": {
+     {
       "version": "10.11.1",
       "id": "XinZhao",
       "key": "5",
@@ -6536,7 +6536,7 @@
         "attackspeed": 0.645
       }
     },
-    "Yasuo": {
+    {
       "version": "10.11.1",
       "id": "Yasuo",
       "key": "157",
@@ -6583,7 +6583,7 @@
         "attackspeed": 0.697
       }
     },
-    "Yorick": {
+     {
       "version": "10.11.1",
       "id": "Yorick",
       "key": "83",
@@ -6630,7 +6630,7 @@
         "attackspeed": 0.625
       }
     },
-    "Yuumi": {
+     {
       "version": "10.11.1",
       "id": "Yuumi",
       "key": "350",
@@ -6677,7 +6677,7 @@
         "attackspeed": 0.625
       }
     },
-    "Zac": {
+     {
       "version": "10.11.1",
       "id": "Zac",
       "key": "154",
@@ -6724,7 +6724,7 @@
         "attackspeed": 0.736
       }
     },
-    "Zed": {
+     {
       "version": "10.11.1",
       "id": "Zed",
       "key": "238",
@@ -6771,7 +6771,7 @@
         "attackspeed": 0.651
       }
     },
-    "Ziggs": {
+    {
       "version": "10.11.1",
       "id": "Ziggs",
       "key": "115",
@@ -6818,7 +6818,7 @@
         "attackspeed": 0.656
       }
     },
-    "Zilean": {
+     {
       "version": "10.11.1",
       "id": "Zilean",
       "key": "26",
@@ -6865,7 +6865,7 @@
         "attackspeed": 0.625
       }
     },
-    "Zoe": {
+     {
       "version": "10.11.1",
       "id": "Zoe",
       "key": "142",
@@ -6912,7 +6912,7 @@
         "attackspeed": 0.625
       }
     },
-    "Zyra": {
+     {
       "version": "10.11.1",
       "id": "Zyra",
       "key": "143",
@@ -6959,6 +6959,6 @@
         "attackspeed": 0.625
       }
     }
-  }]
+  ]
 }
 
