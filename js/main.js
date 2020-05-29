@@ -38,7 +38,6 @@ const server = http.createServer((req, res) => {
 server.listen(server_port , server_host, () => {
 });
 //
-console.log(champions.data[2].key);
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
