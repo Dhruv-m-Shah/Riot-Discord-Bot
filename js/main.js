@@ -208,13 +208,13 @@ function draw_champion_graph(body, name, channelID) {
     if (error) return console.log(error);
 
     var fileStream = fs.createWriteStream('1.png');
-    imageStream.pipe(fileStream, function () {
+    imageStream.pipe(fileStream)
+    fileStream.on('end', function () {
       const attachment = new Discord.MessageAttachment('./1.png');
       bot.channels.cache.get(channelID).send(attachment);
     });
+  
   })
-
-
 
 
 
