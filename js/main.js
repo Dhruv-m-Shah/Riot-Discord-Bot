@@ -35,15 +35,16 @@ const server = http.createServer((req, res) => {
 });
 
 //listen for request on port 3000, and as a callback function have the port listened on logged
-server.listen(server_port , server_host, () => {
-});
+server.listen(server_port, server_host, () => {});
 //
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
       console.log(champions.data[i].name)
-      return {"name": champions.data[i].name,
-    "title": champions.data[i].title}
+      return {
+        "name": champions.data[i].name,
+        "title": champions.data[i].title
+      }
     }
   }
 }
@@ -66,19 +67,17 @@ function player_match_display(info, channelID, id) {
   console.log(championId);
   championName = findChampionName(championId).name;
   var exampleEmbed = new Discord.MessageEmbed();
-  if(teamId == 100){
-    if(info.teams[0].win == "Fail"){
+  if (teamId == 100) {
+    if (info.teams[0].win == "Fail") {
       exampleEmbed.setColor('#cc0000');
-    }
-    else{
+    } else {
       exampleEmbed.setColor('#00b30f');
     }
   }
-  if(teamId == 200){
-    if(info.teams[1].win == "Fail"){
+  if (teamId == 200) {
+    if (info.teams[1].win == "Fail") {
       exampleEmbed.setColor('#cc0000');
-    }
-    else{
+    } else {
       exampleEmbed.setColor('#00b30f');
     }
   }
@@ -98,7 +97,7 @@ function player_match_display(info, channelID, id) {
   }, );
 
   exampleEmbed.setImage('')
-  let date = timestamp.toDate(info.gameCreation/1000).toString();
+  let date = timestamp.toDate(info.gameCreation / 1000).toString();
   exampleEmbed.setFooter(date.slice(0, 15));
   bot.channels.cache.get(channelID).send(exampleEmbed);
   return 1;
@@ -107,7 +106,7 @@ function player_match_display(info, channelID, id) {
 
 
 function player_match_history_display(body, channelID, id, num) {
-  if(body == undefined) return;
+  if (body == undefined) return;
   if (num == 10) return;
   // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   a = []
@@ -209,13 +208,12 @@ function draw_champion_graph(body, name, channelID) {
     if (error) return console.log(error);
 
     var fileStream = fs.createWriteStream('1.png');
-    imageStream.pipe(fileStream);
+    imageStream.pipe(fileStream, function () {
+      const attachment = new Discord.MessageAttachment('./1.png');
+      bot.channels.cache.get(channelID).send(attachment);
+    });
   })
-  setTimeout(function () {
-    const attachment = new Discord.MessageAttachment('./1.png');
-    bot.channels.cache.get(channelID).send(attachment);
 
-  }, 2000);
 
 
 
@@ -305,7 +303,7 @@ function get_champion_points(body, channelID, name, flag) {
 }
 
 function get_player_id(name, channelID, purpose) {
-  if(name == null) return;
+  if (name == null) return;
   request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + encodeURIComponent(name) + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
@@ -412,12 +410,10 @@ function player_rank_id(id, channelID, summonerName, flag) {
 
       }
 
-      exampleEmbed.addFields(
-        {
-          name: "LP",
-          value: body[0].leaguePoints
-        },
-        {
+      exampleEmbed.addFields({
+        name: "LP",
+        value: body[0].leaguePoints
+      }, {
         name: 'Wins',
         value: body[0].wins,
         inline: true
@@ -501,8 +497,7 @@ function player_rank_id(id, channelID, summonerName, flag) {
         name: "LP",
         value: body[0].leaguePoints,
         inline: true
-      },
-      {
+      }, {
         name: 'Wins',
         value: body[0].wins,
         inline: true
@@ -573,7 +568,7 @@ function player_rank_id(id, channelID, summonerName, flag) {
         name: "LP",
         value: body[1].leaguePoints,
         inline: true
-      },{
+      }, {
         name: 'Wins',
         value: body[1].wins,
         inline: true
@@ -651,7 +646,7 @@ function send_message(message, channelID) {
   bot.channels.cache.get(channelID).send(message);
 }
 
-function get_help(channelID){
+function get_help(channelID) {
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle("GROMP Help");
   exampleEmbed.setURL('https://dhruv-m-shah.github.io/Discord-Bot-Front-End-Testing/')
