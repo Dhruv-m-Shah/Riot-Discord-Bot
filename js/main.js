@@ -664,33 +664,33 @@ bot.on('message', (msg) => {
     console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
-  if (msg.content.split(" ")[0] == "!rank") {
+  if (msg.content.split(" ")[0] == ".rank") {
     console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
   }
-  if (msg.content.split(" ")[0] == "!change_region") {
+  if (msg.content.split(" ")[0] == ".change_region") {
     console.log("S");
     region = msg.content.slice(15, msg.content.length);
   }
-  if (msg.content.split(" ")[0] == "!match_history") {
+  if (msg.content.split(" ")[0] == ".match_history") {
     console.log("S");
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
-  if (msg.content.split(" ")[0] == "!profile") {
+  if (msg.content.split(" ")[0] == ".profile") {
     console.log("S");
     console.log(msg.content.slice(9, msg.content.length));
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
-  if (msg.content.split(" ")[0] == "!stats") {
+  if (msg.content.split(" ")[0] == ".stats") {
     get_player_id(msg.content.slice(7, msg.content.length), msg.channel.id, "stats");
   }
-  if (msg.content.split(" ") == "!rotation") {
+  if (msg.content.split(" ") == ".rotation") {
     get_champion_rotations(msg.channel.id)
   }
-  if (msg.content.split(" ") == "!random") {
+  if (msg.content.split(" ") == ".random") {
     get_random_champion(msg.channel.id);
   }
-  if (msg.content.split(" ") == "!help") {
+  if (msg.content.split(" ") == ".help") {
     get_help(msg.channel.id);
   }
 });
