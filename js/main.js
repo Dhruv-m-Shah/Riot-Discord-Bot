@@ -209,7 +209,7 @@ function draw_champion_graph(body, name, channelID) {
 
     var fileStream = fs.createWriteStream('1.png');
     imageStream.pipe(fileStream)
-    imageStream.on('end', function () {
+    imageStream.on('finish', function () {
       const attachment = new Discord.MessageAttachment('./1.png');
       bot.channels.cache.get(channelID).send(attachment);
     });
