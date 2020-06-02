@@ -11,6 +11,9 @@ var {
 } = require('./exports.js');
 
 
+const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
+const bot = new Discord.Client();
+var region = "na1";
 
 
 const {
