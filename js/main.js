@@ -12,6 +12,8 @@ var rankImages = rankImg.rankImages;
 var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
+var symbols1 = require('./convert_to_text')
+let symbols = symbols1.symbols
 const {
   createCanvas,
   loadImage
@@ -144,6 +146,14 @@ function player_match_history(id, channelID, flag) {
 }
 
 
+function convert_to_text(name){
+  for(let i = 0; i < name.length; i++){
+    if(name[i] in symbols){
+      name.replace(name[i], symbols[name[i]])
+    }
+  }
+  return name;
+}
 function draw_champion_graph(body, name, channelID) {
   a = []
   b = []
@@ -166,7 +176,7 @@ function draw_champion_graph(body, name, channelID) {
   };
   trace1.x = a;
   trace1.y = b;
-  let encodedName = Buffer.from(name, 'utf-8');
+  let encodedName = convert_to_text(name);
   var layout = {
     title: encodedName + "'s Champion Masteries",
     xaxis: {
