@@ -14,11 +14,14 @@ var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
 var symbols1 = require('./convert_to_text')
 let convert = symbols1.convert
+
 const {
   createCanvas,
   loadImage
 } = require('canvas')
 var timestamp = require('unix-timestamp');
+
+
 
 const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
 bot.login(token);
