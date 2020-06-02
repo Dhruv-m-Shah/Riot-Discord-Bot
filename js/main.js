@@ -167,7 +167,7 @@ function draw_champion_graph(body, name, channelID) {
   trace1.x = a;
   trace1.y = b;
   var layout = {
-    title: name + "'s Champion Masteries",
+    title:   "'s Champion Masteries",
     xaxis: {
       tickfont: {
         size: 14,
