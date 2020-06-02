@@ -166,7 +166,7 @@ function draw_champion_graph(body, name, channelID) {
   };
   trace1.x = a;
   trace1.y = b;
-  let encodedName = JSON.parse( JSON.stringify(name) )
+  let encodedName = Buffer.from(name, 'utf-8');
   var layout = {
     title: encodedName + "'s Champion Masteries",
     xaxis: {
