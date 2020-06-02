@@ -11,17 +11,14 @@ var {
   timestamp
 } = require('./exports.js');
 
-
 const league_ID = process.env.RIOT_API_ID;
 const bot = new Discord.Client();
 var region = "na1";
-
 
 const {
   createCanvas,
   loadImage
 } = require('canvas')
-
 
 bot.login(process.env.DISCORD_BOT_ID);
 //

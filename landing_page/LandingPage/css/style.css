@@ -90,9 +90,9 @@ video::-webkit-media-controls {
 
 @font-face {
   font-family: 'MyWebFont';
-  src: url('edosz.ttf'); /* IE9 Compat Modes */
-  src: url('edosz.ttf') format('embedded-opentype'), /* IE6-IE8 */
-       url('edosz.ttf') format('woff'), /* Modern Browsers */
-       url('edosz.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('edosz.ttf') format('svg'); /* Legacy iOS */
+  src: url('../assets/fonts/edosz.ttf'); /* IE9 Compat Modes */
+  src: url('../assets/fonts/edosz.ttf') format('embedded-opentype'), /* IE6-IE8 */
+       url('../assets/fonts/edosz.ttf') format('woff'), /* Modern Browsers */
+       url('../assets/fonts/edosz.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('../assets/fonts/edosz.ttf') format('svg'); /* Legacy iOS */
 }
