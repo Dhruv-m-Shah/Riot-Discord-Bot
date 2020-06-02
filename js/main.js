@@ -152,8 +152,8 @@ function draw_champion_graph(body, name, channelID) {
     "apiKey": "MWZc5wFpNSDJlkL2RCqQ",
     "host": "chart-studio.plotly.com"
   })
-  console.log(body);
   for (let i = 0; i < Math.min(body.length, 10); i++) {
+    console.log(i);
     a.push(findChampionName(body[i].championId).name);
     b.push(body[i].championPoints);
   }
