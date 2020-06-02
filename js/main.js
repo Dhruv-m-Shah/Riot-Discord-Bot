@@ -1,4 +1,5 @@
-const Discord = require('discord.js');
+var {Discord} = require('./exports.js');
+
 var Chart = require('chart.js');
 const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
 const bot = new Discord.Client();
