@@ -13,7 +13,7 @@ var fs = require('fs');
 var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
 var symbols1 = require('./convert_to_text')
-let symbols = symbols1.symbols
+let convert = symbols1.convert
 const {
   createCanvas,
   loadImage
@@ -146,14 +146,7 @@ function player_match_history(id, channelID, flag) {
 }
 
 
-function convert_to_text(name){
-  for(let i = 0; i < name.length; i++){
-    if(name[i] in symbols){
-      name.replace(name[i], symbols[name[i]])
-    }
-  }
-  return name;
-}
+
 function draw_champion_graph(body, name, channelID) {
   a = []
   b = []
@@ -176,10 +169,9 @@ function draw_champion_graph(body, name, channelID) {
   };
   trace1.x = a;
   trace1.y = b;
-  //let encodedName = convert_to_text(name);
-  //console.log(encodedName)
+  let encodedName = convert(name);
   var layout = {
-    title: name.normalize("NFC"),
+    title: encodedName + "'s Champion Masteries",
     xaxis: {
       tickfont: {
         size: 14,
