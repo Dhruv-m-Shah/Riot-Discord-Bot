@@ -157,6 +157,8 @@ function draw_champion_graph(body, name, channelID) {
     a.push(findChampionName(body[i].championId).name);
     b.push(body[i].championPoints);
   }
+  console.log(a);
+  console.log(b);
   var trace1 = {
     x: [],
     y: [],
