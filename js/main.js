@@ -12,7 +12,7 @@ var {
 } = require('./exports.js');
 
 
-const league_ID = process.env.DISCORD_BOT_ID;
+const league_ID = process.env.RIOT_API_ID;
 const bot = new Discord.Client();
 var region = "na1";
 
@@ -23,10 +23,7 @@ const {
 } = require('canvas')
 
 
-
-
-const token = "NzA0ODg4NzAyNTg1MDEyMzQ1.Xqjs1w.Qu990AZCgIEMHoLSF91Ov-6azag";
-bot.login(token);
+bot.login(process.env.DISCORD_BOT_ID);
 //
 const http = require("http");
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
