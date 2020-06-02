@@ -15,4 +15,4 @@ var arrImages = arrChampImages.images;
 var symbols1 = require('./convert_to_text')
 let convert = symbols1.convert
 
-module.exports = { Discord : Discord };
+module.exports = { Discord : Discord, Chart: Chart, request: request };
