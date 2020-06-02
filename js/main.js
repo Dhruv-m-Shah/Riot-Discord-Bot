@@ -7,11 +7,12 @@ var {
   rankImages,
   fs,
   arrImages,
-  convert
+  convert,
+  timestamp
 } = require('./exports.js');
 
 
-const league_ID = "RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba";
+const league_ID = process.env.DISCORD_BOT_ID;
 const bot = new Discord.Client();
 var region = "na1";
 
@@ -20,7 +21,7 @@ const {
   createCanvas,
   loadImage
 } = require('canvas')
-var timestamp = require('unix-timestamp');
+
 
 
 

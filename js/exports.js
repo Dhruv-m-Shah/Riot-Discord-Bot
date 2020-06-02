@@ -14,6 +14,7 @@ var arrChampImages = require('./champion_array')
 var arrImages = arrChampImages.images;
 var symbols1 = require('./convert_to_text')
 let convert = symbols1.convert
+var timestamp = require('unix-timestamp');
 
 module.exports = {
     Discord: Discord,
@@ -24,5 +25,6 @@ module.exports = {
     rankImages: rankImages,
     fs: fs,
     arrImages: arrImages,
-    convert: convert
+    convert: convert,
+    timestamp: timestamp
 };
