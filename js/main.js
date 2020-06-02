@@ -176,10 +176,10 @@ function draw_champion_graph(body, name, channelID) {
   };
   trace1.x = a;
   trace1.y = b;
-  let encodedName = convert_to_text(name);
-  console.log(encodedName)
+  //let encodedName = convert_to_text(name);
+  //console.log(encodedName)
   var layout = {
-    title: encodedName + "'s Champion Masteries",
+    title: name.normalize("NFC"),
     xaxis: {
       tickfont: {
         size: 14,
