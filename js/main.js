@@ -98,7 +98,7 @@ function player_match_display(info, channelID, id) {
   }, );
 
   exampleEmbed.setImage('')
-  let date = timestamp.toDate(info.gameCreation / 1000).toString();
+  let date = timestamp.toDate(info.gameCreation / 1000).toString() + " UTC-0";
   exampleEmbed.setFooter(date.slice(0, 15));
   bot.channels.cache.get(channelID).send(exampleEmbed);
   return 1;
@@ -664,6 +664,7 @@ bot.on('message', (msg) => {
     console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
+
   if (msg.content.split(" ")[0] == ".rank") {
     console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
