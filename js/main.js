@@ -98,8 +98,8 @@ function player_match_display(info, channelID, id) {
   }, );
 
   exampleEmbed.setImage('')
-  let date = timestamp.toDate(info.gameCreation / 1000).toString() + " UTC-0";
-  exampleEmbed.setFooter(date.slice(0, 15));
+  let date = timestamp.toDate(info.gameCreation / 1000).toString();
+  exampleEmbed.setFooter(date.slice(0, 15) + " UTC-0");
   bot.channels.cache.get(channelID).send(exampleEmbed);
   return 1;
 }
