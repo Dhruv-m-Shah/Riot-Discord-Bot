@@ -665,7 +665,7 @@ bot.on('message', (msg) => {
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
 
-  if (msg.content.split(" ")[0] == ".rank") {
+  if (msg.content.split(" ")[0] == ".rank") { //
     console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
   }
@@ -673,11 +673,11 @@ bot.on('message', (msg) => {
     console.log("S");
     region = msg.content.slice(15, msg.content.length);
   }
-  if (msg.content.split(" ")[0] == ".match_history") {
+  if (msg.content.split(" ")[0] == ".match_history") { //
     console.log("S");
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
-  if (msg.content.split(" ")[0] == ".profile") {
+  if (msg.content.split(" ")[0] == ".profile") { //
     console.log("S");
     console.log(msg.content.slice(9, msg.content.length));
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
