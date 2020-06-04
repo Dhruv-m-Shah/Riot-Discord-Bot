@@ -17,6 +17,18 @@ body {
   outline: none;
 }
 
+.frontPageImage {
+  filter: invert(36%) sepia(77%) saturate(1688%) hue-rotate(529deg) brightness(105%) contrast(109%);
+  opacity: 1;
+  visibility: hidden;
+  position: absolute;
+  left: 10%;
+  min-width: 1500px !important;
+  bottom: -9%;
+  width: 90%;
+  height: auto;
+}
+
 video::-webkit-media-controls {
   display: none;
 }
