@@ -251,6 +251,7 @@ select {
   color: rgba(255, 255, 255, 0.85);
   border-top: 5px solid #40babd;
   padding: 30px 0;
+  background-image: linear-gradient(to right, rgba(37,59,94,1), rgba(27,36,51, 1));
 }
 
 .header a {
