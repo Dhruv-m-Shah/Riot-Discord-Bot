@@ -654,8 +654,8 @@ function send_message(message, channelID) {
 function get_help(channelID) {
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle("GROMP Help");
-  exampleEmbed.setURL('https://dhruv-m-shah.github.io/Discord-Bot-Front-End-Testing/')
-  exampleEmbed.addField("Visit this site for more info (Current supported browser: Chrome)", "https://dhruv-m-shah.github.io/Discord-Bot-Front-End-Testing/")
+  exampleEmbed.setURL('http://www.gromp.xyz/Documentation/start.html')
+  exampleEmbed.addField("Visit this site for more info (Current supported browser: Chrome)", "http://www.gromp.xyz/Documentation/start.html")
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
