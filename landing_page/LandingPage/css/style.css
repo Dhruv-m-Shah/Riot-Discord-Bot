@@ -18,7 +18,7 @@ body {
 }
 
 .frontPageImage {
-  filter: invert(36%) sepia(77%) saturate(1688%) hue-rotate(529deg) brightness(105%) contrast(109%);
+  filter: invert(46%) sepia(77%) saturate(1688%) hue-rotate(529deg) brightness(105%) contrast(109%);
   opacity: 1;
   visibility: hidden;
   position: absolute;
@@ -81,7 +81,7 @@ video::-webkit-media-controls {
     font-size: 15px;
     line-height: 28px;
     color: #FFFFFF;
-    background-color: #FF4654 !important;
+    background-color: #FF4654;
     border-color: #FF4654;
 }
 .btn.btn-primary-outline.use{
