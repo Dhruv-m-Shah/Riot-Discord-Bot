@@ -695,7 +695,7 @@ function get_champion_info(champion, channelID) {
   }
   console.log(champInfo);
   var exampleEmbed = new Discord.MessageEmbed();
-  exampleEmbed.setTitle = champInfo.Name;
+  exampleEmbed.setTitle(champInfo.Name);
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
   exampleEmbed.addFields({
     name: 'Description',
