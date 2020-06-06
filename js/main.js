@@ -659,7 +659,7 @@ function get_help(channelID) {
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
-function get_champion_info(champion) {
+function get_champion_info(champion, channelID) {
   console.log(champion);
   let champInfo = {
     Name: '',
@@ -759,6 +759,6 @@ bot.on('message', (msg) => {
     get_help(msg.channel.id);
   }
   if (msg.content.split(" ")[0] == ".info") {
-    get_champion_info(msg.content.slice(6, msg.content.length).toLowerCase());
+    get_champion_info(msg.content.slice(6, msg.content.length).toLowerCase(), msg.channel.id);
   }
 });
