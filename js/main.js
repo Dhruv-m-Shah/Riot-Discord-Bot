@@ -671,8 +671,10 @@ function get_champion_info(champion, channelID) {
     magic: '',
     difficulty: ''
   };
+  let marker = 0;
   for (let i = 0; i < champions.data.length; i++) {
     if (champions.data[i].name.toLowerCase() == champion) {
+      marker = 1;
       champInfo.Name = champions.data[i].name;
       champInfo.Disc = champions.data[i].blurb;
       champInfo.Id = champions.data[i].key;
@@ -686,6 +688,10 @@ function get_champion_info(champion, channelID) {
       champInfo.magic = champions.data[i].info.magic;
       champInfo.difficulty = champions.data[i].info.difficulty;
     }
+  }
+  if(marker == 0){
+    bot.channels.cache.get(channelID).send("That champion is not found!");
+    return;
   }
   console.log(champInfo);
   var exampleEmbed = new Discord.MessageEmbed();
