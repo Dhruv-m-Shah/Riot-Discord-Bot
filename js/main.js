@@ -758,7 +758,7 @@ bot.on('message', (msg) => {
   if (msg.content.split(" ") == ".help") {
     get_help(msg.channel.id);
   }
-  if (msg.content.split(" ") == ".info") {
+  if (msg.content.split(" ")[0] == ".info") {
     get_champion_info(msg.content.slice(6, msg.content.length).toLowerCase());
   }
 });
