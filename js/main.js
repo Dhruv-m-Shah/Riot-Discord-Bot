@@ -8,7 +8,8 @@ var {
   fs,
   arrImages,
   convert,
-  timestamp
+  timestamp,
+  championMappings
 } = require('./exports.js');
 
 const league_ID = process.env.RIOT_API_ID;
@@ -676,7 +677,8 @@ function get_champion_info(champion, channelID) {
   };
   let marker = 0;
   for (let i = 0; i < champions.data.length; i++) {
-    if (champions.data[i].name.toLowerCase() == champion) {
+    if (champions.data[i].name.toLowerCase() == champion || 
+    ((champion in championMappings) && championMappings[champion].toLowerCase() == champions.data[i].name.toLowerCase())){
       marker = 1;
       champInfo.Name = champions.data[i].name;
       champInfo.Disc = champions.data[i].blurb;
