@@ -22,7 +22,7 @@ const {
 
 bot.login(process.env.DISCORD_BOT_ID);
 bot.on('ready', () => {
-  bot.user.setActivity('.help', { type: 'WATCHING' })
+  bot.user.setActivity('gromp.xyz | .help', { type: 'WATCHING' })
 })
 
 const http = require("http");
