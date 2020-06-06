@@ -701,9 +701,6 @@ function get_champion_info(champion, channelID) {
     name: 'Description',
     value: champInfo.Disc
   }, {
-    name: '\u200B',
-    value: '\u200B'
-  }, {
     name: 'Type',
     value: champInfo.tags,
     inline: true
@@ -711,10 +708,7 @@ function get_champion_info(champion, channelID) {
     name: "Difficulty",
     value: champInfo.difficulty,
     inline: true
-  }, {
-    name: '\u200B',
-    value: '\u200B'
-  }, {
+  },{
     name: "Attack",
     value: champInfo.attack,
     inline: true
