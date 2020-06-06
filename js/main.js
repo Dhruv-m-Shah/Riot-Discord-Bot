@@ -673,7 +673,8 @@ function get_champion_info(champion, channelID) {
     attack: '',
     defense: '',
     magic: '',
-    difficulty: ''
+    difficulty: '',
+    title: ''
   };
   let marker = 0;
   for (let i = 0; i < champions.data.length; i++) {
@@ -692,6 +693,7 @@ function get_champion_info(champion, channelID) {
       champInfo.defense = champions.data[i].info.defense;
       champInfo.magic = champions.data[i].info.magic;
       champInfo.difficulty = champions.data[i].info.difficulty;
+      champInfo.title = champions.data[i].title; 
     }
   }
   if(marker == 0){
@@ -702,6 +704,9 @@ function get_champion_info(champion, channelID) {
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle(champInfo.Name);
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
+  let temp = champInfo.Name.replace("'", "-");
+  temp = temp.replace(" ", "-");
+  exampleEmbed.setURL("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.addFields({
     name: 'Description',
     value: champInfo.Disc
@@ -713,7 +718,13 @@ function get_champion_info(champion, channelID) {
     name: "Difficulty",
     value: champInfo.difficulty,
     inline: true
-  },{
+  },
+  {
+    name: "Title",
+    value: champInfo.title,
+    inline: true
+  },
+  {
     name: "Attack",
     value: champInfo.attack,
     inline: true
