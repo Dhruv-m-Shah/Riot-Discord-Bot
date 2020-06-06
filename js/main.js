@@ -660,6 +660,7 @@ function get_help(channelID) {
 }
 
 function get_champion_info(champion) {
+  console.log(champion);
   let champInfo = {
     Name: '',
     Disc: '',
