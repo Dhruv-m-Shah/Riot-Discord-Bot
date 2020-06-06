@@ -21,9 +21,11 @@ const {
 } = require('canvas')
 
 bot.login(process.env.DISCORD_BOT_ID);
-bot.user.setActivity('.help', { type: 'WATCHING' })
-  .then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
-  .catch(console.error);
+bot.on('ready', () => {
+  bot.user.setActivity('.help', { type: 'WATCHING' })
+})
+
+
 //
 client.user.setActivity(""); 
 const http = require("http");
