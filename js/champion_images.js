@@ -9,6 +9,7 @@ championImages = {
     "Aphelios": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/1/13/ApheliosSquare.png?version=9d7f933716b2d67240018bb615fa51a4",
     "Ashe": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/4/4a/AsheSquare.png?version=e6be88b600db4cf9c0950127104d48ee",
     "Aurelion Sol": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/c/c3/Aurelion_SolSquare.png?version=5e42637e40badb4e2016d2dee5f42518",
+    "AurelionSol": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/c/c3/Aurelion_SolSquare.png?version=5e42637e40badb4e2016d2dee5f42518",
     "Azir": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/f/f7/AzirSquare.png?version=caa3b46c0cc988b87373b6a77a8d2fe4",
     "Bard": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/6/69/BardSquare.png?version=1d2b705d2f2210063b0f1965b839483b",
     "Blitzcrank": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/5/5b/BlitzcrankSquare.png?version=b50cb998148afd7bfc64678c3387a489",

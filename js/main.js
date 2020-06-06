@@ -21,7 +21,11 @@ const {
 } = require('canvas')
 
 bot.login(process.env.DISCORD_BOT_ID);
+bot.user.setActivity('.help', { type: 'WATCHING' })
+  .then(presence => console.log(`Activity set to ${presence.activities[0].name}`))
+  .catch(console.error);
 //
+client.user.setActivity(""); 
 const http = require("http");
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
