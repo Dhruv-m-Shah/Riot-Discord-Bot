@@ -687,6 +687,7 @@ function get_champion_info(champion) {
       champInfo.difficulty = champions.data[i].info.difficulty;
     }
   }
+  console.log(champInfo);
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle = champInfo.Name;
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
