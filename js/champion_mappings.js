@@ -10,5 +10,6 @@ championMappings = {
     "Jarvan": "Jarvan IV",
     "Jarvan4": "Jarvin IV",
     "KaiSa": "Kai'Sa",
-    "KhaZix": "Kha'Zix"
+    "KhaZix": "Kha'Zix",
+    "KogMaw": "Kog'Maw"
 }
