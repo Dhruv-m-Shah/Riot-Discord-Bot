@@ -11,5 +11,20 @@ championMappings = {
     "Jarvan4": "Jarvin IV",
     "KaiSa": "Kai'Sa",
     "KhaZix": "Kha'Zix",
-    "KogMaw": "Kog'Maw"
+    "KogMaw": "Kog'Maw",
+    "LeeSin": "Lee Sin",
+    "MasterYi": "Master Yi",
+    "MissFortune": "Miss Fortune",
+    "Nunu": "Nunu & Willump",
+    "Nunu and Willump": "Nunu & Willump",
+    "Willump": "Nunu & Willump",
+    "RekSai": "Rek'Sai",
+    "TahmKench": "Tahm Kench",
+    "Tahm": "Tahm Kench",
+    "Kench": "Kench",
+    "TwistedFate": "Twisted Fate",
+    "VelKoz": "Vel'Koz",
+    "Vel Koz": "Vel'Koz",
+    "XinZhao": "Xin Zhao"
 }
+exports.mappings = championMappings;

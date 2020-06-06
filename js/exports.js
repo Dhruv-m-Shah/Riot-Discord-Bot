@@ -15,6 +15,8 @@ var arrImages = arrChampImages.images;
 var symbols1 = require('./convert_to_text')
 let convert = symbols1.convert
 var timestamp = require('unix-timestamp');
+var champMap = require('./champion_mappings');
+var champMappings = champMap.mappings;
 
 module.exports = {
     Discord: Discord,
@@ -26,5 +28,6 @@ module.exports = {
     fs: fs,
     arrImages: arrImages,
     convert: convert,
-    timestamp: timestamp
+    timestamp: timestamp,
+    championMappings: championMappings
 };
