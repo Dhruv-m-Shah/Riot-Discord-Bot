@@ -709,7 +709,8 @@ function get_champion_info(champion, channelID) {
     inline: true
   }, {
     name: "Difficulty",
-    value: champInfo.difficulty
+    value: champInfo.difficulty,
+    inline: true
   }, {
     name: '\u200B',
     value: '\u200B'
