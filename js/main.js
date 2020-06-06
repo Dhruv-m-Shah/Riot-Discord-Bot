@@ -659,6 +659,68 @@ function get_help(channelID) {
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
+function get_champion_info(champion) {
+  let champInfo = {
+    Name: '',
+    Disc: '',
+    Id: '',
+    tags: [],
+    attack: '',
+    defense: '',
+    magic: '',
+    difficulty: ''
+  };
+  for (let i = 0; i < champions.data.length; i++) {
+    if (champions.data[i].name.toLowerCase() == champion) {
+      champInfo.Name = champions.data[i].name;
+      champInfo.Disc = champions.data[i].blurb;
+      champInfo.Id = champions.data[i].key;
+      for (let j = 0; j < champions.data[i].tags.length; j++) {
+        if (j != 0) champInfo.tags += ", " + champions.data[i].tags[j]
+        else champInfo.tags = champions.data[i].tags[j]
+      }
+      champInfo.tags = champions.data[i].tags;
+      champInfo.attack = champions.data[i].info.attack;
+      champInfo.defense = champions.data[i].info.defense;
+      champInfo.magic = champions.data[i].info.magic;
+      champInfo.difficulty = champions.data[i].info.difficulty;
+    }
+  }
+  var exampleEmbed = new Discord.MessageEmbed();
+  exampleEmbed.setTitle = champInfo.Name;
+  exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
+  exampleEmbed.addFields({
+    name: 'Description',
+    value: champInfo.Disc
+  }, {
+    name: '\u200B',
+    value: '\u200B'
+  }, {
+    name: 'Type',
+    value: champInfo.tags,
+    inline: true
+  }, {
+    name: "Difficulty",
+    value: champInfo.difficulty
+  }, {
+    name: '\u200B',
+    value: '\u200B'
+  }, {
+    name: "Attack",
+    value: champInfo.attack,
+    inline: true
+  }, {
+    name: "Defense",
+    value: champInfo.defense,
+    inline: true
+  }, {
+    name: "Magic",
+    value: champInfo.magic,
+    inline: true
+  }, )
+  bot.channels.cache.get(channelID).send(exampleEmbed);
+}
+
 bot.on('message', (msg) => {
   if (msg.content == "!setup") {
     console.log("S");
@@ -693,5 +755,8 @@ bot.on('message', (msg) => {
   }
   if (msg.content.split(" ") == ".help") {
     get_help(msg.channel.id);
+  }
+  if (msg.content.split(" ") == ".info") {
+    get_champion_info(msg.content.slice(6, msg.content.length).toLowerCase());
   }
 });
