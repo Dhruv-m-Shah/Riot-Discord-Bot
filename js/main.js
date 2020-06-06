@@ -706,6 +706,7 @@ function get_champion_info(champion, channelID) {
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
   let temp = champInfo.Name.replace("'", "-");
   temp = temp.replace(" ", "-");
+  console.log("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.setURL("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.addFields({
     name: 'Description',
