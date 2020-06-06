@@ -85,7 +85,7 @@ function player_match_display(info, channelID, id) {
       exampleEmbed.setColor('#00b30f');
     }
   }
-  exampleEmbed.setAuthor(summonerName + "'s Match History", 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+  exampleEmbed.setAuthor(summonerName + "'s Match History")
   exampleEmbed.setTitle(championName);
   exampleEmbed.setURL('https://na.op.gg/summoner/userName=' + encodeURIComponent(summonerName.trim()));
   exampleEmbed.setDescription(info.participants[participantId - 1].stats.kills + "/" + info.participants[participantId - 1].stats.deaths + "/" + info.participants[participantId - 1].stats.assists);
