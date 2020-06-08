@@ -738,7 +738,7 @@ function get_champion_info(champion, channelID) {
     name: "Magic",
     value: champInfo.magic,
     inline: true
-  }, )
+  },)
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
