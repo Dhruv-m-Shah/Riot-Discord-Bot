@@ -15,20 +15,13 @@
 ## Commands
 
 
-
-
-
-
-
-
 ## Whats to come
 
 
+## Bug reports and feature suggestions
 
 
 ## Credits
 
 
 
-
-## Bug reports and feature suggestions
