@@ -10,7 +10,8 @@
 
 
 ## Get Discord Bot
-
+Get the bot [here](https://discord.com/oauth2/authorize?client_id=704888702585012345&permissions=0&scope=bot)
+Learn about bot commmands [here](http://www.gromp.xyz/Documentation/start.html)
 
 ## Commands
 
