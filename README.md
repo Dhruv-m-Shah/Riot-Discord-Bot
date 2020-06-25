@@ -7,7 +7,7 @@
 
 
 
-[Bot demo](https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim%20(2).gif)
+![Bot demo](https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim%20(2).gif)
 
 ## Get Discord Bot
 Get the bot [here](https://discord.com/oauth2/authorize?client_id=704888702585012345&permissions=0&scope=bot) <br>
