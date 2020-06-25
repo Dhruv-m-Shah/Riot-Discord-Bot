@@ -6,7 +6,7 @@
 <h4 align="center">Discord Bot to track, analyze, and showcase player statistics from VALORANT and LEAGUE OF LEGENDS </h4>
 
 
-<img src="https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim%20(2).gif" width="48">
+<img src="https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim%20(2).gif" width="480" margin="-100px">
 
 
 ## Get Discord Bot
