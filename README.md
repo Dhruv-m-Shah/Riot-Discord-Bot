@@ -3,7 +3,7 @@
   <a href="http://www.gromp.xyz"><img src="https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/gromp_name.png" alt="Gromp" width="400"></a>
 
 </h1>
-<h4 align="center">Discord Bot to track, analyze, and showcase player statistics from VALORANT and LEAGUE OF LEGENDS </h4>
+<h4 align="center">Discord Bot to track, analyze, and showcase player statistics from VALORANT(Coming once RIOT releases the VALORANT API) and LEAGUE OF LEGENDS </h4>
 
 ![Bot Demo](https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim-_online-video-cutter.com_-_1_.gif)
 
