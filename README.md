@@ -13,10 +13,10 @@ Learn about bot commmands [here](http://www.gromp.xyz/Documentation/start.html)
 
 
 ## Whats to come
-- [] Including VALORANT statistics (Will be released once RIOT VALORANT API is out)
-- [] A more detailed version of profile information, with more added info-graphics.
-- [] Upcoming Esports games/tournaments.
-- [] Provide bot in multiple languages.
+- [ ] Including VALORANT statistics (Will be released once RIOT VALORANT API is out)
+- [ ] A more detailed version of profile information, with more added info-graphics.
+- [ ] Upcoming Esports games/tournaments.
+- [ ] Provide bot in multiple languages.
 
 ## Bug reports and feature suggestions
 - Email me me at: dsds4450@gmail.com or create a Github Issue.
