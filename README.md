@@ -13,16 +13,18 @@ Learn about bot commmands [here](http://www.gromp.xyz/Documentation/start.html)
 
 
 ## Whats to come
-
+- [] Including VALORANT statistics (Will be released once RIOT VALORANT API is out)
+- [] A more detailed version of profile information, with more added info-graphics.
+- [] Upcoming Esports games/tournaments.
+- [] Provide bot in multiple languages.
 
 ## Bug reports and feature suggestions
-
+- Email me me at: dsds4450@gmail.com or create a Github Issue.
 
 ## Credits
-
-
+Thanks to Alex, Anthony, Jaxen, and Nethu for helping me develop this bot.
 
 ## How it works
-
+Backend is developed using NodeJS leveraging the DiscordJS and RIOT APIs. When a user types a command into discord, the command is process and a HTTP request is set to the RIOT API. Graphs are generated using plotly and info-graphics are generated through node-canvas.
 
 
