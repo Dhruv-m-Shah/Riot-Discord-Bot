@@ -153,9 +153,9 @@ function draw_champion_graph(body, name, channelID) {
   a = []
   b = []
   var plotly = require('plotly')({
-    "username": "heytest970",
-    "apiKey": "MWZc5wFpNSDJlkL2RCqQ",
-    "host": "chart-studio.plotly.com"
+    "username": "USERNAME",
+    "apiKey": "APIKEY",
+    "host": "URL"
   })
   for (let i = 0; i < Math.min(body.length, 10); i++) {
     console.log(i);
