@@ -23,7 +23,7 @@ Learn about bot commmands [here](http://www.gromp.xyz/Documentation/start.html)
 - Email me me at: dsds4450@gmail.com or create a Github Issue.
 
 ## Credits
-Thanks to Alex, Anthony, Jaxen, and Nethu for helping me develop this bot.
+Thanks to my friends Alex, Anthony, Jaxen, and Nethu for their continous input and suggestions to improve the bot.
 
 ## How it works
 Backend is developed using NodeJS leveraging the DiscordJS and RIOT APIs. When a user types a command into discord, the command is processed and a HTTP request is sent to the RIOT API. Graphs are generated using [plotly](https://plotly.com/nodejs/) and info-graphics are generated through nodejs [canvas](https://www.npmjs.com/package/canvas). App was deployed on Heroku.
