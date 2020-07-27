@@ -4,7 +4,7 @@
 
 </h1>
 <h4 align="center">Discord Bot to track, analyze, and showcase player statistics from VALORANT* and LEAGUE OF LEGENDS </h4>
-<h5 align="center">*VALORANT commands will be released once RIOT releases the VALORANT API.</h5>
+<h5 align="center">*UPDATE: VALORANT API has just been released, valorant functionality is currently in development.</h5>
 
 ![Bot Demo](https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot/blob/master/readmeImages/2020-06-24-23-55-17_Trim-_online-video-cutter.com_-_1_.gif)
 
