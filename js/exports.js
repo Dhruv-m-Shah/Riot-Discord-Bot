@@ -17,6 +17,8 @@ let convert = symbols1.convert
 var timestamp = require('unix-timestamp');
 var champMap = require('./champion_mappings');
 var champMappings = champMap.mappings;
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
 
 module.exports = {
     Discord: Discord,
@@ -29,5 +31,6 @@ module.exports = {
     arrImages: arrImages,
     convert: convert,
     timestamp: timestamp,
-    championMappings: championMappings
+    championMappings: championMappings,
+    NodeCache: NodeCahce
 };

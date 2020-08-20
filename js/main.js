@@ -9,7 +9,8 @@ var {
   arrImages,
   convert,
   timestamp,
-  championMappings
+  championMappings,
+  NodeCache
 } = require('./exports.js');
 
 const league_ID = process.env.RIOT_API_ID;
@@ -593,6 +594,19 @@ function player_rank_id(id, channelID, summonerName, flag) {
 
 
 function display_champions(champ_list, channelID) {
+  if(NodeCache.get("rotation") != null){
+    let currentRotation = NodeCache.get("rotation");
+    for(let i = 0; i < champ_list.length; i++){
+      if(!currentRotation.includes(champ_list[i])){
+        break;
+      }
+      if(i == champ_list.length - 1){
+        const attachment = new Discord.MessageAttachment('./test1.png');
+        bot.channels.cache.get(channelID).send(attachment);
+      }
+    }
+  }
+  NodeCache.set("rotation", champ_list);
   const {
     createCanvas,
     loadImage
