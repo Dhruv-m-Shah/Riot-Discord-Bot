@@ -163,6 +163,7 @@ championImages = {
     "Xerath": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/7/7a/XerathSquare.png?version=545d1fabcf42ec41b1e190ef280e2d22",
     "Xin Zhao": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/6/63/Xin_ZhaoSquare.png?version=1c772a46d418dacccf126c1db0419f52",
     "XinZhao": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/6/63/Xin_ZhaoSquare.png?version=1c772a46d418dacccf126c1db0419f52",
+    "Yone": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/3/3e/YoneSquare.png/revision/latest?cb=20200725061035",
     "Yasuo": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/c/c0/YasuoSquare.png?version=66c8e7f3f2ca1de0bf8a6f39e6e76fc9",
     "Yorick": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/d/d8/YorickSquare.png?version=9795ba447685028487867d89e1e7c345",
     "Yuumi": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/7/70/YuumiSquare.png?version=12d9738db2f3d707cbf59e306972d411",
