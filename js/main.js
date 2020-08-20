@@ -603,6 +603,7 @@ function display_champions(champ_list, channelID) {
       if(i == champ_list.length - 1){
         const attachment = new Discord.MessageAttachment('./test1.png');
         bot.channels.cache.get(channelID).send(attachment);
+        return;
       }
     }
   }
