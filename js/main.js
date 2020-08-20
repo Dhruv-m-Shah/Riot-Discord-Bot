@@ -10,7 +10,7 @@ var {
   convert,
   timestamp,
   championMappings,
-  NodeCache
+  myCache
 } = require('./exports.js');
 
 const league_ID = process.env.RIOT_API_ID;
@@ -594,8 +594,8 @@ function player_rank_id(id, channelID, summonerName, flag) {
 
 
 function display_champions(champ_list, channelID) {
-  if(NodeCache.get("rotation") != null){
-    let currentRotation = NodeCache.get("rotation");
+  if(myCache.get("rotation") != null){
+    let currentRotation = myCache.get("rotation");
     for(let i = 0; i < champ_list.length; i++){
       if(!currentRotation.includes(champ_list[i])){
         break;
@@ -606,7 +606,7 @@ function display_champions(champ_list, channelID) {
       }
     }
   }
-  NodeCache.set("rotation", champ_list);
+  myCache.set("rotation", champ_list);
   const {
     createCanvas,
     loadImage
