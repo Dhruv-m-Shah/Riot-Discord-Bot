@@ -32,5 +32,5 @@ module.exports = {
     convert: convert,
     timestamp: timestamp,
     championMappings: championMappings,
-    NodeCache: NodeCahce
+    NodeCache: NodeCache
 };
