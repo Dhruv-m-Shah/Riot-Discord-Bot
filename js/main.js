@@ -113,7 +113,6 @@ function player_match_display(info, channelID, id) {
 function player_match_history_display(body, channelID, id, num) {
   if (body == undefined) return;
   if (num == 10) return;
-  // https://na1.api.riotgames.com/lol/match/v4/matches/3383936225?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   a = []
 
   request("https://" + region + ".api.riotgames.com/lol/match/v4/matches/" + body[num].gameId + "?api_key=" + league_ID, {
@@ -135,7 +134,6 @@ function player_match_history_display(body, channelID, id, num) {
 
 function player_match_history(id, channelID, flag) {
   if (flag == 1) return;
-  // https://na1.api.riotgames.com/lol/match/v4/matchlists/by-account/DI3RMPSbYGrxwmgCIrJ2ibENps34SdvxRIt0DHWJKmpPeO4?api_key=RGAPI-07670dcd-ddfb-43ae-8b26-c8e56f489dba
   request("https://" + region + ".api.riotgames.com/lol/match/v4/matchlists/by-account/" + id + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {
@@ -349,7 +347,6 @@ function player_rank(name, channelID) {
 
 function player_rank_id(id, channelID, summonerName, flag) {
   if (flag == 1) return;
-  // https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/q3X2__q-84mDXMRjIzfsDkpvAe7lHufCBsyIhlZfR4675bQ?api_key=RGAPI-2d5ee199-0a87-48a5-8aea-3c1c5fb4e9f3
   request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
     json: true
   }, (err, res, body) => {

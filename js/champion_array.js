@@ -139,6 +139,7 @@ championImages = [
     "Xayah" ,
     "Xerath" ,
     "Xin Zhao" ,
+    "Yone" ,
     "Yasuo" ,
     "Yorick" ,
     "Yuumi" ,
