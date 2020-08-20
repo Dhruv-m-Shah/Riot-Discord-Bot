@@ -24,11 +24,15 @@
   },
   "homepage": "https://github.com/Dhruv-m-Shah/League-of-Legends-Discord-Bot#readme",
   "dependencies": {
+    "cache": "^2.3.1",
     "canvas": "2.6.1",
     "chart.js": "^2.9.3",
     "discord.js": "^12.2.0",
     "fs": "0.0.1-security",
+    "gm": "^1.23.1",
     "http": "0.0.1-security",
+    "node": "^14.8.0",
+    "node-cache": "^5.1.2",
     "plotly": "^1.0.6",
     "request": "^2.88.2",
     "unix-timestamp": "^0.2.0"
