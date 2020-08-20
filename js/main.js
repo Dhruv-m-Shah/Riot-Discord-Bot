@@ -23,7 +23,9 @@ const {
 
 bot.login(process.env.DISCORD_BOT_ID);
 bot.on('ready', () => {
-  bot.user.setActivity('gromp.xyz | .help', { type: 'WATCHING' })
+  bot.user.setActivity('gromp.xyz | .help', {
+    type: 'WATCHING'
+  })
 })
 
 const http = require("http");
@@ -625,10 +627,11 @@ function display_champions(champ_list, channelID) {
   setTimeout(function () {
     const buffer = canvas.toBuffer('image/png')
     fs.writeFileSync('./test1.png', buffer)
+    const attachment = new Discord.MessageAttachment('./test1.png');
+    // Send the attachment in the message channel with a content
+    bot.channels.cache.get(channelID).send(attachment);
   }, 2000);
-  const attachment = new Discord.MessageAttachment('./test1.png');
-  // Send the attachment in the message channel with a content
-  bot.channels.cache.get(channelID).send(attachment);
+
 }
 
 function get_champion_rotations(channelID) {
@@ -675,8 +678,8 @@ function get_champion_info(champion, channelID) {
   };
   let marker = 0;
   for (let i = 0; i < champions.data.length; i++) {
-    if (champions.data[i].name.toLowerCase() == champion || 
-    ((champion in championMappings) && championMappings[champion].toLowerCase() == champions.data[i].name.toLowerCase())){
+    if (champions.data[i].name.toLowerCase() == champion ||
+      ((champion in championMappings) && championMappings[champion].toLowerCase() == champions.data[i].name.toLowerCase())) {
       marker = 1;
       champInfo.Name = champions.data[i].name;
       champInfo.Disc = champions.data[i].blurb;
@@ -690,10 +693,10 @@ function get_champion_info(champion, channelID) {
       champInfo.defense = champions.data[i].info.defense;
       champInfo.magic = champions.data[i].info.magic;
       champInfo.difficulty = champions.data[i].info.difficulty;
-      champInfo.title = champions.data[i].title; 
+      champInfo.title = champions.data[i].title;
     }
   }
-  if(marker == 0){
+  if (marker == 0) {
     bot.channels.cache.get(channelID).send("That champion is not found!");
     return;
   }
@@ -703,7 +706,7 @@ function get_champion_info(champion, channelID) {
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
   let temp = champInfo.Name.replace("'", "-");
   temp = temp.replace(" ", "-");
-  if(champInfo.Name == "Nunu & Willump") temp = "nunu";
+  if (champInfo.Name == "Nunu & Willump") temp = "nunu";
   console.log("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.setURL("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.addFields({
@@ -717,13 +720,11 @@ function get_champion_info(champion, channelID) {
     name: "Difficulty",
     value: champInfo.difficulty,
     inline: true
-  },
-  {
+  }, {
     name: "Title",
     value: champInfo.title,
     inline: true
-  },
-  {
+  }, {
     name: "Attack",
     value: champInfo.attack,
     inline: true
@@ -735,7 +736,7 @@ function get_champion_info(champion, channelID) {
     name: "Magic",
     value: champInfo.magic,
     inline: true
-  },)
+  }, )
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
