@@ -76,6 +76,7 @@ championImages = {
     "Lee Sin": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/4/4f/Lee_SinSquare.png?version=63ac9e7fb9f0cd0f5076acbd2f62de75",
     "LeeSin": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/4/4f/Lee_SinSquare.png?version=63ac9e7fb9f0cd0f5076acbd2f62de75",
     "Leona": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/5/54/LeonaSquare.png?version=0ef92f981de35fdacb655a6f5c1e0b17",
+    "Lillia": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/4/49/LilliaSquare.png/revision/latest?cb=20200708072252",
     "Lissandra": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/3/36/LissandraSquare.png?version=922e01fcd89806e7f73ce046a7ea8963",
     "Lucian": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/1/1e/LucianSquare.png?version=4ffe6e72495f2d0bf63e9808f666994f",
     "Lulu": "https://gamepedia.cursecdn.com/lolesports_gamepedia_en/9/91/LuluSquare.png?version=1f04e00ecf999c191140fac5ab60ff4a",
