@@ -4,7 +4,7 @@
   <a href="https://github.com/Dhruv-m-Shah/Gromp-Riot-Discord-Bot/blob/master/img/grompLogo.png"><img src="https://github.com/Dhruv-m-Shah/Gromp-Riot-Discord-Bot/blob/master/img/grompLogo.png" alt="Markdownify" width="450"></a>
 
 </h1>
-
+<h4 align="center">GROMP is a discord bot that shows player statistics for League of Legends and Valorant through dynamically generated visuals and graphs.</h4>
 
 ## Demo
 <h1 align="center">
