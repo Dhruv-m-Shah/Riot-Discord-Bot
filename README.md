@@ -12,6 +12,7 @@
 </h1>
 
 ## Getting the Gromp Bot
+Visit the main site  <a href = "http://www.gromp.xyz/">here</a>
 Get the bot <a href = "https://discordapp.com/api/oauth2/authorize?client_id=704888702585012345&permissions=0&scope=bot">here</a> </br>
 Read the docs <a href = "http://www.gromp.xyz/Documentation/start.html">here</a>
 
