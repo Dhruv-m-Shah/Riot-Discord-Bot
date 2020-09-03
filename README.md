@@ -16,4 +16,6 @@ Get the bot <a href = "https://discordapp.com/api/oauth2/authorize?client_id=704
 Read the docs <a href = "http://www.gromp.xyz/Documentation/start.html">here</a>
 
 ## Acknowledgements
-I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input in helping me improve this Discord Bot.
+I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input in helping me improve this Discord Bot and suggesting new features for me to implement.
+
+## How it works
