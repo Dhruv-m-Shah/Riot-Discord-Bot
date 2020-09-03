@@ -8,7 +8,7 @@
 
 ## Preface
 
-For those who may not be familiar, League of Legends and Valorant are online multiplayer video games developed by RIOT. This bot helps players display, share, and analyze in game stats.
+For those who may not be familiar, League of Legends and Valorant are very popular online multiplayer video games developed by RIOT. This bot helps players display, share, and analyze in game stats using player data that is received from RIOT API endpoints.
 
 ## Demo
 <h1 align="center">
