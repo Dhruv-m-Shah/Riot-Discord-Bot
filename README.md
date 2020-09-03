@@ -19,3 +19,4 @@ Read the docs <a href = "http://www.gromp.xyz/Documentation/start.html">here</a>
 I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input in helping me improve this Discord Bot and suggesting new features for me to implement.
 
 ## How it works
+(Coming soon)
