@@ -6,6 +6,10 @@
 </h1>
 <h4 align="center">GROMP is a discord bot that shows player statistics for League of Legends and Valorant through dynamically generated visuals and graphs.</h4>
 
+## Preface
+
+For those who may not be familiar, League of Legends and Valorant are online multiplayer video games developed by RIOT. This bot helps players display, share, and analyze in game stats.
+
 ## Demo
 <h1 align="center">
 <img src = "https://github.com/Dhruv-m-Shah/Gromp-Riot-Discord-Bot/blob/master/img/grompDemo.gif"></img>
