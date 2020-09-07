@@ -1,3 +1,6 @@
+require('dotenv').config({
+  path: 'C:/Users/shahd/Downloads/html5-boilerplate_v7.3.0/.env'
+});
 var {
   Discord,
   Chart,
@@ -10,9 +13,10 @@ var {
   convert,
   timestamp,
   championMappings,
-  myCache
+  myCache,
+  database
 } = require('./exports.js');
-
+database.dbConnect(); // connect to mongodb database.
 const league_ID = process.env.RIOT_API_ID;
 const bot = new Discord.Client();
 var region = "na1";
@@ -30,6 +34,9 @@ bot.on('ready', () => {
 })
 
 const http = require("http");
+const {
+  insert_in_database
+} = require('./db.js');
 var server_port = process.env.YOUR_PORT || process.env.PORT || 80;
 var server_host = process.env.YOUR_HOST || '0.0.0.0';
 
@@ -313,33 +320,36 @@ function get_champion_points(body, channelID, name, flag) {
 }
 
 function get_player_id(name, channelID, purpose) {
-  if (name == null) return;
-  request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + encodeURIComponent(name) + "?api_key=" + league_ID, {
-    json: true
-  }, (err, res, body) => {
-    console.log(err);
+  return new Promise((resolve, reject) => {
+    if (name == null) resolve(-1);
+    request("https://" + region + ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" + encodeURIComponent(name) + "?api_key=" + league_ID, {
+      json: true
+    }, (err, res, body) => {
+      console.log(err);
 
-    var flag = 0;
-    if (body == undefined) {
-      bot.channels.cache.get(channelID).send("An error has occurred!");
-      return;
-    }
-    if (body != undefined && body.status != undefined && body.status.message == 'Data not found - summoner not found') {
-      bot.channels.cache.get(channelID).send("That summoner does not exist in North America!");
-      return;
-    }
-    if (err) {
-      return console.log(err);
-    }
-    if (purpose == "rank") {
-      player_rank_id(body.id, channelID, body.name, flag);
-    }
-    if (purpose == "match_history") {
-      player_match_history(body.accountId, channelID, flag);
-    }
-    if (purpose == "profile") {
-      get_champion_points(body, channelID, body.name, flag);
-    }
+      var flag = 0;
+      if (body == undefined) {
+        bot.channels.cache.get(channelID).send("An error has occurred!");
+        return;
+      }
+      if (body != undefined && body.status != undefined && body.status.message == 'Data not found - summoner not found') {
+        bot.channels.cache.get(channelID).send("That summoner does not exist in North America!");
+        return resolve(-1);
+      }
+      if (err) {
+        return console.log(err);
+      }
+      if (purpose == "rank") {
+        player_rank_id(body.id, channelID, body.name, flag);
+      }
+      if (purpose == "match_history") {
+        player_match_history(body.accountId, channelID, flag);
+      }
+      if (purpose == "profile") {
+        get_champion_points(body, channelID, body.name, flag);
+      }
+      return resolve(1);
+    });
   });
 }
 
@@ -594,13 +604,13 @@ function player_rank_id(id, channelID, summonerName, flag) {
 
 
 function display_champions(champ_list, channelID) {
-  if(myCache.get("rotation") != null){
+  if (myCache.get("rotation") != null) {
     let currentRotation = myCache.get("rotation");
-    for(let i = 0; i < champ_list.length; i++){
-      if(!currentRotation.includes(champ_list[i])){
+    for (let i = 0; i < champ_list.length; i++) {
+      if (!currentRotation.includes(champ_list[i])) {
         break;
       }
-      if(i == champ_list.length - 1){
+      if (i == champ_list.length - 1) {
         const attachment = new Discord.MessageAttachment('./test1.png');
         bot.channels.cache.get(channelID).send(attachment);
         return;
@@ -760,7 +770,6 @@ bot.on('message', (msg) => {
     console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
-
   if (msg.content.split(" ")[0] == ".rank") { //
     console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
@@ -793,4 +802,11 @@ bot.on('message', (msg) => {
   if (msg.content.split(" ")[0] == ".info") {
     get_champion_info(msg.content.slice(6, msg.content.length).toLowerCase(), msg.channel.id);
   }
+  if (msg.content.split(" ")[0] == ".register") {
+    database.insert_in_database(msg.content.slice(10, msg.content.length).toLowerCase(), msg.channel.id, msg.guild.id);
+  }
 });
+
+module.exports = {
+  get_player_id
+}
