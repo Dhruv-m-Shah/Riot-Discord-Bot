@@ -805,8 +805,12 @@ bot.on('message', (msg) => {
   if (msg.content.split(" ")[0] == ".register") {
     database.insert_in_database(msg.content.slice(10, msg.content.length).toLowerCase(), msg.channel.id, msg.guild.id);
   }
+  if (msg.content.split(" ")[0] == ".remove") {
+    database.delete_from_database(msg.content.slice(8, msg.content.length).toLowerCase(), msg.channel.id, msg.guild.id);
+  }
 });
 
 module.exports = {
-  get_player_id
+  get_player_id,
+  bot
 }
