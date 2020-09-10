@@ -19,7 +19,7 @@ var champMap = require('./champion_mappings');
 var champMappings = champMap.mappings;
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
-
+const database = require("./db")
 module.exports = {
     Discord: Discord,
     Chart: Chart,
@@ -32,5 +32,6 @@ module.exports = {
     convert: convert,
     timestamp: timestamp,
     championMappings: championMappings,
-    myCache: myCache
+    myCache: myCache,
+    database: database
 };
