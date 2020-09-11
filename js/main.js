@@ -362,7 +362,7 @@ function player_rank(name, channelID) {
   get_player_id(name, channelID, "rank");
 }
 
-function player_rank_id(id, channelID, summonerName, flag, requestType) {
+async function player_rank_id(id, channelID, summonerName, flag, requestType) {
   return new Promise((resolve, reject) => {
     if (flag == 1) resolve();
     request("https://" + region + ".api.riotgames.com/lol/league/v4/entries/by-summoner/" + id + "?api_key=" + league_ID, {
@@ -373,14 +373,18 @@ function player_rank_id(id, channelID, summonerName, flag, requestType) {
         reject();
       }
       if (body.length == 0) {
-        bot.channels.cache.get(channelID).send("Not Ranked!");
+        if(!requestType){
+          bot.channels.cache.get(channelID).send("Not Ranked!");
+        }
+        return resolve("Not Ranked!");
       }
       if(requestType == "solo"){
+        console.log("TESTSTST")
         if(body[0].queueType == "RANKED_SOLO_5x5"){
-          resolve(body[0].tier + " " + body[0].rank)
+          return resolve(body[0].tier + " " + body[0].rank)
         }
         if(body.length > 1){
-          resolve(body[1].tier + " " + body[1].rank)
+          return resolve(body[1].tier + " " + body[1].rank)
         }
       } 
       if(requestType == "flex"){
@@ -390,6 +394,7 @@ function player_rank_id(id, channelID, summonerName, flag, requestType) {
         if(body.length > 1){
           resolve(body[1].tier + " " + body[1].rank)
         }
+        return;
       }
       var exampleEmbed = new Discord.MessageEmbed();
       if (body.length == 1) {
@@ -620,9 +625,9 @@ function player_rank_id(id, channelID, summonerName, flag, requestType) {
         bot.channels.cache.get(channelID).send(exampleEmbed);
         
       }
-
+      resolve(-1);
     });
-    resolve();
+  
   })
 }
 
@@ -699,15 +704,35 @@ function get_random_champion(channelID) {
   exampleEmbed.setThumbnail(champion_images[arrImages[len]]);
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
+function compare(a, b) {
 
-function display_rank_stats(champInfo, channelID, rankType) {
+  let comparison = 0;
+  if (a[0] > b[0]) {
+    comparison = 1;
+  } else if (a[0] < b[0]) {
+    comparison = -1;
+  }
+  return comparison;
+}
+
+async function display_rank_stats(champInfo, channelID, rankType) {
   if (rankType[0] == "rankSolo") {
     ranks = []
+    let hierarchy = ["Not Ranked!", "IRON IV", "IRON III", "IRON II", "IRON I", "BRONZE IV", "BRONZE III", "BRONZE II", "BRONZE I", "SILVER IV", "SILVER III", "SILVER II", "SILVER I", "GOLD IV", "GOLD III", "GOLD II", "GOLD I", "PLATINUM IV", "PLATINUM III", "PLATINUM II", "PLATINUM I", "DIAMOND IV", "DIAMOND III", "DIAMOND II", "DIAMOND I", "MASTER IV", "MASTER III", "MASTER II", "MASTER I", "GRANDMASTER IV", "GRANDMASTER III", "GRANDMASTER II", "GRANDMASTER I", "CHALLENGER IV", "CHALLENGER III", "CHALLENGER II", "CHALLENGER I"];
+    console.log(champInfo)
     for(let i = 0; i < champInfo.length; i++){
       let name = champInfo[i].name;
-      let rank = await player_rank_id(champInfo[i].id, channelID, name, 0, "solo");
-      ranks.append({rank, name});
+      console.log(name);
+      let rank = await player_rank_id(champInfo[i].id, channelID, name, 0, "solo")
+      console.log(rank);
+      let rankNumber = hierarchy.indexOf(rank);
+      ranks.push([rankNumber, name]);
+      if(i == champInfo.length - 1){
+        ranks.sort(compare);
+        console.log(ranks);
+      }
     }
+    
   }
 }
 
@@ -800,7 +825,7 @@ function get_champion_info(champion, channelID) {
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 
-bot.on('message', (msg) => {
+bot.on('message', async (msg) => {
   if (msg.content == "!setup") {
     console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
@@ -844,7 +869,10 @@ bot.on('message', (msg) => {
     database.delete_from_database(msg.content.slice(8, msg.content.length).toLowerCase(), msg.channel.id, msg.guild.id);
   }
   if (msg.content.split(" ")[0] == ".rankBy") {
-    display_rank_stats(database.query_from_database, msg.channel.id, msg.content.split(" ").pop());
+    console.log(msg.content.split(" "));
+    let arr = msg.content.split(" ");
+    arr.shift();
+    display_rank_stats(await database.query_from_database(msg.guild.id), msg.channel.id, arr);
   }
 });
 
