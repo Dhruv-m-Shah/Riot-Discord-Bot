@@ -82,11 +82,13 @@ async function delete_from_database(champName, channelId, serverId) {
 }
 
 async function query_from_database(serverId) {
-  col = await client.db("gromp").collection("grompUsers");
-  var cursor = await col.findOne({
-    _id: serverId
+  return new Promise(async (resolve, reject) => {
+    col = await client.db("gromp").collection("grompUsers");
+    var cursor = await col.findOne({
+      _id: serverId
+    });
+    resolve(cursor.champNames);
   });
-  return cursor
 }
 
 module.exports = {
