@@ -55,7 +55,6 @@ server.listen(server_port, server_host, () => {});
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
-      console.log(champions.data[i].name)
       return {
         "name": champions.data[i].name,
         "title": champions.data[i].title
@@ -79,7 +78,6 @@ function player_match_display(info, channelID, id) {
   a = [];
   //info.participants[participantId - 1].stats
   championId = info.participants[participantId - 1].championId;
-  console.log(championId);
   championName = findChampionName(championId).name;
   var exampleEmbed = new Discord.MessageEmbed();
   if (teamId == 100) {
@@ -171,8 +169,6 @@ function draw_champion_graph(body, name, channelID) {
     a.push(findChampionName(body[i].championId).name);
     b.push(body[i].championPoints);
   }
-  console.log(a);
-  console.log(b);
   var trace1 = {
     x: [],
     y: [],
@@ -379,7 +375,6 @@ async function player_rank_id(id, channelID, summonerName, flag, requestType) {
         return resolve("Not Ranked!");
       }
       if(requestType == "solo"){
-        console.log("TESTSTST")
         if(body[0].queueType == "RANKED_SOLO_5x5"){
           return resolve(body[0].tier + " " + body[0].rank)
         }
@@ -672,7 +667,6 @@ function display_champions(champ_list, channelID) {
     })
   }
   for (let i = 10; i < 15; i++) {
-    console.log(champ_list[i])
     let name = findChampionName(champ_list[i]).name;
     loadImage(champion_images[name]).then(image => {
       context.drawImage(image, 0 + 120 * (i - 10), 240, 120, 120);
@@ -719,17 +713,13 @@ async function display_rank_stats(champInfo, channelID, rankType) {
   if (rankType[0] == "rankSolo") {
     ranks = []
     let hierarchy = ["Not Ranked!", "IRON IV", "IRON III", "IRON II", "IRON I", "BRONZE IV", "BRONZE III", "BRONZE II", "BRONZE I", "SILVER IV", "SILVER III", "SILVER II", "SILVER I", "GOLD IV", "GOLD III", "GOLD II", "GOLD I", "PLATINUM IV", "PLATINUM III", "PLATINUM II", "PLATINUM I", "DIAMOND IV", "DIAMOND III", "DIAMOND II", "DIAMOND I", "MASTER IV", "MASTER III", "MASTER II", "MASTER I", "GRANDMASTER IV", "GRANDMASTER III", "GRANDMASTER II", "GRANDMASTER I", "CHALLENGER IV", "CHALLENGER III", "CHALLENGER II", "CHALLENGER I"];
-    console.log(champInfo)
     for(let i = 0; i < champInfo.length; i++){
       let name = champInfo[i].name;
-      console.log(name);
       let rank = await player_rank_id(champInfo[i].id, channelID, name, 0, "solo")
-      console.log(rank);
       let rankNumber = hierarchy.indexOf(rank);
       ranks.push([rankNumber, name]);
       if(i == champInfo.length - 1){
         ranks.sort(compare);
-        console.log(ranks);
       }
     }
     
@@ -785,14 +775,12 @@ function get_champion_info(champion, channelID) {
     bot.channels.cache.get(channelID).send("That champion is not found!");
     return;
   }
-  console.log(champInfo);
   var exampleEmbed = new Discord.MessageEmbed();
   exampleEmbed.setTitle(champInfo.Name);
   exampleEmbed.setThumbnail(champion_images[champInfo.Name]);
   let temp = champInfo.Name.replace("'", "-");
   temp = temp.replace(" ", "-");
   if (champInfo.Name == "Nunu & Willump") temp = "nunu";
-  console.log("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.setURL("https://na.leagueoflegends.com/en-us/champions/" + temp.toLowerCase() + "/");
   exampleEmbed.addFields({
     name: 'Description',
@@ -827,24 +815,18 @@ function get_champion_info(champion, channelID) {
 
 bot.on('message', async (msg) => {
   if (msg.content == "!setup") {
-    console.log("S");
     send_message("Great, the bot will send messages to this channel", msg.channel.id);
   }
   if (msg.content.split(" ")[0] == ".rank") { //
-    console.log("S");
     player_rank(msg.content.slice(6, msg.content.length), msg.channel.id);
   }
   if (msg.content.split(" ")[0] == ".change_region") {
-    console.log("S");
     region = msg.content.slice(15, msg.content.length);
   }
   if (msg.content.split(" ")[0] == ".match_history") { //
-    console.log("S");
     get_player_id(msg.content.slice(15, msg.content.length), msg.channel.id, "match_history");
   }
   if (msg.content.split(" ")[0] == ".profile") { //
-    console.log("S");
-    console.log(msg.content.slice(9, msg.content.length));
     get_player_id(msg.content.slice(9, msg.content.length), msg.channel.id, "profile");
   }
   if (msg.content.split(" ")[0] == ".stats") {
@@ -869,7 +851,6 @@ bot.on('message', async (msg) => {
     database.delete_from_database(msg.content.slice(8, msg.content.length).toLowerCase(), msg.channel.id, msg.guild.id);
   }
   if (msg.content.split(" ")[0] == ".rankBy") {
-    console.log(msg.content.split(" "));
     let arr = msg.content.split(" ");
     arr.shift();
     display_rank_stats(await database.query_from_database(msg.guild.id), msg.channel.id, arr);
