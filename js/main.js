@@ -699,7 +699,6 @@ function get_random_champion(channelID) {
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
 function compare(a, b) {
-
   let comparison = 0;
   if (a[0] > b[0]) {
     comparison = 1;
@@ -720,6 +719,17 @@ async function display_rank_stats(champInfo, channelID, rankType) {
       ranks.push([rankNumber, name]);
       if(i == champInfo.length - 1){
         ranks.sort(compare);
+        var exampleEmbed = new Discord.MessageEmbed();
+        exampleEmbed.setTitle("Summoner Solo Ranking");
+        let value = "";
+        rankStr = ""
+        for(let i = ranks.length - 1; i >= 0; i--){
+          value += ranks[i][1] + '\n';
+          rankStr += hierarchy[ranks[i][0]] + '\n';
+        }
+        exampleEmbed.addField("Summoner Name", value, true);
+        exampleEmbed.addField("Solo Rankings", rankStr, true);
+        bot.channels.cache.get(channelID).send(exampleEmbed);
       }
     }
     
