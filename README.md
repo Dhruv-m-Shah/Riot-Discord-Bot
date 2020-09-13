@@ -25,3 +25,5 @@ I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input 
 
 ## How it works
 The bot is built on Node.js using the <a href = "https://developer.riotgames.com/">Riot API</a> to obtain raw player information and <a href = "https://discord.js.org/#/">Discord JS API</a> to integrate with discord. Each time a command is entered through discord the RIOT API is called, and the corresponding graphs and info-graphics are generated through node-canvas and plotly. These images are then sent as a response to the discord channel. Some information is cached to speed up response times. Mongodb is used to keep track of registered players within a specific discord server. The data stored in Mongodb can then be used to rank or compare players within a server.
+
+<img href = "https://github.com/Dhruv-m-Shah/Gromp-Riot-Discord-Bot/blob/master/img/High%20Level%20Diagram%20Gromp%20Bot.png">
