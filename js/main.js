@@ -14,7 +14,8 @@ var {
   timestamp,
   championMappings,
   myCache,
-  database
+  database,
+  CanvasRenderService
 } = require('./exports.js');
 database.dbConnect(); // connect to mongodb database.
 const league_ID = process.env.RIOT_API_ID;
@@ -312,6 +313,56 @@ function get_champion_points(body, channelID, name, flag) {
     }
     draw_champion_card(body, channelID);
     draw_champion_graph(body, name, channelID)
+    // const width = 400;
+    // const height = 400;
+    // const chartCallback = (ChartJS) => {
+
+    //   // Global config example: https://www.chartjs.org/docs/latest/configuration/
+    //   ChartJS.defaults.global.elements.rectangle.borderWidth = 2;
+    //   // Global plugin example: https://www.chartjs.org/docs/latest/developers/plugins.html
+    //   ChartJS.plugins.register({
+    //   });
+    //   // New chart type example: https://www.chartjs.org/docs/latest/developers/charts.html
+    //   ChartJS.controllers.MyType = ChartJS.DatasetController.extend({
+    //     // chart implementation
+    //   });
+    // };
+    // const canvasRenderService = new CanvasRenderService(width, height, chartCallback);
+
+    // (async () => {
+    //   const configuration = {
+    //     type: 'radar',
+    //     data: {
+    //       labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
+    //       datasets: [{
+    //         label: "Student A",
+    //         backgroundColor: "rgba(200,0,0,0.2)",
+    //         data: [65, 75, 70, 80, 60, 80]
+    //       }, {
+    //         label: "Student B",
+    //         backgroundColor: "rgba(0,0,200,0.2)",
+    //         data: [54, 65, 60, 70, 70, 75]
+    //       }]
+    //     }
+    //   };
+    //   const image = await canvasRenderService.renderToBuffer(configuration);
+    //   const dataUrl = await canvasRenderService.renderToDataURL(configuration);
+    //   const stream = canvasRenderService.renderToStream(configuration);
+
+    //   const width = 400
+    //   const height = 400
+    //   const canvas = createCanvas(width, height)
+    //   const context = canvas.getContext('2d')
+    //   context.fillStyle = '#ffffff'
+    //   context.fillRect(0, 0, width, height)
+    //   loadImage(image).then(image => {
+    //     context.drawImage(image, 0, 0);
+    //     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+    //     bot.channels.cache.get(channelID).send(`Welcome`, attachment);
+    //   })
+    // })();
+
+
   });
 }
 
@@ -369,24 +420,24 @@ async function player_rank_id(id, channelID, summonerName, flag, requestType) {
         reject();
       }
       if (body.length == 0) {
-        if(!requestType){
+        if (!requestType) {
           bot.channels.cache.get(channelID).send("Not Ranked!");
         }
         return resolve("Not Ranked!");
       }
-      if(requestType == "solo"){
-        if(body[0].queueType == "RANKED_SOLO_5x5"){
+      if (requestType == "solo") {
+        if (body[0].queueType == "RANKED_SOLO_5x5") {
           return resolve(body[0].tier + " " + body[0].rank)
         }
-        if(body.length > 1){
+        if (body.length > 1) {
           return resolve(body[1].tier + " " + body[1].rank)
         }
-      } 
-      if(requestType == "flex"){
-        if(body[0].queueType != "RANKED_SOLO_5x5"){
+      }
+      if (requestType == "flex") {
+        if (body[0].queueType != "RANKED_SOLO_5x5") {
           resolve(body[0].tier + " " + body[0].rank)
         }
-        if(body.length > 1){
+        if (body.length > 1) {
           resolve(body[1].tier + " " + body[1].rank)
         }
         return;
@@ -618,11 +669,11 @@ async function player_rank_id(id, channelID, summonerName, flag, requestType) {
           inline: true
         }, );
         bot.channels.cache.get(channelID).send(exampleEmbed);
-        
+
       }
       resolve(-1);
     });
-  
+
   })
 }
 
@@ -698,6 +749,7 @@ function get_random_champion(channelID) {
   exampleEmbed.setThumbnail(champion_images[arrImages[len]]);
   bot.channels.cache.get(channelID).send(exampleEmbed);
 }
+
 function compare(a, b) {
   let comparison = 0;
   if (a[0] > b[0]) {
@@ -712,18 +764,18 @@ async function display_rank_stats(champInfo, channelID, rankType) {
   if (rankType[0] == "rankSolo") {
     ranks = []
     let hierarchy = ["Not Ranked!", "IRON IV", "IRON III", "IRON II", "IRON I", "BRONZE IV", "BRONZE III", "BRONZE II", "BRONZE I", "SILVER IV", "SILVER III", "SILVER II", "SILVER I", "GOLD IV", "GOLD III", "GOLD II", "GOLD I", "PLATINUM IV", "PLATINUM III", "PLATINUM II", "PLATINUM I", "DIAMOND IV", "DIAMOND III", "DIAMOND II", "DIAMOND I", "MASTER IV", "MASTER III", "MASTER II", "MASTER I", "GRANDMASTER IV", "GRANDMASTER III", "GRANDMASTER II", "GRANDMASTER I", "CHALLENGER IV", "CHALLENGER III", "CHALLENGER II", "CHALLENGER I"];
-    for(let i = 0; i < champInfo.length; i++){
+    for (let i = 0; i < champInfo.length; i++) {
       let name = champInfo[i].name;
       let rank = await player_rank_id(champInfo[i].id, channelID, name, 0, "solo")
       let rankNumber = hierarchy.indexOf(rank);
       ranks.push([rankNumber, name]);
-      if(i == champInfo.length - 1){
+      if (i == champInfo.length - 1) {
         ranks.sort(compare);
         var exampleEmbed = new Discord.MessageEmbed();
         exampleEmbed.setTitle("Summoner Solo Ranking");
         let value = "";
         rankStr = ""
-        for(let i = ranks.length - 1; i >= 0; i--){
+        for (let i = ranks.length - 1; i >= 0; i--) {
           value += ranks[i][1] + '\n';
           rankStr += hierarchy[ranks[i][0]] + '\n';
         }
@@ -732,7 +784,7 @@ async function display_rank_stats(champInfo, channelID, rankType) {
         bot.channels.cache.get(channelID).send(exampleEmbed);
       }
     }
-    
+
   }
 }
 
