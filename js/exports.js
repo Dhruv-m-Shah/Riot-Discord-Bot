@@ -20,6 +20,7 @@ var champMappings = champMap.mappings;
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
 const database = require("./db")
+const { CanvasRenderService } = require('chartjs-node-canvas');
 module.exports = {
     Discord: Discord,
     Chart: Chart,
@@ -33,5 +34,6 @@ module.exports = {
     timestamp: timestamp,
     championMappings: championMappings,
     myCache: myCache,
-    database: database
+    database: database,
+    CanvasRenderService: CanvasRenderService
 };
