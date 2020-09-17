@@ -56,10 +56,7 @@ server.listen(server_port, server_host, () => {});
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
-      return {
-        "name": champions.data[i].name,
-        "title": champions.data[i].title
-      }
+      return champions.data[i];
     }
   }
 }
@@ -302,6 +299,30 @@ function draw_champion_card(body, channelID) {
   bot.channels.cache.get(channelID).send(attachment);
 }
 
+function draw_champion_radar(body, name, channelID){
+  let champTypes = [];
+  for (let i = 0; i < Math.min(body.length, 100); i++) {
+    let key  = findChampionName(body[i].championId).tags;
+    console.log(i);
+    for(let j = 0; j < key.length; j++){
+      if(!(key in champTypes)){
+        champTypes[key[j]] = 1;
+      }
+      else{
+        champTypes[key[j]] += 1;
+      }
+    }
+  }
+  let champArr = [];
+  for(let key in champTypes){
+    champArr.push(champTypes[key], key);
+  }
+  champArr.sort(function(first, second) {
+    return second[0] - first[0];
+  });
+  console.log(champArr);
+}
+
 function get_champion_points(body, channelID, name, flag) {
   if (flag == 1) return;
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
@@ -312,7 +333,8 @@ function get_champion_points(body, channelID, name, flag) {
       return console.log(err);
     }
     draw_champion_card(body, channelID);
-    draw_champion_graph(body, name, channelID)
+    draw_champion_graph(body, name, channelID);
+    draw_champion_radar(body, name, channelID);
     // const width = 400;
     // const height = 400;
     // const chartCallback = (ChartJS) => {
