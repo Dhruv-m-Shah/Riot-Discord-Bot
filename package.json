@@ -26,10 +26,13 @@
   "dependencies": {
     "canvas": "2.6.1",
     "chart.js": "^2.9.3",
+    "chartjs-node-canvas": "^3.0.6",
     "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
     "fs": "0.0.1-security",
     "gm": "^1.23.1",
     "http": "0.0.1-security",
+    "mongodb": "^3.6.1",
     "node-cache": "^5.1.2",
     "plotly": "^1.0.6",
     "request": "^2.88.2",
