@@ -56,10 +56,7 @@ server.listen(server_port, server_host, () => {});
 function findChampionName(id) {
   for (i = 0; i < champions.data.length; i++) {
     if (id == Number(champions.data[i].key)) {
-      return {
-        "name": champions.data[i].name,
-        "title": champions.data[i].title
-      }
+      return champions.data[i];
     }
   }
 }
@@ -302,6 +299,73 @@ function draw_champion_card(body, channelID) {
   bot.channels.cache.get(channelID).send(attachment);
 }
 
+function draw_champion_radar(body, name, channelID){
+  console.log(body);
+  let champTypes = {};
+  for (let i = 0; i < body.length; i++) {
+    let key  = findChampionName(body[i].championId).tags;
+    for(let j = 0; j < key.length; j++){
+      if(!(key[j] in champTypes)){
+        champTypes[key[j]] = 1;
+      }
+      else{
+        champTypes[key[j]] += 1;
+      }
+    }
+  }
+  let  champRole = [];
+  let roleGamesPlayed = [];
+  for(let key in champTypes){
+    champRole.push(key);
+    roleGamesPlayed.push(champTypes[key])
+  }
+
+
+  const width = 400;
+    const height = 400;
+    const chartCallback = (ChartJS) => {
+
+      // Global config example: https://www.chartjs.org/docs/latest/configuration/
+      ChartJS.defaults.global.elements.rectangle.borderWidth = 2;
+      // Global plugin example: https://www.chartjs.org/docs/latest/developers/plugins.html
+      ChartJS.plugins.register({
+      });
+      // New chart type example: https://www.chartjs.org/docs/latest/developers/charts.html
+      ChartJS.controllers.MyType = ChartJS.DatasetController.extend({
+        // chart implementation
+      });
+    };
+    const canvasRenderService = new CanvasRenderService(width, height, chartCallback);
+
+    (async () => {
+      const configuration = {
+        type: 'radar',
+        data: {
+          labels: champRole,
+          datasets: [{
+            label: "Student A",
+            backgroundColor: "rgba(200,0,0,0.2)",
+            data: roleGamesPlayed
+          }]
+        }
+      };
+      const image = await canvasRenderService.renderToBuffer(configuration);
+      const width = 400
+      const height = 400
+      const canvas = createCanvas(width, height)
+      const context = canvas.getContext('2d')
+      context.fillStyle = '#ffffff'
+      context.fillRect(0, 0, width, height)
+      loadImage(image).then(image => {
+        context.drawImage(image, 0, 0);
+        const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
+        bot.channels.cache.get(channelID).send(`Welcome`, attachment);
+      })
+    })();
+
+
+}
+
 function get_champion_points(body, channelID, name, flag) {
   if (flag == 1) return;
   // https://na1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/CenouAkdk39tnrYO-oMtpW4XmZQvpr8dOZENgTOKIZiZkJM
@@ -312,56 +376,9 @@ function get_champion_points(body, channelID, name, flag) {
       return console.log(err);
     }
     draw_champion_card(body, channelID);
-    draw_champion_graph(body, name, channelID)
-    // const width = 400;
-    // const height = 400;
-    // const chartCallback = (ChartJS) => {
-
-    //   // Global config example: https://www.chartjs.org/docs/latest/configuration/
-    //   ChartJS.defaults.global.elements.rectangle.borderWidth = 2;
-    //   // Global plugin example: https://www.chartjs.org/docs/latest/developers/plugins.html
-    //   ChartJS.plugins.register({
-    //   });
-    //   // New chart type example: https://www.chartjs.org/docs/latest/developers/charts.html
-    //   ChartJS.controllers.MyType = ChartJS.DatasetController.extend({
-    //     // chart implementation
-    //   });
-    // };
-    // const canvasRenderService = new CanvasRenderService(width, height, chartCallback);
-
-    // (async () => {
-    //   const configuration = {
-    //     type: 'radar',
-    //     data: {
-    //       labels: ["English", "Maths", "Physics", "Chemistry", "Biology", "History"],
-    //       datasets: [{
-    //         label: "Student A",
-    //         backgroundColor: "rgba(200,0,0,0.2)",
-    //         data: [65, 75, 70, 80, 60, 80]
-    //       }, {
-    //         label: "Student B",
-    //         backgroundColor: "rgba(0,0,200,0.2)",
-    //         data: [54, 65, 60, 70, 70, 75]
-    //       }]
-    //     }
-    //   };
-    //   const image = await canvasRenderService.renderToBuffer(configuration);
-    //   const dataUrl = await canvasRenderService.renderToDataURL(configuration);
-    //   const stream = canvasRenderService.renderToStream(configuration);
-
-    //   const width = 400
-    //   const height = 400
-    //   const canvas = createCanvas(width, height)
-    //   const context = canvas.getContext('2d')
-    //   context.fillStyle = '#ffffff'
-    //   context.fillRect(0, 0, width, height)
-    //   loadImage(image).then(image => {
-    //     context.drawImage(image, 0, 0);
-    //     const attachment = new Discord.MessageAttachment(canvas.toBuffer(), 'welcome-image.png');
-    //     bot.channels.cache.get(channelID).send(`Welcome`, attachment);
-    //   })
-    // })();
-
+    draw_champion_graph(body, name, channelID);
+    draw_champion_radar(body, name, channelID);
+    
 
   });
 }
