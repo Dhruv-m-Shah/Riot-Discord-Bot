@@ -15,7 +15,7 @@ For those who may not be familiar, League of Legends and Valorant are very popul
 <img src = "https://github.com/Dhruv-m-Shah/Gromp-Riot-Discord-Bot/blob/master/img/grompDemo.gif"></img>
 </h1>
 
-## Getting the Gromp Bot
+## Getting the Gromp Bot (Currently Heroku server is down).
 Visit the main site  <a href = "http://www.gromp.xyz/">here</a> <br>
 Get the bot <a href = "https://discordapp.com/api/oauth2/authorize?client_id=704888702585012345&permissions=0&scope=bot">here</a> </br>
 Read the docs <a href = "http://www.gromp.xyz/Documentation/start.html">here</a>
