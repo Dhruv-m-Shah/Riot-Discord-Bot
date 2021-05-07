@@ -21,7 +21,7 @@ Get the bot <a href = "https://discordapp.com/api/oauth2/authorize?client_id=704
 Read the docs <a href = "http://www.gromp.xyz/Documentation/start.html">here</a>
 
 ## Acknowledgements
-I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input in helping me improve this Discord Bot and suggesting new features for me to implement.
+I would like to thank Alex, Anthony, Nethu and Jaxen for their continuous input in helping me improve this Discord Bot and suggesting new features to implement.
 
 ## How it works
 The bot is built on Node.js using the <a href = "https://developer.riotgames.com/">Riot API</a> to obtain raw player information and <a href = "https://discord.js.org/#/">Discord JS API</a> to integrate with discord. Each time a command is entered through discord the RIOT API is called, and the corresponding graphs and info-graphics are generated through node-canvas and plotly. These images are then sent as a response to the discord channel. Some information is cached to speed up response times. Mongodb is used to keep track of registered players within a specific discord server. The data stored in Mongodb can then be used to rank or compare players within a server.
