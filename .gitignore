@@ -4,4 +4,4 @@
 'node_modules' 
 'node_modules' 
 '.env'
-'/landing_page'
+'/landing_page'node_modules/
